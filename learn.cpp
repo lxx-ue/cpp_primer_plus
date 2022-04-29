@@ -77,7 +77,7 @@ void show_seasons(const ses_array* pa);
 // 7.9
 const int SLEN = 30;
 struct student {
-    char fullname[SLEN];
+    char fullname[SLEN] = {""};
     char hobby[SLEN];
     int ooplevel;
 };
@@ -496,24 +496,29 @@ int main()
     //fill_seasons(&st_ses);
     //show_seasons(&st_ses);
 
+    // #9
+    //cout << "Enter class size: ";
+    //int class_size;
+    //cin >> class_size;
+    //while (cin.get() != '\n')
+    //    continue;
+    //student* ptr_stu = new student[class_size];
+    //cout << endl;
+    //int entered = getinfo(ptr_stu, class_size);
+    //cout << "You entered "<<entered<<" students\n";
+    //for (int i = 0; i < entered; i++)
+    //{
+    //    display1(ptr_stu[i]);
+    //    display2(&ptr_stu[i]);
+    //}
+    //displayЗ(ptr_stu, entered);
+    //delete[] ptr_stu;
+    //cout << "Done\n";
+
 #pragma endregion
     
-    // #9
-    cout << "Enter class size: ";
-    int class_size;
-    cin >> class_size;
-    while (cin.get() != '\n')
-        continue;
-    student* ptr_stu = new student[class_size];
-    int entered = getinfo(ptr_stu, class_size);
-    for (int i = 0; i < entered; i++)
-    {
-        display1(ptr_stu[i]);
-        display2(&ptr_stu[i]);
-    }
-    displayЗ(ptr_stu, entered);
-    delete[] ptr_stu;
-    cout << "Done\n";
+
+
 }
 
 double garmon(double x, double y)
@@ -686,17 +691,43 @@ void show_seasons(const ses_array* pa)
     cout << " Total Expenses: $" << total << endl;
 }
 
-int getinfo(student ра[], int n)
-{
-
+int getinfo(student pa[], int n)
+{   
+    int i;
+    for(i = 0; i < n; i++ )
+    {
+        char tmp[SLEN];
+        cout << "St #" << i + 1 << ".\n\tEnter name: ";
+        if (cin>>tmp)
+        {
+            *pa[i].fullname = *tmp;
+            cout << "\tEnter hobby: ";
+            cin >> pa[i].hobby;
+            cout << "\tEnter oop: ";
+            cin >> pa[i].ooplevel;
+        }
+        else {
+            cin.clear();
+            return i;
+        }
+    }
+    return i;
 }
 void display1(student st)
 {
-    cout << st.fullname << endl << st.hobby << endl << st.ooplevel;
+    cout << "Name: " << st.fullname << endl;
+    cout << "Hobby: " << st.hobby << endl;
+    cout << "OOP: " << st.ooplevel << endl;
 }
 void display2(const student* ps) {
-
+    cout << "Name: " << ps->fullname << endl;
+    cout << "Hobby: " << ps->hobby << endl;
+    cout << "OOP: " << ps->ooplevel << endl;
 }
 void displayЗ(const student ра[], int n) {
-
+    for (int i = 0; i < n; i++) {
+        cout << "Name: " << ра[i].fullname << endl;
+        cout << "Hobby: " << ра[i].hobby << endl;
+        cout << "OOP: " << ра[i].ooplevel << endl;
+    }
 }
