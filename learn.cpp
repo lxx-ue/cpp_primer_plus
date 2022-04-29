@@ -692,7 +692,7 @@ int getinfo(student ра[], int n)
 }
 void display1(student st)
 {
-
+    cout << st.fullname << endl << st.hobby << endl << st.ooplevel;
 }
 void display2(const student* ps) {
 
