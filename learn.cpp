@@ -86,6 +86,13 @@ void display1(student st);
 void display2(const student* ps);
 void displayЗ(const student ра[], int n);
 
+// 7.10
+double calculate(double (*pf)(double, double), double, double);
+double summation(double, double);
+double subtraction(double, double);
+double multiplication(double, double);
+double division(double, double);
+
 int main()
 {
     setlocale(0, "");
@@ -515,6 +522,18 @@ int main()
     //delete[] ptr_stu;
     //cout << "Done\n";
 
+    // #10
+    //double a, b;
+    //cout << "Enter two numbers: ";
+    //while (cin >> a >> b)
+    //{
+    //    cout << "summation is = " << calculate(summation, a, b) << endl;
+    //    cout << "subtraction is = " << calculate(subtraction, a, b) << endl;
+    //    cout << "multiplication is = " << calculate(multiplication, a, b) << endl;
+    //    cout << "division is = " << calculate(division, a, b) << endl;
+    //    cout << "Enter two numbers again: ";
+    //}
+
 #pragma endregion
     
 
@@ -730,4 +749,25 @@ void displayЗ(const student ра[], int n) {
         cout << "Hobby: " << ра[i].hobby << endl;
         cout << "OOP: " << ра[i].ooplevel << endl;
     }
+}
+
+double calculate(double (*pf)(double, double), double x, double y)
+{
+    return (*pf)(x,y);
+}
+double summation(double x, double y)
+{
+    return x + y;
+}
+double subtraction(double x, double y)
+{
+    return x - y;
+}
+double multiplication(double x, double y)
+{
+    return x * y;
+}
+double division(double x, double y)
+{
+    return (y==0) ? 0 : x/y;
 }
