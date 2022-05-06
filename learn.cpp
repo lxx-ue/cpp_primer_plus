@@ -98,6 +98,17 @@ double division(double, double);
 int call_count = 0;
 void print_str(const char*);
 void print_str(const char*, int);
+// #2
+struct CandyBar
+{
+	const char* name;
+	double weight;
+	int cal;
+};
+void fill_candybar(CandyBar&, const char* n = "Millennium Munch", double  w = 2.85, int c = 350);
+void show_candybar(const CandyBar&);
+// #3
+void upper_string(string&);
 
 #pragma endregion
 
@@ -545,6 +556,25 @@ int main()
 	//print_str("shesh",5);
 	//print_str("shesh",5);
 	//print_str("shesh");
+
+	// #2
+	//CandyBar cb;
+	//fill_candybar(cb);
+	//show_candybar(cb);
+	//fill_candybar(cb, "alpen gold", 100);
+	//show_candybar(cb);
+
+	// #3
+	string s;
+	cout << "Enter a string: ";
+	while (getline(cin, s) && s != "q")
+	{
+		upper_string(s);
+		cout << s <<endl;
+		cout << "Enter a string: ";
+	}
+	cout << "Bye";
+
 #pragma endregion
 
 }
@@ -785,6 +815,7 @@ double division(double x, double y)
 #pragma endregion
 
 #pragma region func_ch8
+// #1
 void print_str(const char* str)
 {
 	cout << str << endl;
@@ -799,4 +830,26 @@ void print_str(const char* str, int n)
 	call_count++;
 }
 
+// #2
+void fill_candybar(CandyBar& candy, const char* n, double  w, int c)
+{
+	candy.name = n;
+	candy.weight = w;
+	candy.cal = c;
+}
+void show_candybar(const CandyBar& c)
+{
+	cout << " name is: " << c.name;
+	cout << "\t weight is: " << c.weight;
+	cout << "\t calories is: " << c.cal << endl;
+}
 #pragma endregion
+
+// #3
+void upper_string(string& str)
+{
+	for (int i = 0; i < str.size(); i++)
+	{
+		str[i] = toupper(str[i]);
+	}
+}
