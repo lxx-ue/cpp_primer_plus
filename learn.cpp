@@ -5,9 +5,13 @@
 #include <array>
 #include <fstream>
 #include <string>
+#include <cstring> 
 
 using namespace std;
+#pragma warning(disable : 4996)
 
+
+#pragma region prototype_ch6
 struct bop {
 	char fullname[10];
 	char title[10];
@@ -22,6 +26,7 @@ struct metsenates {
 	std::string name;
 	double donate;
 };
+#pragma endregion
 
 #pragma region prototype_ch7
 // #1
@@ -109,7 +114,22 @@ void fill_candybar(CandyBar&, const char* n = "Millennium Munch", double  w = 2.
 void show_candybar(const CandyBar&);
 // #3
 void upper_string(string&);
-
+// #4
+struct _string
+{
+	char* str;
+	int ct;
+};
+void _string_set(_string&, char* chr);
+void _string_show(const _string&, int count = 1);
+void _string_show(const char* chr, int count = 1);
+// #5
+template <class T>
+T max5(T[5]);
+// #6
+template <class T>
+T maxn(T[], int);
+template <> char* maxn<char*>(char* [], int);
 #pragma endregion
 
 int main()
@@ -565,26 +585,66 @@ int main()
 	//show_candybar(cb);
 
 	// #3
-	string s;
-	cout << "Enter a string: ";
-	while (getline(cin, s) && s != "q")
-	{
-		upper_string(s);
-		cout << s <<endl;
-		cout << "Enter a string: ";
+	//string s;
+	//cout << "Enter a string: ";
+	//while (getline(cin, s) && s != "q")
+	//{
+	//	upper_string(s);
+	//	cout << s <<endl;
+	//	cout << "Enter a string: ";
+	//}
+	//cout << "Bye";
+
+	// #4
+	//_string beany;
+	//char testing[] = "Reality isn't what it used to bе.";
+	//_string_set(beany, testing); // первым аргументом является ссылка,
+	//// Выделяет пространство для хранения копии testing,
+	//// использует элемент типа str структуры beany как указатель
+	//// на новый блок, копирует testing в новый блок и
+	//// создает элемент ct структуры beany
+	//_string_show(beany); // выводит строковый член структуры один раз
+	//_string_show(beany, 2); // выводит строковый член структуры два раза
+	//testing[0] = 'D';
+	//testing[1] = 'u';
+	//_string_show(testing);
+	//_string_show(testing, 3);
+	//_string_show("Done!");
+	//delete beany.str;
+
+	// #5
+	//int arr[5] = { 1, 5, 6, 7, 9};
+	//cout << max5(arr) << endl;
+	//double arr2[5] = { 1.4, 5.6, 2.6, 5.7, 0.9 };
+	//cout << max5(arr2) << endl;
+
+	// #6
+	int arr[6] = { 1, 15, 32, 2, 6, 7};
+	cout << maxn(arr, 6) << endl;
+	double arr2[4] = { 1.4, 5.6, 5.7, 7.9 };
+	cout << maxn(arr2, 4) << endl;
+
+	char* B[3];
+	for (int i = 0; i < 3; i++) {
+		B[i] = new char[6];
 	}
-	cout << "Bye";
+	strcpy(B[0], "Wake");
+	strcpy(B[1], "upppp");
+	strcpy(B[2], "Neo");
+
+	cout << maxn(B,3) << endl;
 
 #pragma endregion
 
 }
 
 #pragma region func_ch7
+// #1
 double garmon(double x, double y)
 {
 	return 2.0 * x * y / (x + y);
 }
-
+// #2
 void fill_games(int arr[], int size)
 {
 	int i = 0;
@@ -613,7 +673,7 @@ double avg_games(int arr[], int size)
 	}
 	return avg / size;
 }
-
+// #3
 void show_box(box b) {
 	cout << "maker: " << b.maker << "\theight: " << b.height << "\twidth: " << b.width << "\tlenth: " << b.length << "\tvolume: " << b.volume << endl;
 }
@@ -621,7 +681,7 @@ void volume_box(box* b)
 {
 	b->volume = b->height * b->length * b->width;
 }
-
+// #4
 long double probaЬility(unsigned numbers, unsigned picks, unsigned diap)
 {
 	if (diap == 0) return 0;
@@ -632,13 +692,13 @@ long double probaЬility(unsigned numbers, unsigned picks, unsigned diap)
 	tmp = result / diap;
 	return tmp;
 }
-
+// #5
 int fact(int n)
 {
 	if (n == 0 || n == 1) return 1;
 	if (n > 0) return n * fact(n - 1);
 }
-
+// #6
 int fill_array(double arr[], int size)
 {
 	int i = 0;
@@ -669,7 +729,7 @@ void reverse_array(double arr[], int size)
 		arr[i] = tmp;
 	}
 }
-
+// #7
 double* fill_array2(double* begin, double* end)
 {
 	double temp;
@@ -710,7 +770,7 @@ void revalue(double* begin, double* end, double r)
 	for (double* tmp = begin; tmp != end; tmp++)
 		*tmp *= r;
 }
-
+// #8
 void fill_seasons(double pa[])
 {
 	for (int i = 0; i < Seasons; i++)
@@ -749,7 +809,7 @@ void show_seasons(const ses_array* pa)
 	}
 	cout << " Total Expenses: $" << total << endl;
 }
-
+// #9
 int getinfo(student pa[], int n)
 {
 	int i;
@@ -790,7 +850,7 @@ void displayЗ(const student ра[], int n) {
 		cout << "OOP: " << ра[i].ooplevel << endl;
 	}
 }
-
+// #10
 double calculate(double (*pf)(double, double), double x, double y)
 {
 	return (*pf)(x, y);
@@ -829,7 +889,6 @@ void print_str(const char* str, int n)
 	else cout << str << endl;
 	call_count++;
 }
-
 // #2
 void fill_candybar(CandyBar& candy, const char* n, double  w, int c)
 {
@@ -843,8 +902,6 @@ void show_candybar(const CandyBar& c)
 	cout << "\t weight is: " << c.weight;
 	cout << "\t calories is: " << c.cal << endl;
 }
-#pragma endregion
-
 // #3
 void upper_string(string& str)
 {
@@ -853,3 +910,66 @@ void upper_string(string& str)
 		str[i] = toupper(str[i]);
 	}
 }
+// #4
+void _string_set(_string& str, char* chr)
+{
+	str.str = new char[strlen(chr) + 1];
+	strcpy(str.str, chr);
+	str.ct = strlen(chr);
+}
+void _string_show(const _string& str, int count)
+{
+	for (int n = 0; n < count; n++)
+	{
+		for (int i = 0; i < str.ct; i++)
+		{
+			cout << str.str[i];
+		}
+		cout << endl;
+	}
+}
+void _string_show(const char* chr, int count)
+{
+	for (int n = 0; n < count; n++)
+	{
+		cout << chr << endl;
+	}
+}
+// #5
+template <class T>
+T max5(T arr[5])
+{
+	T temp = arr[0];
+	for (int i = 1; i < 5; i++)
+	{
+		if (arr[i] > temp) temp = arr[i];
+	}
+	return temp;
+}
+// #6
+template <class T>
+T maxn(T arr[], int n)
+{
+	T temp = arr[0];
+	for (int i = 1; i < n; i++)
+	{
+		if (arr[i] > temp) temp = arr[i];
+	}
+	return temp;
+}
+template <> char* maxn<char*>(char * arr[] , int n)
+{
+	char* temp = arr[0];
+	int longest = strlen(arr[0]);
+	for (int i = 1; i < n; i++)
+	{
+		if (strlen(arr[i]) > longest)
+		{
+			temp = arr[i];
+			longest = strlen(arr[i]);
+		}
+	}
+	return temp;
+}
+#pragma endregion
+
