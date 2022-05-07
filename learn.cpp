@@ -130,6 +130,16 @@ T max5(T[5]);
 template <class T>
 T maxn(T[], int);
 template <> char* maxn<char*>(char* [], int);
+// #7
+struct debts
+{
+	char name[50];
+	double amount;
+};
+template <typename T>
+T SumArray(T arr[], int n);
+template <typename T>
+T* SumArray(T* arr[], int n);
 #pragma endregion
 
 int main()
@@ -619,21 +629,34 @@ int main()
 	//cout << max5(arr2) << endl;
 
 	// #6
-	int arr[6] = { 1, 15, 32, 2, 6, 7};
-	cout << maxn(arr, 6) << endl;
-	double arr2[4] = { 1.4, 5.6, 5.7, 7.9 };
-	cout << maxn(arr2, 4) << endl;
+	//int arr[6] = { 1, 15, 32, 2, 6, 7};
+	//cout << maxn(arr, 6) << endl;
+	//double arr2[4] = { 1.4, 5.6, 5.7, 7.9 };
+	//cout << maxn(arr2, 4) << endl;
+	//char* B[3];
+	//for (int i = 0; i < 3; i++) {
+	//	B[i] = new char[6];
+	//}
+	//strcpy(B[0], "Wake");
+	//strcpy(B[1], "upppp");
+	//strcpy(B[2], "Neo");
+	//cout << maxn(B,3) << endl;
 
-	char* B[3];
-	for (int i = 0; i < 3; i++) {
-		B[i] = new char[6];
-	}
-	strcpy(B[0], "Wake");
-	strcpy(B[1], "upppp");
-	strcpy(B[2], "Neo");
-
-	cout << maxn(B,3) << endl;
-
+	// #7
+	//int things[6] = { 13, 31, 103, 301, 310, 130 };
+	//struct debts mr_E[3] =
+	//{
+	//{ "Ima Wolfe", 2400.0 },
+	//{ "Ura Foxe" , 1300.0 },
+	//{ "Iby Stout" , 1800.0 }
+	//};
+	//double* pd[3];
+	//for (int i = 0; i < 3; i++)
+	//	pd[i] = &mr_E[i].amount;
+	//cout << "Listing Mr.Е's counts of things: \n";
+	//cout << SumArray(things, 6) << endl;
+	//cout << "Listing Mr.Е's debts: \n";
+	//cout << *(SumArray(pd, 3)) << endl;
 #pragma endregion
 
 }
@@ -957,7 +980,7 @@ T maxn(T arr[], int n)
 	}
 	return temp;
 }
-template <> char* maxn<char*>(char * arr[] , int n)
+template <> char* maxn<char*>(char* arr[], int n)
 {
 	char* temp = arr[0];
 	int longest = strlen(arr[0]);
@@ -969,6 +992,25 @@ template <> char* maxn<char*>(char * arr[] , int n)
 			longest = strlen(arr[i]);
 		}
 	}
+	return temp;
+}
+// #7
+template <typename T>
+T SumArray(T arr[], int n)
+{
+	cout << "template A\n ";
+	T temp = 0;
+	for (int i = 0; i < n; i++)
+		temp += arr[i];
+	return temp;
+}
+template <typename T>
+T* SumArray(T* arr[], int n)
+{
+	cout << "template B\n ";
+	T* temp = arr[0];
+	for (int i = 1; i < n; i++)
+		*temp += *arr[i];
 	return temp;
 }
 #pragma endregion
