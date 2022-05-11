@@ -6,6 +6,7 @@
 #include <fstream>
 #include <string>
 #include <cstring> 
+#include "ch9_1.h"
 
 using namespace std;
 #pragma warning(disable : 4996)
@@ -141,6 +142,9 @@ T SumArray(T arr[], int n);
 template <typename T>
 T* SumArray(T* arr[], int n);
 #pragma endregion
+
+void other(void);
+void another(void);
 
 int main()
 {
@@ -658,7 +662,12 @@ int main()
 	//cout << "Listing Mr.Е's debts: \n";
 	//cout << *(SumArray(pd, 3)) << endl;
 #pragma endregion
-
+	
+	golf g1;
+	setGolf(g1);
+	showGolf(g1);
+	handicap(g1, 5);
+	showGolf(g1);
 }
 
 #pragma region func_ch7
@@ -1015,3 +1024,14 @@ T* SumArray(T* arr[], int n)
 }
 #pragma endregion
 
+void other()
+{
+
+	return;
+}
+
+void another()
+{
+
+	return;
+}
