@@ -143,8 +143,9 @@ template <typename T>
 T* SumArray(T* arr[], int n);
 #pragma endregion
 
-void other(void);
-void another(void);
+#pragma region prototype_ch9
+void strcount(string str);
+#pragma endregion
 
 int main()
 {
@@ -662,12 +663,29 @@ int main()
 	//cout << "Listing Mr.Е's debts: \n";
 	//cout << *(SumArray(pd, 3)) << endl;
 #pragma endregion
-	
-	golf g1;
-	setGolf(g1);
-	showGolf(g1);
-	handicap(g1, 5);
-	showGolf(g1);
+
+#pragma region chapter9
+	// #1
+	//golf g1;
+	//setGolf(g1);
+	//showGolf(g1);
+	//handicap(g1, 5);
+	//showGolf(g1);
+
+	// #2
+	//string s;
+	//char next;
+	//cout << "Enter a line: \n";
+	//getline(cin, s);
+	//while (s != "")
+	//{
+	//	strcount(s);
+	//	cout << "Enter next line (empty line to quit):\n";
+	//	getline(cin, s);
+	//}
+	//cout << "Bye\n";
+
+#pragma endregion
 }
 
 #pragma region func_ch7
@@ -1024,14 +1042,16 @@ T* SumArray(T* arr[], int n)
 }
 #pragma endregion
 
-void other()
+#pragma region func_ch9
+void strcount(string str)
 {
-
-	return;
+	static int total = 0;
+	int count = 0, i = 0;
+	cout << "\"" << str << "\" contains\n";
+	while (str[i++])
+		count++;
+	total += count;
+	cout << count << " characters\n";
+	cout << total << " characters total\n";
 }
-
-void another()
-{
-
-	return;
-}
+#pragma endregion
