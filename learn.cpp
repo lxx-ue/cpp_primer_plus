@@ -7,6 +7,7 @@
 #include <string>
 #include <cstring> 
 #include "ch9_1.h"
+#include <new>
 
 using namespace std;
 #pragma warning(disable : 4996)
@@ -144,9 +145,16 @@ T* SumArray(T* arr[], int n);
 #pragma endregion
 
 #pragma region prototype_ch9
+// #2
 void strcount(string str);
+// #3
+struct chaff
+{
+	char dross[20];
+	int slag;
+};
+char buffer[1];
 #pragma endregion
-
 int main()
 {
 	setlocale(0, "");
@@ -684,6 +692,19 @@ int main()
 	//	getline(cin, s);
 	//}
 	//cout << "Bye\n";
+
+	// #3
+	chaff matrix[2] = { {"one", 1}, {"two", 2} };
+
+	cout << "Size of buffer: " << sizeof buffer << " bytes\n"; 
+	cout << "Size of matrix: " << sizeof matrix << " bytes\n"; 
+	chaff* pchaff = new (buffer) chaff[2];
+	pchaff = matrix;
+	for (int i = 0; i < 2; i++)
+	{
+		cout << pchaff[i].dross << "\t" << pchaff->slag << endl;
+	}
+	
 
 #pragma endregion
 }
