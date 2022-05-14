@@ -8,6 +8,7 @@
 #include <cstring> 
 #include "ch9_1.h"
 #include <new>
+#include "ch9_4.h"
 
 using namespace std;
 #pragma warning(disable : 4996)
@@ -714,7 +715,15 @@ int main()
 	//}
 
 	// #4
-
+	double arr[SALES::QUARTERS] = { 2.2, 3.3, 4.4, 5.5 };
+	SALES::Sales s1, s2;
+	SALES::setSales(s1,arr);
+	for (int i = 0; i < SALES::QUARTERS; i++)
+	{
+		s2.sales[i] = arr[i] * 2;
+	}
+	SALES::setSales(s2);
+	
 #pragma endregion
 }
 
