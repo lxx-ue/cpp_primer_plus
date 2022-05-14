@@ -148,12 +148,14 @@ T* SumArray(T* arr[], int n);
 // #2
 void strcount(string str);
 // #3
-struct chaff
-{
+const int STRUCTSIZE = 2;       // размер массива структур
+const int BUFFSIZE = 50;        // размер массива buffer
+char buffer[BUFFSIZE];          // блок памяти под буфер
+struct chaff {                   // определение структуры
 	char dross[20];
 	int slag;
 };
-char buffer[1];
+// #4
 #pragma endregion
 int main()
 {
@@ -694,17 +696,24 @@ int main()
 	//cout << "Bye\n";
 
 	// #3
-	chaff matrix[2] = { {"one", 1}, {"two", 2} };
+	//chaff* pchaff = new (buffer) chaff[STRUCTSIZE];    // выделение памяти с размещением
+	//													// в массиве buffer
+	//strcpy(pchaff[0].dross, "one");   // инициализация массива структур
+	//strcpy(pchaff[1].dross, "two");
+	//pchaff[0].slag = 1;
+	//pchaff[1].slag = 2;
+	//std::cout << "Address of buffer: " << &buffer
+	//	<< "\nSize of buffer: " << sizeof buffer << "\n";
+	//std::cout << "Address of &pchaff[0]: " << &pchaff[0]
+	//	<< "\nSize of pchaff: " << sizeof pchaff << "\n";
+	//std::cout << "Size of pchaff[0]: " << sizeof pchaff[0] << "\n";
+	//std::cout << "Address of &pchaff[1]: " << &pchaff[1] << "\n";
+	//for (int i = 0; i < STRUCTSIZE; i++) {           // отображение массива структур
+	//	std::cout << pchaff[i].dross << "\n"
+	//		<< pchaff[i].slag << "\n";
+	//}
 
-	cout << "Size of buffer: " << sizeof buffer << " bytes\n"; 
-	cout << "Size of matrix: " << sizeof matrix << " bytes\n"; 
-	chaff* pchaff = new (buffer) chaff[2];
-	pchaff = matrix;
-	for (int i = 0; i < 2; i++)
-	{
-		cout << pchaff[i].dross << "\t" << pchaff->slag << endl;
-	}
-	
+	// #4
 
 #pragma endregion
 }
@@ -1064,6 +1073,7 @@ T* SumArray(T* arr[], int n)
 #pragma endregion
 
 #pragma region func_ch9
+// #2
 void strcount(string str)
 {
 	static int total = 0;
