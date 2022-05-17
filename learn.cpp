@@ -259,8 +259,108 @@ public:
 };
 
 // #4
+namespace SALES {
+	class _Sales
+	{
+	private:
+		static const int QUARTERS = 4;
+		double sales[QUARTERS];
+		double average;
+		double max;
+		double min;
+		void detect_variables()
+		{
+			double min = sales[0], max = sales[0], avg = 0;
+			for (int i = 0; i < QUARTERS; i++)
+			{
+				avg += sales[i];
+				if (min > sales[i]) min = sales[i];
+				if (max < sales[i]) max = sales[i];
+			}
+			avg /= 4;
+			this->average = avg;
+			this->max = max;
+			this->min = min;
+		}
+	public:
+		_Sales(const double ar[])
+		{
+			for (int i = 0; i < QUARTERS; i++)
+			{
+				sales[i] = ar[i];
+			}
+			detect_variables();
+		}
+		_Sales(Sales& s)
+		{
+			for (int i = 0; i < QUARTERS; i++)
+			{
+				this->sales[i] = s.sales[i];
+			}
+			detect_variables();
+		}
+		void showSales()
+		{
+			cout << sales[0] << " " << sales[1];
+			cout << " " << sales[2] << " " << sales[3];
+			cout << "\taverage=" << average << "\tmax=";
+			cout << max << "\tmin=" << min << endl;
+		}
+	};
+}
 
-
+// #5
+struct Customer
+{
+	char fullname[35];
+	double payment;
+};
+typedef Customer Item;
+class Stack
+{
+private:
+	static const int MAX = 10;
+	Item items[MAX];
+	int top;
+	double sum;
+public:
+	Stack()
+	{
+		top = 0;
+		sum = 0.0;
+	}
+	bool is_empty() const
+	{
+		return top == 0;
+	}
+	bool is_full() const
+	{
+		return top == MAX;
+	}
+	bool push(const Item& item)
+	{
+		if (top < MAX)
+		{
+			items[top++] = item;
+			return true;
+		}
+		else return false;
+	}
+	bool pop(Item& item)
+	{
+		if (top > 0)
+		{
+			item = items[--top];
+			sum += item.payment;
+			return true;
+		}
+		else false;
+	}
+	void show_sum() const
+	{
+		cout << "All sum is: " << sum;
+	}
+};
 #pragma endregion
 
 int main()
@@ -840,7 +940,7 @@ int main()
 	//ba2.show();
 	//ba2.plus_sum(5);
 	//ba2.show();
-	
+
 	// #2
 	//Person one, two{ "Smythecraft" }, three{ "Dimwiddy", "Sam" };
 	//one.Show();
@@ -849,7 +949,7 @@ int main()
 	//two.FormalShow();
 	//three.Show();
 	//three.FormalShow();
-	
+
 	// #3
 	//Golf gg("Name", 15);
 	//gg.showGolf();
@@ -858,7 +958,20 @@ int main()
 	//golf.showGolf();
 
 	// #4
+	//double arr[SALES::QUARTERS] = { 2.2, 3.3, 4.4, 5.5 };
+	//SALES::_Sales s1(arr);
+	//s1.showSales();
+	//SALES::_Sales s2(s1);
+	//s2.showSales();
 
+	// #5
+	//Stack st;
+	//Customer ct[3] = { Customer{ "name", 12 }, Customer{ "name", 13 }, Customer{ "name", 14 } };
+	//st.push(ct[0]);
+	//st.push(ct[1]);
+	//st.push(ct[2]);
+	//st.pop(ct[0]); // lifo
+	//st.show_sum();
 #pragma endregion
 }
 
