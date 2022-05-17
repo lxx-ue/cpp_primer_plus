@@ -156,8 +156,56 @@ struct chaff {                   // определение структуры
 	char dross[20];
 	int slag;
 };
-// #4
 #pragma endregion
+
+#pragma region prototype_ch10
+// #1
+class BankAccount
+{
+public:
+	BankAccount();
+	BankAccount(string name, string num, long double balance);
+	~BankAccount();
+	void show();
+	void plus_sum(double sum);
+	void minus_sum(double sum);
+private:
+	string name;
+	string num;
+	long double balance;
+};
+BankAccount::BankAccount()
+{
+	name = "None";
+	num = "None";
+	balance = 0.0;
+}
+BankAccount::BankAccount(string name, string num, long double balance)
+{
+	this->name = name;
+	this->num = num;
+	this->balance = balance;
+}
+void BankAccount::show()
+{
+	cout << "Account keeper: " << name << "; Account num " << num << "; Balance $" << balance << endl;
+}
+void BankAccount::plus_sum(double sum)
+{
+	balance += sum;
+}
+void BankAccount::minus_sum(double sum)
+{
+	balance -= sum;
+}
+BankAccount::~BankAccount()
+{
+	cout << "Bye!";
+}
+
+// #2
+#pragma endregion
+
 int main()
 {
 	setlocale(0, "");
@@ -715,15 +763,27 @@ int main()
 	//}
 
 	// #4
-	double arr[SALES::QUARTERS] = { 2.2, 3.3, 4.4, 5.5 };
-	SALES::Sales s1, s2;
-	SALES::setSales(s1,arr);
-	for (int i = 0; i < SALES::QUARTERS; i++)
-	{
-		s2.sales[i] = arr[i] * 2;
-	}
-	SALES::setSales(s2);
-	
+	//double arr[SALES::QUARTERS] = { 2.2, 3.3, 4.4, 5.5 };
+	//SALES::Sales s1, s2;
+	//SALES::setSales(s1,arr);
+	//for (int i = 0; i < SALES::QUARTERS; i++)
+	//{
+	//	s2.sales[i] = arr[i] * 2;
+	//}
+	//SALES::setSales(s2);
+
+#pragma endregion
+
+#pragma region chapter10
+	// #1
+	BankAccount ba, ba2 {"Julia", "#00001", 99999};
+	ba.show();
+	ba2.show();
+	ba2.minus_sum(400);
+	ba2.show();
+	ba2.plus_sum(5);
+	ba2.show();
+
 #pragma endregion
 }
 
