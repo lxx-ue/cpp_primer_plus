@@ -204,6 +204,63 @@ BankAccount::~BankAccount()
 }
 
 // #2
+class Person
+{
+private:
+	static const int LIMIT = 25;
+	string lname;
+	char fname[LIMIT];
+public:
+	Person()
+	{
+		lname = "";
+		fname[0] = '\0';
+	}
+	Person(const string& ln, const char* fn = "Heyyou")
+	{
+		lname = ln;
+		strcpy(fname, fn);
+	}
+	void Show() const
+	{
+		cout << fname << " " << lname << endl;
+	}
+	void FormalShow() const
+	{
+		cout << lname << " " << fname << endl;
+	}
+};
+
+// #3
+class Golf {
+private:
+	static const int gLen = 40;
+	char fullname[gLen];
+	int handicap;
+public:
+	Golf(const char* name, int hc)
+	{
+		strcpy_s(fullname, name);
+		handicap = hc;
+	}
+	Golf(Golf& g)
+	{
+		strcpy_s(fullname, g.fullname);
+		handicap = g.handicap;
+	}
+	void changeHandicap(int hc)
+	{
+		this->handicap = hc;
+	}
+	void showGolf()
+	{
+		std::cout << "Name: " << fullname << "\t handicap: " << handicap << std::endl;
+	}
+};
+
+// #4
+
+
 #pragma endregion
 
 int main()
@@ -776,13 +833,31 @@ int main()
 
 #pragma region chapter10
 	// #1
-	BankAccount ba, ba2 {"Julia", "#00001", 99999};
-	ba.show();
-	ba2.show();
-	ba2.minus_sum(400);
-	ba2.show();
-	ba2.plus_sum(5);
-	ba2.show();
+	//BankAccount ba, ba2 {"Julia", "#00001", 99999};
+	//ba.show();
+	//ba2.show();
+	//ba2.minus_sum(400);
+	//ba2.show();
+	//ba2.plus_sum(5);
+	//ba2.show();
+	
+	// #2
+	//Person one, two{ "Smythecraft" }, three{ "Dimwiddy", "Sam" };
+	//one.Show();
+	//one.FormalShow();
+	//two.Show();
+	//two.FormalShow();
+	//three.Show();
+	//three.FormalShow();
+	
+	// #3
+	//Golf gg("Name", 15);
+	//gg.showGolf();
+	//gg.changeHandicap(14);
+	//Golf golf(gg);
+	//golf.showGolf();
+
+	// #4
 
 #pragma endregion
 }
