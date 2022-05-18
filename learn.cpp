@@ -361,6 +361,34 @@ public:
 		cout << "All sum is: " << sum;
 	}
 };
+
+// #6
+class Move 
+{
+private:
+	double x, y;
+public:
+	Move(double a = 0, double b = 0) 
+	{
+		x = a;
+		y = b;
+	}
+	void showMove() const 
+	{
+		cout << "x = " << x << "; y = " << y << endl;
+	}
+	Move add(const Move& m) const
+	{
+		Move tmp{ this->x + m.x, this->y + m.y };
+		return tmp;
+	}
+	void reset(double a = 0, double b = 0)
+	{
+		x = a;
+		y = b;
+	}
+};
+
 #pragma endregion
 
 int main()
@@ -972,6 +1000,18 @@ int main()
 	//st.push(ct[2]);
 	//st.pop(ct[0]); // lifo
 	//st.show_sum();
+
+	// #6
+	//Move mv;
+	//Move mv2(3, 5);
+	//mv.showMove();
+	//mv2.showMove();
+	//mv.reset(10, 10);
+	//Move mv3 = mv.add(mv2);
+	//mv3.showMove();
+	//mv2.reset();
+	//mv2.showMove();
+
 #pragma endregion
 }
 
