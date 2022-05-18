@@ -363,17 +363,17 @@ public:
 };
 
 // #6
-class Move 
+class Move
 {
 private:
 	double x, y;
 public:
-	Move(double a = 0, double b = 0) 
+	Move(double a = 0, double b = 0)
 	{
 		x = a;
 		y = b;
 	}
-	void showMove() const 
+	void showMove() const
 	{
 		cout << "x = " << x << "; y = " << y << endl;
 	}
@@ -389,6 +389,27 @@ public:
 	}
 };
 
+// #7
+class Plorg
+{
+private:
+	char name[20];
+	int CI;
+public:
+	Plorg(const char* name = "Plorga", int CI = 50)
+	{
+		strcpy_s(this->name, name);
+		this->CI = CI;
+	}
+	void changeCI(int CI)
+	{
+		this->CI = CI;
+	}
+	void showPlorg()
+	{
+		cout << "Name: " << name << "; CI = " << CI << endl;
+	}
+};
 #pragma endregion
 
 int main()
@@ -1012,6 +1033,11 @@ int main()
 	//mv2.reset();
 	//mv2.showMove();
 
+	// #7
+	Plorg prg("New", 34);
+	prg.showPlorg();
+	prg.changeCI(90);
+	prg.showPlorg();
 #pragma endregion
 }
 
