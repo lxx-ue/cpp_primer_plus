@@ -1034,10 +1034,10 @@ int main()
 	//mv2.showMove();
 
 	// #7
-	Plorg prg("New", 34);
-	prg.showPlorg();
-	prg.changeCI(90);
-	prg.showPlorg();
+	//Plorg prg("New", 34);
+	//prg.showPlorg();
+	//prg.changeCI(90);
+	//prg.showPlorg();
 #pragma endregion
 }
 
