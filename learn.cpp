@@ -9,6 +9,9 @@
 #include "ch9_1.h"
 #include <new>
 #include "ch9_4.h"
+#include <cstdlib>
+#include <ctime>
+#include "ch11_1.h"
 
 using namespace std;
 #pragma warning(disable : 4996)
@@ -1041,10 +1044,42 @@ int main()
 #pragma endregion
 
 #pragma region chapter11
-	/*
-	explicit operator double() const;
-	Vector::operator double() const { return mag;}
-	*/
+	// #1
+	using VECTOR::Vector;
+	srand(time(0));
+	double direction, target, dstep;
+	Vector step, result(0.0, 0.0);
+	unsigned long steps = 0;
+	cout << "Enter target distance (q to quit): ";
+
+	while (cin >> target)
+	{
+		cout << "Enter step length: ";
+		if (!(cin >> dstep))
+			break;
+		while (result.magval() < target)
+		{
+			direction = rand() % 360;
+			step.reset(dstep, direction, Vector::Mode::POL);
+			result = result + step;
+			steps++;
+
+		}
+		cout << "After " << steps << " steps, the subject has the following location:\n";
+		cout << result << endl;
+		result.polar_mode();
+		cout << "or\n" << result;
+		cout << "\nAverage outward distance per steps = " << result.magval() / steps << endl;
+		steps = 0;
+		result.reset(0.0, 0.0);
+		cout << "Enter target distance (q to quit): ";
+	}
+
+	cout << "Bye!\n";
+	cin.clear();
+	while (cin.get() != '\n')
+		continue;
+
 #pragma endregion
 }
 

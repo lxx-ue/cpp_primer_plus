@@ -37,20 +37,20 @@ namespace VECTOR
 	Vector::Vector()
 	{
 		x = y = mag = ang = 0.0;
-		mode = RECT;
+		mode = Mode::RECT;
 	}
 
 	Vector::Vector(double n1, double n2, Mode form)
 	{
 		mode = form;
-		if (form == RECT)
+		if (form == Mode::RECT)
 		{
 			x = n1;
 			y = n2;
 			set_mag();
 			set_ang();
 		}
-		else if (form == POL)
+		else if (form == Mode::POL)
 		{
 			mag = n1;
 			ang = n2;
@@ -61,7 +61,32 @@ namespace VECTOR
 		{
 			cout << "Incorrect 3rd argument to Vector() -- vector set to 0\n";
 			x = y = mag = ang = 0.0;
-			mode = RECT;
+			mode = Mode::RECT;
+		}
+	}
+
+	void Vector::reset(double n1, double n2, Mode form)
+	{
+		mode = form;
+		if (form == Mode::RECT)
+		{
+			x = n1;
+			y = n2;
+			set_mag();
+			set_ang();
+		}
+		else if (form == Mode::POL)
+		{
+			mag = n1;
+			ang = n2;
+			set_x();
+			set_y();
+		}
+		else
+		{
+			cout << "Incorrect 3rd argument to Vector() -- vector set to 0\n";
+			x = y = mag = ang = 0.0;
+			mode = Mode::RECT;
 		}
 	}
 
@@ -69,12 +94,12 @@ namespace VECTOR
 
 	void Vector::polar_mode()
 	{
-		mode = POL;
+		mode = Mode::POL;
 	}
 
 	void Vector::rect_mode()
 	{
-		mode = RECT;
+		mode = Mode::RECT;
 	}
 
 	Vector Vector::operator+(const Vector& b) const
@@ -104,11 +129,11 @@ namespace VECTOR
 
 	std::ostream& operator <<(std::ostream& os, const Vector& v)
 	{
-		if (v.mode == Vector::RECT)
+		if (v.mode == Vector::Mode::RECT)
 		{
 			os << "(x, y) = (" << v.x << ", " << v.y << ")";
 		}
-		else if (v.mode == Vector::POL)
+		else if (v.mode == Vector::Mode::POL)
 		{
 			os << "(m, a) = (" << v.mag << ", " << v.ang * rad_to_deg << ")";
 		}
@@ -116,6 +141,7 @@ namespace VECTOR
 		{
 			os << "Vector object mode is invalid";
 		}
+		return os;
 	}
 }
 
