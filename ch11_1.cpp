@@ -11,32 +11,19 @@ namespace VECTOR
 {
 	const double rad_to_deg = 45.0 / atan(1.0);
 
-	void Vector::Vector::set_mag()
+	void Vector::set_x(double n1, double n2)
 	{
-		mag = sqrt(x * x + y * y);
+		x = n1 * cos(n2);
 	}
 
-	void Vector::Vector::set_ang()
+	void Vector::set_y(double n1, double n2)
 	{
-		if (x == 0.0 && y == 0.0)
-			ang = 0;
-		else
-			ang = atan2(y, x);
-	}
-
-	void Vector::Vector::set_x()
-	{
-		x = mag * cos(ang);
-	}
-
-	void Vector::Vector::set_y()
-	{
-		y = mag * sin(ang);
+		y = n1 * sin(n2);
 	}
 
 	Vector::Vector()
 	{
-		x = y = mag = ang = 0.0;
+		x = y = 0.0;
 		mode = Mode::RECT;
 	}
 
@@ -47,20 +34,16 @@ namespace VECTOR
 		{
 			x = n1;
 			y = n2;
-			set_mag();
-			set_ang();
 		}
 		else if (form == Mode::POL)
 		{
-			mag = n1;
-			ang = n2;
-			set_x();
-			set_y();
+			set_x(n1, n2);
+			set_y(n1, n2);
 		}
 		else
 		{
 			cout << "Incorrect 3rd argument to Vector() -- vector set to 0\n";
-			x = y = mag = ang = 0.0;
+			x = y = 0.0;
 			mode = Mode::RECT;
 		}
 	}
@@ -72,20 +55,16 @@ namespace VECTOR
 		{
 			x = n1;
 			y = n2;
-			set_mag();
-			set_ang();
 		}
 		else if (form == Mode::POL)
 		{
-			mag = n1;
-			ang = n2;
-			set_x();
-			set_y();
+			set_x(n1, n2);
+			set_y(n1, n2);
 		}
 		else
 		{
 			cout << "Incorrect 3rd argument to Vector() -- vector set to 0\n";
-			x = y = mag = ang = 0.0;
+			x = y = 0.0;
 			mode = Mode::RECT;
 		}
 	}
@@ -100,6 +79,19 @@ namespace VECTOR
 	void Vector::rect_mode()
 	{
 		mode = Mode::RECT;
+	}
+
+	double Vector::magval() const
+	{
+		return sqrt(x * x + y * y);
+	}
+
+	double Vector::angval() const
+	{
+		if (x == 0.0 && y == 0.0)
+			return 0;
+		else
+			return atan2(y, x);
 	}
 
 	Vector Vector::operator+(const Vector& b) const
@@ -135,7 +127,7 @@ namespace VECTOR
 		}
 		else if (v.mode == Vector::Mode::POL)
 		{
-			os << "(m, a) = (" << v.mag << ", " << v.ang * rad_to_deg << ")";
+			os << "(m, a) = (" << v.magval() << ", " << v.angval() * rad_to_deg << ")";
 		}
 		else
 		{

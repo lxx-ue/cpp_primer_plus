@@ -1050,23 +1050,29 @@ int main()
 	double direction, target, dstep;
 	Vector step, result(0.0, 0.0);
 	unsigned long steps = 0;
-	cout << "Enter target distance (q to quit): ";
+	ofstream fout;
+	fout.open("random_walk.txt");
+	cout << "See random_walk.txt for details\nEnter target distance (q to quit): ";
 
 	while (cin >> target)
 	{
 		cout << "Enter step length: ";
 		if (!(cin >> dstep))
 			break;
+		fout << "Target Distance: " << target << ", Step Size: " << dstep << endl;
+		fout <<"0: "<< result << endl;
 		while (result.magval() < target)
 		{
 			direction = rand() % 360;
 			step.reset(dstep, direction, Vector::Mode::POL);
 			result = result + step;
 			steps++;
-
+			fout << steps<<": "<<result << endl;
 		}
 		cout << "After " << steps << " steps, the subject has the following location:\n";
 		cout << result << endl;
+		fout << "Total steps: " << steps << ", Location: " << result << 
+			"\nAverage distance per step: " << result.magval() / steps << "\n\n";
 		result.polar_mode();
 		cout << "or\n" << result;
 		cout << "\nAverage outward distance per steps = " << result.magval() / steps << endl;
