@@ -1039,6 +1039,13 @@ int main()
 	//prg.changeCI(90);
 	//prg.showPlorg();
 #pragma endregion
+
+#pragma region chapter11
+	/*
+	explicit operator double() const;
+	Vector::operator double() const { return mag;}
+	*/
+#pragma endregion
 }
 
 #pragma region func_ch7
