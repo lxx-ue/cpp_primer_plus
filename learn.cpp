@@ -1044,8 +1044,8 @@ int main()
 #pragma endregion
 
 #pragma region chapter11
-	// #1
-	using VECTOR::Vector;
+	// #1-2
+	/*using VECTOR::Vector;
 	srand(time(0));
 	double direction, target, dstep;
 	Vector step, result(0.0, 0.0);
@@ -1053,7 +1053,6 @@ int main()
 	ofstream fout;
 	fout.open("random_walk.txt");
 	cout << "See random_walk.txt for details\nEnter target distance (q to quit): ";
-
 	while (cin >> target)
 	{
 		cout << "Enter step length: ";
@@ -1080,11 +1079,52 @@ int main()
 		result.reset(0.0, 0.0);
 		cout << "Enter target distance (q to quit): ";
 	}
-
 	cout << "Bye!\n";
 	cin.clear();
 	while (cin.get() != '\n')
-		continue;
+		continue;*/
+
+	// #3
+	using VECTOR::Vector;
+	srand(time(0));
+	double direction, target, dstep;
+	Vector step, result(0.0, 0.0);
+	unsigned long steps = 0, tries = 0;
+
+	cout << "Enter target distance (q to quit): ";
+	cin >> target;
+	cout << "Enter step length: ";
+	cin >> dstep;
+	cout << "Enter tries: ";
+	cin >> tries;
+	int* arr = new int[tries];
+	for (int i = 0; i < tries; i++)
+	{
+		while (result.magval() < target)
+		{
+			direction = rand() % 360;
+			step.reset(dstep, direction, Vector::Mode::POL);
+			result = result + step;
+			steps++;
+		}
+		arr[i] = steps;
+		steps = 0;
+		result.reset(0.0, 0.0);
+	}
+	int min = arr[0], max = arr[0], avg = 0;
+	for (int i = 0; i < tries; i++)
+	{	
+		avg += arr[i];
+		if (min > arr[i]) min = arr[i];
+		if (max < arr[i]) max = arr[i];
+	}
+	avg /= tries;
+	cout << "max = "<<max<<endl;
+	cout << "min = " << min << endl;
+	cout << "avg = " << avg << endl;
+
+
+	delete[] arr;
 
 #pragma endregion
 }
