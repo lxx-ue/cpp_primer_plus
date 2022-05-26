@@ -12,6 +12,8 @@
 #include <cstdlib>
 #include <ctime>
 #include "ch11_1.h"
+#include "ch11_4.h"
+#include "ch11_5.h"
 
 using namespace std;
 #pragma warning(disable : 4996)
@@ -413,6 +415,11 @@ public:
 		cout << "Name: " << name << "; CI = " << CI << endl;
 	}
 };
+#pragma endregion
+
+#pragma region prototype_ch11
+// #5
+void display(const Stonewt& st, int n);
 #pragma endregion
 
 int main()
@@ -1085,47 +1092,77 @@ int main()
 		continue;*/
 
 	// #3
-	using VECTOR::Vector;
-	srand(time(0));
-	double direction, target, dstep;
-	Vector step, result(0.0, 0.0);
-	unsigned long steps = 0, tries = 0;
+	//using VECTOR::Vector;
+	//srand(time(0));
+	//double direction, target, dstep;
+	//Vector step, result(0.0, 0.0);
+	//unsigned long steps = 0, tries = 0;
 
-	cout << "Enter target distance (q to quit): ";
-	cin >> target;
-	cout << "Enter step length: ";
-	cin >> dstep;
-	cout << "Enter tries: ";
-	cin >> tries;
-	int* arr = new int[tries];
-	for (int i = 0; i < tries; i++)
-	{
-		while (result.magval() < target)
-		{
-			direction = rand() % 360;
-			step.reset(dstep, direction, Vector::Mode::POL);
-			result = result + step;
-			steps++;
-		}
-		arr[i] = steps;
-		steps = 0;
-		result.reset(0.0, 0.0);
-	}
-	int min = arr[0], max = arr[0], avg = 0;
-	for (int i = 0; i < tries; i++)
-	{	
-		avg += arr[i];
-		if (min > arr[i]) min = arr[i];
-		if (max < arr[i]) max = arr[i];
-	}
-	avg /= tries;
-	cout << "max = "<<max<<endl;
-	cout << "min = " << min << endl;
-	cout << "avg = " << avg << endl;
+	//cout << "Enter target distance (q to quit): ";
+	//cin >> target;
+	//cout << "Enter step length: ";
+	//cin >> dstep;
+	//cout << "Enter tries: ";
+	//cin >> tries;
+	//int* arr = new int[tries];
+	//for (int i = 0; i < tries; i++)
+	//{
+	//	while (result.magval() < target)
+	//	{
+	//		direction = rand() % 360;
+	//		step.reset(dstep, direction, Vector::Mode::POL);
+	//		result = result + step;
+	//		steps++;
+	//	}
+	//	arr[i] = steps;
+	//	steps = 0;
+	//	result.reset(0.0, 0.0);
+	//}
+	//int min = arr[0], max = arr[0], avg = 0;
+	//for (int i = 0; i < tries; i++)
+	//{	
+	//	avg += arr[i];
+	//	if (min > arr[i]) min = arr[i];
+	//	if (max < arr[i]) max = arr[i];
+	//}
+	//avg /= tries;
+	//cout << "max = "<<max<<endl;
+	//cout << "min = " << min << endl;
+	//cout << "avg = " << avg << endl;
+	//delete[] arr;
 
+	// #4
+	//Time aida(3, 35);
+	//Time tosca(2, 48);
+	//Time temp;
+	//cout << "Aida and Tosca:\n";
+	//cout << aida << "; " << tosca << endl;
+	//temp = aida + tosca;
+	//cout << "Aida + Tosca: " << temp << endl;
+	//temp = aida * 1.17;
+	//cout << "Aida * 1.17: " << temp << endl;
+	//cout << "10.0 * Tosca: " << 10.0 * tosca << endl;
 
-	delete[] arr;
-
+	// #5
+Stonewt incognito = 275;
+Stonewt wolfe(285.7);
+Stonewt taft(21, 8);
+cout << "The celebrity weighed ";
+incognito.show_stn();
+cout << "The detective weighed ";
+wolfe.show_stn();
+cout << "The president weighed ";
+taft.show_lbs();
+incognito = 276.8;
+taft = 325;
+cout << "After dinner, the celebrity weighed ";
+incognito.show_stn();
+cout << "After dinner, the president weighed ";
+taft.show_lbs();
+display(taft, 2);
+cout << "The wrestler weighed even more.\n";
+display(422, 2);
+cout << "No more left unerned\n";
 #pragma endregion
 }
 
@@ -1495,5 +1532,17 @@ void strcount(string str)
 	total += count;
 	cout << count << " characters\n";
 	cout << total << " characters total\n";
+}
+#pragma endregion
+
+#pragma region func_ch11
+// #5
+void display(const Stonewt& st, int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Wow! ";
+		st.show_stn();
+	}
 }
 #pragma endregion

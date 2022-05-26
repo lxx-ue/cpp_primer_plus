@@ -140,12 +140,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ch11_1.cpp" />
+    <ClCompile Include="ch11_4.cpp" />
+    <ClCompile Include="ch11_5.cpp" />
     <ClCompile Include="ch9_1.cpp" />
     <ClCompile Include="ch9_4.cpp" />
     <ClCompile Include="learn.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ch11_1.h" />
+    <ClInclude Include="ch11_4.h" />
+    <ClInclude Include="ch11_5.h" />
     <ClInclude Include="ch9_1.h" />
     <ClInclude Include="ch9_4.h" />
   </ItemGroup>

@@ -27,6 +27,12 @@
     <ClCompile Include="ch11_1.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="ch11_4.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="ch11_5.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ch9_1.h">
@@ -36,6 +42,12 @@
       <Filter>Исходные файлы</Filter>
     </ClInclude>
     <ClInclude Include="ch11_1.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="ch11_4.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="ch11_5.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
   </ItemGroup>
