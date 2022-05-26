@@ -1144,25 +1144,28 @@ int main()
 	//cout << "10.0 * Tosca: " << 10.0 * tosca << endl;
 
 	// #5
-Stonewt incognito = 275;
-Stonewt wolfe(285.7);
-Stonewt taft(21, 8);
-cout << "The celebrity weighed ";
-incognito.show_stn();
-cout << "The detective weighed ";
-wolfe.show_stn();
-cout << "The president weighed ";
-taft.show_lbs();
-incognito = 276.8;
-taft = 325;
-cout << "After dinner, the celebrity weighed ";
-incognito.show_stn();
-cout << "After dinner, the president weighed ";
-taft.show_lbs();
-display(taft, 2);
-cout << "The wrestler weighed even more.\n";
-display(422, 2);
-cout << "No more left unerned\n";
+	Stonewt incognito = 275;
+	Stonewt wolfe(285.7);
+	Stonewt taft(21, 8);
+	cout << "The celebrity weighed ";
+	cout << incognito;
+	cout << "The detective weighed ";
+	cout << wolfe;
+	cout << "The president weighed ";
+	cout << taft;
+	incognito = 276.8;
+	cout << taft;
+	cout << "After dinner, the celebrity weighed ";
+	cout << incognito;
+	cout << "After dinner, the president weighed ";
+	cout << taft;
+	taft.set_mode(Stonewt::Mode::lbs);
+	cout << "or\n" << taft;
+	display(taft, 2);
+	cout << "The wrestler weighed even more.\n";
+	display(422, 2);
+	cout << "No more left unerned\n";
+
 #pragma endregion
 }
 
@@ -1542,7 +1545,7 @@ void display(const Stonewt& st, int n)
 	for (int i = 0; i < n; i++)
 	{
 		cout << "Wow! ";
-		st.show_stn();
+		cout << st;
 	}
 }
 #pragma endregion
