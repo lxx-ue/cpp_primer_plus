@@ -1174,6 +1174,34 @@ int main()
 	else cout << "They r not!\n";
 	if (incognito > taft) cout << "incognito bigger than taft!\n";
 	else cout << "taft bigger than incognito!\n";
+
+	Stonewt arr[6]{ 144, 12 , 15 };
+	Stonewt empty{ 0 };
+
+	for (int i = 0; i < 6; i++)
+	{
+		if (arr[i] == empty)
+		{
+			cout << "Enter " << i+1 << "th element : ";
+			double temp = 0.0;
+			while (cin>>temp)
+			{
+				if (temp != 0.0) break;
+			}
+			arr[i] = temp;
+		}
+	}
+	Stonewt min = arr[0], max = arr[0];
+	empty = 11;
+	int count = 0;
+	for (int i = 0; i < 6; i++)
+	{
+		if (min > arr[i]) min = arr[i];
+		if (max < arr[i]) max = arr[i];
+		if (arr[i] >= empty) count++;
+	}
+	cout << "Smallest: " << min << "Largest: " << max <<
+		"Bigger than 11: " << count;
 	
 #pragma endregion
 }
