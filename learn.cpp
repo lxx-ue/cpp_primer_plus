@@ -1170,10 +1170,11 @@ int main()
 	Stonewt incognito = 275; //not explicit!
 	Stonewt taft = incognito;
 	incognito = 14;
-	if (incognito == taft) cout << "They r equal!\n";
+	if (!(incognito == taft)) cout << "They r equal!\n";
 	else cout << "They r not!\n";
-	cout << incognito;
-
+	if (incognito > taft) cout << "incognito bigger than taft!\n";
+	else cout << "taft bigger than incognito!\n";
+	
 #pragma endregion
 }
 

@@ -58,3 +58,27 @@ bool Stonewt::operator==(const Stonewt& st) const
 	return pounds == st.pounds;
 }
 
+bool Stonewt::operator!=(const Stonewt& st) const
+{
+	return !(*this == st);
+}
+
+bool Stonewt::operator>(const Stonewt& st) const
+{
+	return pounds > st.pounds;
+}
+
+bool Stonewt::operator<(const Stonewt& st) const
+{
+	return pounds < st.pounds;
+}
+
+bool Stonewt::operator>=(const Stonewt& st) const
+{
+	return !(*this < st);
+}
+
+bool Stonewt::operator<=(const Stonewt& st) const
+{
+	return !(*this > st);
+}
