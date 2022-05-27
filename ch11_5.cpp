@@ -53,4 +53,8 @@ std::ostream& operator <<(std::ostream& os, const Stonewt& s)
 	return os;
 }
 
+bool Stonewt::operator==(const Stonewt& st) const
+{
+	return pounds == st.pounds;
+}
 

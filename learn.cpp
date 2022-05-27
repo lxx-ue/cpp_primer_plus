@@ -1144,27 +1144,35 @@ int main()
 	//cout << "10.0 * Tosca: " << 10.0 * tosca << endl;
 
 	// #5
-	Stonewt incognito = 275;
-	Stonewt wolfe(285.7);
-	Stonewt taft(21, 8);
-	cout << "The celebrity weighed ";
+	//Stonewt incognito = 275;
+	//Stonewt wolfe(285.7);
+	//Stonewt taft(21, 8);
+	//cout << "The celebrity weighed ";
+	//cout << incognito;
+	//cout << "The detective weighed ";
+	//cout << wolfe;
+	//cout << "The president weighed ";
+	//cout << taft;
+	//incognito = 276.8;
+	//cout << taft;
+	//cout << "After dinner, the celebrity weighed ";
+	//cout << incognito;
+	//cout << "After dinner, the president weighed ";
+	//cout << taft;
+	//taft.set_mode(Stonewt::Mode::lbs);
+	//cout << "or\n" << taft;
+	//display(taft, 2);
+	//cout << "The wrestler weighed even more.\n";
+	//display(422, 2);
+	//cout << "No more left unerned\n";
+
+	// #6
+	Stonewt incognito = 275; //not explicit!
+	Stonewt taft = incognito;
+	incognito = 14;
+	if (incognito == taft) cout << "They r equal!\n";
+	else cout << "They r not!\n";
 	cout << incognito;
-	cout << "The detective weighed ";
-	cout << wolfe;
-	cout << "The president weighed ";
-	cout << taft;
-	incognito = 276.8;
-	cout << taft;
-	cout << "After dinner, the celebrity weighed ";
-	cout << incognito;
-	cout << "After dinner, the president weighed ";
-	cout << taft;
-	taft.set_mode(Stonewt::Mode::lbs);
-	cout << "or\n" << taft;
-	display(taft, 2);
-	cout << "The wrestler weighed even more.\n";
-	display(422, 2);
-	cout << "No more left unerned\n";
 
 #pragma endregion
 }
