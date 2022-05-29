@@ -15,6 +15,7 @@
 #include "ch11_4.h"
 #include "ch11_5.h"
 #include "ch11_6.h"
+#include "ch12_1.h"
 
 using namespace std;
 #pragma warning(disable : 4996)
@@ -1205,22 +1206,30 @@ int main()
 	//	"Bigger than 11: " << count;
 
 	// #7
-	Complex0 a(3.0, 4.0);
-	Complex0 c;
-	cout << "Enter a complex number (q to quit):\n";
-	while (cin >> c)
-	{
-		cout << "c is " << c << endl;
-		cout << "complex conjugate is " << -c << endl;
-		cout << "a is " << a << endl;
-		cout << "a + c is " << a + c << endl;
-		cout << "a - c is " << a - c << endl;
-		cout << "a * c is " << a * c << endl;
-		cout << "2 * c is " << 2 * c << endl;
-		cout << "Enter a complex number (q to quit):\n";
-	}
-	cout << "Done!\n";
+	//Complex0 a(3.0, 4.0);
+	//Complex0 c;
+	//cout << "Enter a complex number (q to quit):\n";
+	//while (cin >> c)
+	//{
+	//	cout << "c is " << c << endl;
+	//	cout << "complex conjugate is " << -c << endl;
+	//	cout << "a is " << a << endl;
+	//	cout << "a + c is " << a + c << endl;
+	//	cout << "a - c is " << a - c << endl;
+	//	cout << "a * c is " << a * c << endl;
+	//	cout << "2 * c is " << 2 * c << endl;
+	//	cout << "Enter a complex number (q to quit):\n";
+	//}
+	//cout << "Done!\n";
 	
+#pragma endregion
+
+#pragma region chapter12
+	// #1
+Cow bella;
+bella.ShowCow();
+Cow stella("stella", "reading", 500);
+stella.ShowCow();
 #pragma endregion
 }
 

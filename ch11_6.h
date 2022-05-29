@@ -20,12 +20,5 @@ public:
 private:
 	double a;
 	double bi;
-	/*enum { Lbs_per_stn = 14 };
-	int stone;
-	double pds_left;
-	double pounds;
-	Mode mode;
-	void show_lbs() const;
-	void show_stn() const;*/
 };
-#endif // !stonewt
+#endif // !complex0
