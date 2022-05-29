@@ -14,6 +14,7 @@
 #include "ch11_1.h"
 #include "ch11_4.h"
 #include "ch11_5.h"
+#include "ch11_6.h"
 
 using namespace std;
 #pragma warning(disable : 4996)
@@ -1167,41 +1168,58 @@ int main()
 	//cout << "No more left unerned\n";
 
 	// #6
-	Stonewt incognito = 275; //not explicit!
-	Stonewt taft = incognito;
-	incognito = 14;
-	if (!(incognito == taft)) cout << "They r equal!\n";
-	else cout << "They r not!\n";
-	if (incognito > taft) cout << "incognito bigger than taft!\n";
-	else cout << "taft bigger than incognito!\n";
+	//Stonewt incognito = 275; //not explicit!
+	//Stonewt taft = incognito;
+	//incognito = 14;
+	//if (!(incognito == taft)) cout << "They r equal!\n";
+	//else cout << "They r not!\n";
+	//if (incognito > taft) cout << "incognito bigger than taft!\n";
+	//else cout << "taft bigger than incognito!\n";
 
-	Stonewt arr[6]{ 144, 12 , 15 };
-	Stonewt empty{ 0 };
+	//Stonewt arr[6]{ 144, 12 , 15 };
+	//Stonewt empty{ 0 };
 
-	for (int i = 0; i < 6; i++)
+	//for (int i = 0; i < 6; i++)
+	//{
+	//	if (arr[i] == empty)
+	//	{
+	//		cout << "Enter " << i+1 << "th element : ";
+	//		double temp = 0.0;
+	//		while (cin>>temp)
+	//		{
+	//			if (temp != 0.0) break;
+	//		}
+	//		arr[i] = temp;
+	//	}
+	//}
+	//Stonewt min = arr[0], max = arr[0];
+	//empty = 11;
+	//int count = 0;
+	//for (int i = 0; i < 6; i++)
+	//{
+	//	if (min > arr[i]) min = arr[i];
+	//	if (max < arr[i]) max = arr[i];
+	//	if (arr[i] >= empty) count++;
+	//}
+	//cout << "Smallest: " << min << "Largest: " << max <<
+	//	"Bigger than 11: " << count;
+
+	// #7
+	Complex0 a(3.0, 4.0);
+	Complex0 c;
+	cout << "Enter a complex number (q to quit):\n";
+	while (cin >> c)
 	{
-		if (arr[i] == empty)
-		{
-			cout << "Enter " << i+1 << "th element : ";
-			double temp = 0.0;
-			while (cin>>temp)
-			{
-				if (temp != 0.0) break;
-			}
-			arr[i] = temp;
-		}
+		cout << "c is " << c << endl;
+		cout << "complex conjugate is " << -c << endl;
+		cout << "a is " << a << endl;
+		cout << "a + c is " << a + c << endl;
+		cout << "a - c is " << a - c << endl;
+		cout << "a * c is " << a * c << endl;
+		cout << "2 * c is " << 2 * c << endl;
+		cout << "Enter a complex number (q to quit):\n";
 	}
-	Stonewt min = arr[0], max = arr[0];
-	empty = 11;
-	int count = 0;
-	for (int i = 0; i < 6; i++)
-	{
-		if (min > arr[i]) min = arr[i];
-		if (max < arr[i]) max = arr[i];
-		if (arr[i] >= empty) count++;
-	}
-	cout << "Smallest: " << min << "Largest: " << max <<
-		"Bigger than 11: " << count;
+	cout << "Done!\n";
 	
 #pragma endregion
 }
