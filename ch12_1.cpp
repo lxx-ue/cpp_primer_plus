@@ -1,13 +1,14 @@
 #include <iostream>
 #include "ch12_1.h"
+
 using std::cout;
 
 Cow::Cow(const char* nm, const char* ho, double wt)
 {
-	strcpy_s(name, nm);
+	strcpy(name, nm);
 	int len = std::strlen(ho);
 	hobby = new char(len + 1);
-	strcpy_s(hobby, strlen(c.hobby) + 1, ho);
+	strcpy(hobby, ho);
 	weight = wt;
 }
 
@@ -21,10 +22,10 @@ Cow::Cow()
 
 Cow::Cow(const Cow& c)
 {
-	strcpy_s(name, c.name);
+	strcpy(name, c.name);
 	int len = strlen(c.hobby);
 	hobby = new char(len + 1);
-	strcpy_s(hobby, strlen(c.hobby)+1, c.hobby);
+	strcpy(hobby, c.hobby);
 	weight = c.weight;
 }
 
@@ -38,7 +39,7 @@ Cow& Cow::operator=(const Cow& c)
 	if (this == &c) return *this;
 	delete[] hobby; //очищаем для новой строки
 	hobby = new char(strlen(c.hobby) + 1);
-	strcpy_s(hobby, strlen(c.hobby)+1, c.hobby);
+	strcpy(hobby, c.hobby);
 	return *this;
 }
 

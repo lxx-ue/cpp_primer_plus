@@ -1,5 +1,8 @@
 ﻿// a.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
 //
+#define _CRT_SECURE_NO_WARNINGS
+#pragma warning(disable : 4996)
+#include <stdio.h>
 
 #include <iostream>
 #include <array>
@@ -18,8 +21,6 @@
 #include "ch12_1.h"
 
 using namespace std;
-#pragma warning(disable : 4996)
-
 
 #pragma region prototype_ch6
 struct bop {
