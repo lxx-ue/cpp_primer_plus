@@ -1228,53 +1228,56 @@ int main()
 
 #pragma region chapter12
 	// #1
-	//Cow bella;
-	//bella.ShowCow();
-	//Cow stella("stella", "reading", 500);
-	//stella.ShowCow();
-String name;
-cout << "Hi, what's your name?\n";
-cin >> name;
-cout << name << ", please enter up to " << 81
-<< " short sayings <empty line to quit> : \n";
+	Cow bella;
+	bella.ShowCow();
 
-String sayings[10]; 
-char temp[81]; 
-int i;
-for (i = 0; i < 10; i++)
-{
-	cout << i + 1 << ": ";
-	cin.get(temp, 81);
-	while (cin && cin.get() != '\n')
-		continue;
-	if (!cin || temp[0] == '\0')
-		break;
-	else
-		sayings[i] = temp;
-}
+	Cow stella("stella", "reading", 600 );
+	stella.ShowCow();
 
-int total = i; 
-if (total > 0)
-{
-	cout << "Here are your sayings : \n ";
-	for (i = 0; i < total; i++)
-		cout << sayings[i][0] << ": " << sayings[i] << endl;
-	int shortest = 0;
-	int first = 0;
-	for (i = 1; i < total; i++)
+	// #2
+	/*String name;
+	cout << "Hi, what's your name?\n";
+	cin >> name;
+	cout << name << ", please enter up to " << 81
+	<< " short sayings <empty line to quit> : \n";
+
+	String sayings[10]; 
+	char temp[81]; 
+	int i;
+	for (i = 0; i < 10; i++)
 	{
-		if (sayings[i].length() < sayings[shortest].length())
-			shortest = i;
-		if (sayings[i] < sayings[first])
-			first = i;
+		cout << i + 1 << ": ";
+		cin.get(temp, 81);
+		while (cin && cin.get() != '\n')
+			continue;
+		if (!cin || temp[0] == '\0')
+			break;
+		else
+			sayings[i] = temp;
 	}
-	cout << "Shortest sayiпg : \n" << sayings[shortest] << endl;
-		cout << "First alphabetically : \n" << sayings[first] << endl;
-		cout << "This program used " << String::HowMany()
-		<<" Striпg obj ects.Буе .\n";
-}
-else
-cout << "No input! Бye. \n";
+
+	int total = i; 
+	if (total > 0)
+	{
+		cout << "Here are your sayings : \n ";
+		for (i = 0; i < total; i++)
+			cout << sayings[i][0] << ": " << sayings[i] << endl;
+		int shortest = 0;
+		int first = 0;
+		for (i = 1; i < total; i++)
+		{
+			if (sayings[i].length() < sayings[shortest].length())
+				shortest = i;
+			if (sayings[i] < sayings[first])
+				first = i;
+		}
+		cout << "Shortest sayiпg : \n" << sayings[shortest] << endl;
+			cout << "First alphabetically : \n" << sayings[first] << endl;
+			cout << "This program used " << String::HowMany()
+			<<" Striпg obj ects.Буе .\n";
+	}
+	else
+	cout << "No input! Bye. \n";*/
 
 #pragma endregion
 }

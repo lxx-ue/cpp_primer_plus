@@ -5,27 +5,28 @@ using std::cout;
 
 Cow::Cow(const char* nm, const char* ho, double wt)
 {
+	len = std::strlen(ho);
+	hobby = new char[len + 1];
+	std::strcpy(hobby, ho);
 	strcpy(name, nm);
-	int len = std::strlen(ho);
-	hobby = new char(len + 1);
-	strcpy(hobby, ho);
 	weight = wt;
 }
 
 Cow::Cow()
 {
-	name[0] = '\0';
+	len = 4;
 	hobby = new char[1];
 	hobby[0] = '\0';
 	weight = 0;
+	name[0] = '\0';
 }
 
 Cow::Cow(const Cow& c)
 {
+	len = c.len;
+	hobby = new char[len + 1];
+	std::strcpy(hobby, c.hobby);
 	strcpy(name, c.name);
-	int len = strlen(c.hobby);
-	hobby = new char(len + 1);
-	strcpy(hobby, c.hobby);
 	weight = c.weight;
 }
 
@@ -36,14 +37,19 @@ Cow::~Cow()
 
 Cow& Cow::operator=(const Cow& c)
 {
-	if (this == &c) return *this;
-	delete[] hobby; //очищаем для новой строки
-	hobby = new char(strlen(c.hobby) + 1);
+	if (this == &c)
+		return *this;
+	delete[] hobby;
+	len = c.len;
+	hobby = new char[len + 1];
+	std::strcpy(hobby, c.hobby);
 	strcpy(hobby, c.hobby);
+	weight = c.weight;
 	return *this;
 }
 
 void Cow::ShowCow() const
 {
-	cout << name;
+	if(weight !=0)
+	cout << name<<" likes "<<hobby<<" and weight "<< weight;
 }
