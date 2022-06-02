@@ -9,17 +9,18 @@
 #include <fstream>
 #include <string>
 #include <cstring> 
-#include "ch9_1.h"
 #include <new>
-#include "ch9_4.h"
 #include <cstdlib>
 #include <ctime>
-#include "ch11_1.h"
-#include "ch11_4.h"
-#include "ch11_5.h"
-#include "ch11_6.h"
-#include "ch12_1.h"
-#include "string1.h"
+
+#include "chapter9/ch9_1.h"
+#include "chapter9/ch9_4.h"
+#include "chapter11/ch11_1.h"
+#include "chapter11/ch11_4.h"
+#include "chapter11/ch11_5.h"
+#include "chapter11/ch11_6.h"
+#include "chapter12/ch12_1.h"
+#include "chapter12/string1.h"
 
 using namespace std;
 
@@ -1228,14 +1229,14 @@ int main()
 
 #pragma region chapter12
 	// #1
-	Cow bella;
-	bella.ShowCow();
+	//Cow bella;
+	//bella.ShowCow();
 
-	Cow stella("stella", "reading", 600 );
-	stella.ShowCow();
-	bella = stella;
-	cout << endl;
-	bella.ShowCow();
+	//Cow stella("stella", "reading", 600 );
+	//stella.ShowCow();
+	//bella = stella;
+	//cout << endl;
+	//bella.ShowCow();
 
 	// #2
 	/*String name;
