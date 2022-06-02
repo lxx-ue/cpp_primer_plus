@@ -1233,6 +1233,9 @@ int main()
 
 	Cow stella("stella", "reading", 600 );
 	stella.ShowCow();
+	bella = stella;
+	cout << endl;
+	bella.ShowCow();
 
 	// #2
 	/*String name;
