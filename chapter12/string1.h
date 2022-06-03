@@ -24,11 +24,18 @@ public:
 	char& operator[](int i);
 	const char& operator[](int i) const;
 
+	String& operator+=(const String&);
+
 	friend bool operator<(const String& st1, const String& st2);
 	friend bool operator>(const String& st1, const String& st2);
 	friend bool operator==(const String& st1, const String& st2);
 	friend ostream& operator<<(ostream& os, const String& st);
 	friend istream& operator>>(istream& is, String& st);
+	friend String operator+(const String&, const String&);
+
+	void string_low();
+	void string_up();
+	int has(char);
 
 	static int HowMany();
 };

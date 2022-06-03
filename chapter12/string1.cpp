@@ -60,6 +60,26 @@ String& String::operator=(const char* s)
 	return *this;
 }
 
+String& String::operator+=(const String& st)
+{
+
+	int size = len + st.len;
+	char* ts = new char[size + 1];
+	for (int i = 0; i < len; i++)
+		ts[i] = str[i];
+	for (int i = len, j=0; i < size; i++, j++)
+		ts[i] = st.str[j];
+	ts[size] = '\0';
+	*this = ts;
+	return *this;
+}
+
+String operator+(const String& rls, const String& rrs)
+{
+	String ts = rls;
+	return ts += rrs;
+}
+
 char& String::operator[](int i)
 {
 	return str[i];
@@ -100,4 +120,27 @@ istream& operator>>(istream& is, String& st)
 	while (is && is.get() != '\n')
 		continue;
 	return is;
+}
+
+void String::string_low()
+{
+	for (int i = 0; i < len; i++) 
+		if (isupper(str[i])) 
+			str[i] = tolower(str[i]);
+}
+
+void String::string_up()
+{
+	for (int i = 0; i < len; i++) 
+		if (islower(str[i])) 
+			str[i] = toupper(str[i]);
+}
+
+int String::has(char c)
+{
+	int count = 0;
+	for (int i = 0; i < len; i++)
+		if (str[i] == c) 
+			count++;
+	return count;
 }

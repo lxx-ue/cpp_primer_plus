@@ -1082,7 +1082,7 @@ int main()
 		}
 		cout << "After " << steps << " steps, the subject has the following location:\n";
 		cout << result << endl;
-		fout << "Total steps: " << steps << ", Location: " << result << 
+		fout << "Total steps: " << steps << ", Location: " << result <<
 			"\nAverage distance per step: " << result.magval() / steps << "\n\n";
 		result.polar_mode();
 		cout << "or\n" << result;
@@ -1096,135 +1096,135 @@ int main()
 	while (cin.get() != '\n')
 		continue;*/
 
-	// #3
-	//using VECTOR::Vector;
-	//srand(time(0));
-	//double direction, target, dstep;
-	//Vector step, result(0.0, 0.0);
-	//unsigned long steps = 0, tries = 0;
+		// #3
+		//using VECTOR::Vector;
+		//srand(time(0));
+		//double direction, target, dstep;
+		//Vector step, result(0.0, 0.0);
+		//unsigned long steps = 0, tries = 0;
 
-	//cout << "Enter target distance (q to quit): ";
-	//cin >> target;
-	//cout << "Enter step length: ";
-	//cin >> dstep;
-	//cout << "Enter tries: ";
-	//cin >> tries;
-	//int* arr = new int[tries];
-	//for (int i = 0; i < tries; i++)
-	//{
-	//	while (result.magval() < target)
-	//	{
-	//		direction = rand() % 360;
-	//		step.reset(dstep, direction, Vector::Mode::POL);
-	//		result = result + step;
-	//		steps++;
-	//	}
-	//	arr[i] = steps;
-	//	steps = 0;
-	//	result.reset(0.0, 0.0);
-	//}
-	//int min = arr[0], max = arr[0], avg = 0;
-	//for (int i = 0; i < tries; i++)
-	//{	
-	//	avg += arr[i];
-	//	if (min > arr[i]) min = arr[i];
-	//	if (max < arr[i]) max = arr[i];
-	//}
-	//avg /= tries;
-	//cout << "max = "<<max<<endl;
-	//cout << "min = " << min << endl;
-	//cout << "avg = " << avg << endl;
-	//delete[] arr;
+		//cout << "Enter target distance (q to quit): ";
+		//cin >> target;
+		//cout << "Enter step length: ";
+		//cin >> dstep;
+		//cout << "Enter tries: ";
+		//cin >> tries;
+		//int* arr = new int[tries];
+		//for (int i = 0; i < tries; i++)
+		//{
+		//	while (result.magval() < target)
+		//	{
+		//		direction = rand() % 360;
+		//		step.reset(dstep, direction, Vector::Mode::POL);
+		//		result = result + step;
+		//		steps++;
+		//	}
+		//	arr[i] = steps;
+		//	steps = 0;
+		//	result.reset(0.0, 0.0);
+		//}
+		//int min = arr[0], max = arr[0], avg = 0;
+		//for (int i = 0; i < tries; i++)
+		//{	
+		//	avg += arr[i];
+		//	if (min > arr[i]) min = arr[i];
+		//	if (max < arr[i]) max = arr[i];
+		//}
+		//avg /= tries;
+		//cout << "max = "<<max<<endl;
+		//cout << "min = " << min << endl;
+		//cout << "avg = " << avg << endl;
+		//delete[] arr;
 
-	// #4
-	//Time aida(3, 35);
-	//Time tosca(2, 48);
-	//Time temp;
-	//cout << "Aida and Tosca:\n";
-	//cout << aida << "; " << tosca << endl;
-	//temp = aida + tosca;
-	//cout << "Aida + Tosca: " << temp << endl;
-	//temp = aida * 1.17;
-	//cout << "Aida * 1.17: " << temp << endl;
-	//cout << "10.0 * Tosca: " << 10.0 * tosca << endl;
+		// #4
+		//Time aida(3, 35);
+		//Time tosca(2, 48);
+		//Time temp;
+		//cout << "Aida and Tosca:\n";
+		//cout << aida << "; " << tosca << endl;
+		//temp = aida + tosca;
+		//cout << "Aida + Tosca: " << temp << endl;
+		//temp = aida * 1.17;
+		//cout << "Aida * 1.17: " << temp << endl;
+		//cout << "10.0 * Tosca: " << 10.0 * tosca << endl;
 
-	// #5
-	//Stonewt incognito = 275;
-	//Stonewt wolfe(285.7);
-	//Stonewt taft(21, 8);
-	//cout << "The celebrity weighed ";
-	//cout << incognito;
-	//cout << "The detective weighed ";
-	//cout << wolfe;
-	//cout << "The president weighed ";
-	//cout << taft;
-	//incognito = 276.8;
-	//cout << taft;
-	//cout << "After dinner, the celebrity weighed ";
-	//cout << incognito;
-	//cout << "After dinner, the president weighed ";
-	//cout << taft;
-	//taft.set_mode(Stonewt::Mode::lbs);
-	//cout << "or\n" << taft;
-	//display(taft, 2);
-	//cout << "The wrestler weighed even more.\n";
-	//display(422, 2);
-	//cout << "No more left unerned\n";
+		// #5
+		//Stonewt incognito = 275;
+		//Stonewt wolfe(285.7);
+		//Stonewt taft(21, 8);
+		//cout << "The celebrity weighed ";
+		//cout << incognito;
+		//cout << "The detective weighed ";
+		//cout << wolfe;
+		//cout << "The president weighed ";
+		//cout << taft;
+		//incognito = 276.8;
+		//cout << taft;
+		//cout << "After dinner, the celebrity weighed ";
+		//cout << incognito;
+		//cout << "After dinner, the president weighed ";
+		//cout << taft;
+		//taft.set_mode(Stonewt::Mode::lbs);
+		//cout << "or\n" << taft;
+		//display(taft, 2);
+		//cout << "The wrestler weighed even more.\n";
+		//display(422, 2);
+		//cout << "No more left unerned\n";
 
-	// #6
-	//Stonewt incognito = 275; //not explicit!
-	//Stonewt taft = incognito;
-	//incognito = 14;
-	//if (!(incognito == taft)) cout << "They r equal!\n";
-	//else cout << "They r not!\n";
-	//if (incognito > taft) cout << "incognito bigger than taft!\n";
-	//else cout << "taft bigger than incognito!\n";
+		// #6
+		//Stonewt incognito = 275; //not explicit!
+		//Stonewt taft = incognito;
+		//incognito = 14;
+		//if (!(incognito == taft)) cout << "They r equal!\n";
+		//else cout << "They r not!\n";
+		//if (incognito > taft) cout << "incognito bigger than taft!\n";
+		//else cout << "taft bigger than incognito!\n";
 
-	//Stonewt arr[6]{ 144, 12 , 15 };
-	//Stonewt empty{ 0 };
+		//Stonewt arr[6]{ 144, 12 , 15 };
+		//Stonewt empty{ 0 };
 
-	//for (int i = 0; i < 6; i++)
-	//{
-	//	if (arr[i] == empty)
-	//	{
-	//		cout << "Enter " << i+1 << "th element : ";
-	//		double temp = 0.0;
-	//		while (cin>>temp)
-	//		{
-	//			if (temp != 0.0) break;
-	//		}
-	//		arr[i] = temp;
-	//	}
-	//}
-	//Stonewt min = arr[0], max = arr[0];
-	//empty = 11;
-	//int count = 0;
-	//for (int i = 0; i < 6; i++)
-	//{
-	//	if (min > arr[i]) min = arr[i];
-	//	if (max < arr[i]) max = arr[i];
-	//	if (arr[i] >= empty) count++;
-	//}
-	//cout << "Smallest: " << min << "Largest: " << max <<
-	//	"Bigger than 11: " << count;
+		//for (int i = 0; i < 6; i++)
+		//{
+		//	if (arr[i] == empty)
+		//	{
+		//		cout << "Enter " << i+1 << "th element : ";
+		//		double temp = 0.0;
+		//		while (cin>>temp)
+		//		{
+		//			if (temp != 0.0) break;
+		//		}
+		//		arr[i] = temp;
+		//	}
+		//}
+		//Stonewt min = arr[0], max = arr[0];
+		//empty = 11;
+		//int count = 0;
+		//for (int i = 0; i < 6; i++)
+		//{
+		//	if (min > arr[i]) min = arr[i];
+		//	if (max < arr[i]) max = arr[i];
+		//	if (arr[i] >= empty) count++;
+		//}
+		//cout << "Smallest: " << min << "Largest: " << max <<
+		//	"Bigger than 11: " << count;
 
-	// #7
-	//Complex0 a(3.0, 4.0);
-	//Complex0 c;
-	//cout << "Enter a complex number (q to quit):\n";
-	//while (cin >> c)
-	//{
-	//	cout << "c is " << c << endl;
-	//	cout << "complex conjugate is " << -c << endl;
-	//	cout << "a is " << a << endl;
-	//	cout << "a + c is " << a + c << endl;
-	//	cout << "a - c is " << a - c << endl;
-	//	cout << "a * c is " << a * c << endl;
-	//	cout << "2 * c is " << 2 * c << endl;
-	//	cout << "Enter a complex number (q to quit):\n";
-	//}
-	//cout << "Done!\n";
-	
+		// #7
+		//Complex0 a(3.0, 4.0);
+		//Complex0 c;
+		//cout << "Enter a complex number (q to quit):\n";
+		//while (cin >> c)
+		//{
+		//	cout << "c is " << c << endl;
+		//	cout << "complex conjugate is " << -c << endl;
+		//	cout << "a is " << a << endl;
+		//	cout << "a + c is " << a + c << endl;
+		//	cout << "a - c is " << a - c << endl;
+		//	cout << "a * c is " << a * c << endl;
+		//	cout << "2 * c is " << 2 * c << endl;
+		//	cout << "Enter a complex number (q to quit):\n";
+		//}
+		//cout << "Done!\n";
+
 #pragma endregion
 
 #pragma region chapter12
@@ -1239,50 +1239,38 @@ int main()
 	//bella.ShowCow();
 
 	// #2
-	/*String name;
-	cout << "Hi, what's your name?\n";
-	cin >> name;
-	cout << name << ", please enter up to " << 81
-	<< " short sayings <empty line to quit> : \n";
-
-	String sayings[10]; 
-	char temp[81]; 
-	int i;
-	for (i = 0; i < 10; i++)
+	String s1(" and I am a C++ student.");
+	String s2 = "Please enter your name: ";
+	String s3;
+	cout << s2;
+	cin >> s3;
+	s2 = "My name is " + s3;
+	cout << s2 << ".\n";
+	s2 += s1;
+	s2.string_up();
+	cout << "The string\n" << s2 << "\ncontains " << s2.has('A')
+		<< " 'A' characters in it.\n";
+	s1 = "red";
+	String rgb[3]{ String{s1}, String("green"), String{"blue"} };
+	cout << "Enter the name of a primary color for mixing light: ";
+	String ans;
+	bool succes = false;
+	while (cin >> ans)
 	{
-		cout << i + 1 << ": ";
-		cin.get(temp, 81);
-		while (cin && cin.get() != '\n')
-			continue;
-		if (!cin || temp[0] == '\0')
-			break;
-		else
-			sayings[i] = temp;
-	}
-
-	int total = i; 
-	if (total > 0)
-	{
-		cout << "Here are your sayings : \n ";
-		for (i = 0; i < total; i++)
-			cout << sayings[i][0] << ": " << sayings[i] << endl;
-		int shortest = 0;
-		int first = 0;
-		for (i = 1; i < total; i++)
+		ans.string_low();
+		for (int i = 0; i < 3; i++)
 		{
-			if (sayings[i].length() < sayings[shortest].length())
-				shortest = i;
-			if (sayings[i] < sayings[first])
-				first = i;
+			if (ans == rgb[i])
+			{
+				cout << "That's right!\n";
+				succes = true;
+				break;
+			}
 		}
-		cout << "Shortest sayiпg : \n" << sayings[shortest] << endl;
-			cout << "First alphabetically : \n" << sayings[first] << endl;
-			cout << "This program used " << String::HowMany()
-			<<" Striпg obj ects.Буе .\n";
+		if (succes) break;
+		else cout << "Try again!\n";
 	}
-	else
-	cout << "No input! Bye. \n";*/
-
+	cout << "Bye.\n";
 #pragma endregion
 }
 
