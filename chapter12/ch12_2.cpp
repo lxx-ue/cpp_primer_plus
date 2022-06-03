@@ -1,5 +1,5 @@
 #include <cstring>
-#include "string1.h"
+#include "ch12_2.h"
 using std::cin;
 using std::cout;
 
