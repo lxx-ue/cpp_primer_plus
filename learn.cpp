@@ -22,6 +22,7 @@
 #include "chapter12/ch12_1.h"
 #include "chapter12/ch12_2.h"
 #include "chapter12/ch12_3.h"
+#include "chapter12/ch12_4.h"
 
 using namespace std;
 
@@ -321,6 +322,7 @@ namespace SALES {
 }
 
 // #5
+/*
 struct Customer
 {
 	char fullname[35];
@@ -365,14 +367,14 @@ public:
 			sum += item.payment;
 			return true;
 		}
-		else false;
+		else return false;
 	}
 	void show_sum() const
 	{
 		cout << "All sum is: " << sum;
 	}
 };
-
+*/
 // #6
 class Move
 {
@@ -1274,22 +1276,58 @@ int main()
 	//cout << "Bye.\n";
 
 	// #3
-	Stock stocks[4] = { 
-		Stock("NanoSmart", 12, 20.0),
-		Stock("Boffo Objects", 200, 2.0),
-		Stock("Monolithic Obelisks", 130, 3.25),
-		Stock("Fleep Enterprises", 60, 6.5)
-	};
-	cout << "Stock holdings:\n";
-	int st;
-	for (st = 0; st < 4; st++)
-		//stocks[st].show();
-		cout << stocks[st];
-	const Stock* top = &stocks[0];
-	for (st = 1; st < 4; st++)
-		top = &top->topval(stocks[st]);
-	cout << "\nMost valuable holding:\n";
-	cout << *top;
+	//Stock stocks[4] = { 
+	//	Stock("NanoSmart", 12, 20.0),
+	//	Stock("Boffo Objects", 200, 2.0),
+	//	Stock("Monolithic Obelisks", 130, 3.25),
+	//	Stock("Fleep Enterprises", 60, 6.5)
+	//};
+	//cout << "Stock holdings:\n";
+	//int st;
+	//for (st = 0; st < 4; st++)
+	//	cout << stocks[st];
+	//const Stock* top = &stocks[0];
+	//for (st = 1; st < 4; st++)
+	//	top = &top->topval(stocks[st]);
+	//cout << "\nMost valuable holding:\n";
+	//cout << *top;
+
+	// #4
+	Stack1 st;
+	char ch;
+	unsigned long po;
+	cout << "Please enter A to add a purchase,\n"
+		<< "P to process a PO, or Q to quit.\n";
+	while (cin >> ch && toupper(ch) != 'Q')
+	{
+		while (cin.get() != '\n')
+			continue;
+		if (!isalpha(ch))
+		{
+			cout << '\a';
+			continue;
+		}
+		switch (toupper(ch))
+		{
+		case 'A':cout << "Enter a PO number to add: ";
+			cin >> po;
+			if (st.is_full())
+				cout << "stack already full\n";
+			else st.push(po);
+			break;
+		case 'P':
+			if (st.is_empty())
+				cout << "stack already empty\n";
+			else {
+				st.pop(po);
+				cout << "PO #" << po << " popped\n";
+			}
+			break;
+		}
+		cout << "Please enter A to add a purchase order,\n"
+			<< "P to process a PO, or Q to quit.\n";
+	}
+	cout << "Bуе\n";
 
 #pragma endregion
 }

@@ -45,6 +45,9 @@
     <ClCompile Include="chapter12\ch12_3.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="chapter12\ch12_4.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="chapter9\ch9_1.h">
@@ -72,6 +75,9 @@
       <Filter>Исходные файлы</Filter>
     </ClInclude>
     <ClInclude Include="chapter12\ch12_3.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="chapter12\ch12_4.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
