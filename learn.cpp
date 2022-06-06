@@ -22,7 +22,7 @@
 #include "chapter12/ch12_1.h"
 #include "chapter12/ch12_2.h"
 #include "chapter12/ch12_3.h"
-#include "chapter12/ch12_4.h"
+//#include "chapter12/ch12_4.h"
 #include "chapter12/ch12_5.h"
 
 using namespace std;
@@ -429,6 +429,11 @@ public:
 #pragma region prototype_ch11
 // #5
 void display(const Stonewt& st, int n);
+#pragma endregion
+
+#pragma region prototype_ch12
+// #5
+bool newcustomer(double x);
 #pragma endregion
 
 int main()
@@ -1331,52 +1336,52 @@ int main()
 	//cout << "Bуе\n";
 
 	// #5
-std::srand(std::time(0));
-cout << "Case Stude: Banl of Heather Automatic Teller\n";
-cout << "Enter maximum size of queue: ";
-int qs;
-cin >> qs;
-Queue line(qs);
-cout << "Enter the number of simulation hours: ";
-int hours;
-cin >> hours;
-long cyclelimit = 60 * hours;
-cout << "Enter the average number of customers per hour: ";
-double perhour;
-cin >> perhour;
-double min_per_cust;
-min_per_cust = 60 / perhour;
-Item temp;
-long turnaways = 0;
-long customers = 0;
-long served = 0; 
-long sum_line = 0;
-int wait_time = 0;
-long line_wait;
+	std::srand(std::time(0));
+	cout << "Case Stude: Banl of Heather Automatic Teller\n";
+	cout << "Enter maximum size of queue: ";
+	int qs;
+	cin >> qs;
+	Queue line(qs);
+	cout << "Enter the number of simulation hours: ";
+	int hours;
+	cin >> hours;
+	long cyclelimit = 60 * hours;
+	cout << "Enter the average number of customers per hour: ";
+	double perhour;
+	cin >> perhour;
+	double min_per_cust;
+	min_per_cust = 60 / perhour;
+	Item temp;
+	long turnaways = 0;
+	long customers = 0;
+	long served = 0;
+	long sum_line = 0;
+	int wait_time = 0;
+	long line_wait = 0;
 
-for (int cycle = 0; cycle < cyclelimit; cycle++)
-{
-	if (newcustomer(min_per_cust))
+	for (int cycle = 0; cycle < cyclelimit; cycle++)
 	{
-		if (line.isfull())
-			turnaways++;
-		else {
-			customers++;
-			temp.set(cycle);
-			line.enqueue(temp);
+		if (newcustomer(min_per_cust))
+		{
+			if (line.isfull())
+				turnaways++;
+			else {
+				customers++;
+				temp.set(cycle);
+				line.enqueue(temp);
+			}
 		}
+		if (wait_time <= 0 && !line.isempty())
+		{
+			line.dequeue(temp);
+			wait_time = temp.ptime();
+			line_wait += cycle - temp.when();
+			served++;
+		}
+		if (wait_time > 0)
+			wait_time--;
+		sum_line += line.queuecount();
 	}
-	if (wait_time <= 0 && !line.isempty())
-	{
-		line.dequeue(temp);
-		wait_time = temp.ptime();
-		line_wait += cycle - temp.when();
-		served++;
-	}
-	if (wait_time > 0)
-		wait_time--;
-	sum_line += line.queuecount();
-
 	if (customers > 0)
 	{
 		cout << "customers accepted: " << customers << endl
@@ -1391,7 +1396,7 @@ for (int cycle = 0; cycle < cyclelimit; cycle++)
 	}
 	else cout << "No customers!";
 	cout << "Done!\n";
-}
+
 
 #pragma endregion
 }
