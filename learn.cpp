@@ -12,6 +12,7 @@
 #include <new>
 #include <cstdlib>
 #include <ctime>
+#include <cmath>
 
 #include "chapter9/ch9_1.h"
 #include "chapter9/ch9_4.h"
@@ -1337,65 +1338,67 @@ int main()
 
 	// #5
 	std::srand(std::time(0));
-	cout << "Case Stude: Banl of Heather Automatic Teller\n";
-	cout << "Enter maximum size of queue: ";
-	int qs;
-	cin >> qs;
-	Queue line(qs);
-	cout << "Enter the number of simulation hours: ";
-	int hours;
-	cin >> hours;
+	int qs = 10, hours = 100;
 	long cyclelimit = 60 * hours;
-	cout << "Enter the average number of customers per hour: ";
-	double perhour;
-	cin >> perhour;
-	double min_per_cust;
-	min_per_cust = 60 / perhour;
-	Item temp;
-	long turnaways = 0;
-	long customers = 0;
-	long served = 0;
-	long sum_line = 0;
-	int wait_time = 0;
-	long line_wait = 0;
-
-	for (int cycle = 0; cycle < cyclelimit; cycle++)
+	double perhour = 18;
+	Queue line(qs);
+	cout << "Enter a range of people per hour: ";
+	int min_ph, max_ph;
+	while (cin >> min_ph >> max_ph)
 	{
-		if (newcustomer(min_per_cust))
+		if (min_ph < max_ph && min_ph>0) break;
+		else cout << "Enter correct range of people per hour: ";
+	}
+	int array_size = max_ph - min_ph + 1;
+	double* results = new double[array_size];
+	for (int ph = min_ph, i = 0; ph <= max_ph; ph++, i++)
+	{
+		double min_per_cust;
+		min_per_cust = 60 / ph;
+		Item temp;
+		long turnaways = 0;
+		long customers = 0;
+		long served = 0;
+		long sum_line = 0;
+		int wait_time = 0;
+		long line_wait = 0;
+		for (int cycle = 0; cycle < cyclelimit; cycle++)
 		{
-			if (line.isfull())
-				turnaways++;
-			else {
-				customers++;
-				temp.set(cycle);
-				line.enqueue(temp);
+			if (newcustomer(min_per_cust))
+			{
+				if (line.isfull())
+					turnaways++;
+				else {
+					customers++;
+					temp.set(cycle);
+					line.enqueue(temp);
+				}
 			}
+			if (wait_time <= 0 && !line.isempty())
+			{
+				line.dequeue(temp);
+				wait_time = temp.ptime();
+				line_wait += cycle - temp.when();
+				served++;
+			}
+			if (wait_time > 0)
+				wait_time--;
+			sum_line += line.queuecount();
 		}
-		if (wait_time <= 0 && !line.isempty())
-		{
-			line.dequeue(temp);
-			wait_time = temp.ptime();
-			line_wait += cycle - temp.when();
-			served++;
-		}
-		if (wait_time > 0)
-			wait_time--;
-		sum_line += line.queuecount();
+		results[i] = abs(1 - ((double)line_wait / served));
 	}
-	if (customers > 0)
+	double min = results[0];
+	int min_index = 0;
+	for (int i = 1; i < array_size; i++)
 	{
-		cout << "customers accepted: " << customers << endl
-			<< "customers served: " << served << endl
-			<< "turnaways: " << turnaways << endl
-			<< "average queue size: ";
-		cout.precision(2);
-		cout.setf(ios_base::fixed, ios_base::floatfield);
-		cout << (double)sum_line / cyclelimit << endl
-			<< "average wait time: " << (double)line_wait / served
-			<< " minutes\n";
+		if (min > results[i])
+		{
+			min = results[i];
+			min_index = i;
+		}
 	}
-	else cout << "No customers!";
-	cout << "Done!\n";
+	delete[] results;
+	cout << "Need "<<min_index<< " people per hour!\n";
 
 
 #pragma endregion
