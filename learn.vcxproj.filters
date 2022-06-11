@@ -86,5 +86,8 @@
     <ClInclude Include="chapter12\ch12_5.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="chapter13\ch13_1.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

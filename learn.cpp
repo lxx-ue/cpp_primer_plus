@@ -25,6 +25,7 @@
 #include "chapter12/ch12_3.h"
 //#include "chapter12/ch12_4.h"
 #include "chapter12/ch12_5.h"
+#include "chapter13/ch13_1.h"
 
 using namespace std;
 
@@ -1337,70 +1338,72 @@ int main()
 	//cout << "Bуе\n";
 
 	// #5
-	std::srand(std::time(0));
-	int qs = 10, hours = 100;
-	long cyclelimit = 60 * hours;
-	double perhour = 18;
-	Queue line(qs);
-	cout << "Enter a range of people per hour: ";
-	int min_ph, max_ph;
-	while (cin >> min_ph >> max_ph)
-	{
-		if (min_ph < max_ph && min_ph>0) break;
-		else cout << "Enter correct range of people per hour: ";
-	}
-	int array_size = max_ph - min_ph + 1;
-	double* results = new double[array_size];
-	for (int ph = min_ph, i = 0; ph <= max_ph; ph++, i++)
-	{
-		double min_per_cust;
-		min_per_cust = 60 / ph;
-		Item temp;
-		long turnaways = 0;
-		long customers = 0;
-		long served = 0;
-		long sum_line = 0;
-		int wait_time = 0;
-		long line_wait = 0;
-		for (int cycle = 0; cycle < cyclelimit; cycle++)
-		{
-			if (newcustomer(min_per_cust))
-			{
-				if (line.isfull())
-					turnaways++;
-				else {
-					customers++;
-					temp.set(cycle);
-					line.enqueue(temp);
-				}
-			}
-			if (wait_time <= 0 && !line.isempty())
-			{
-				line.dequeue(temp);
-				wait_time = temp.ptime();
-				line_wait += cycle - temp.when();
-				served++;
-			}
-			if (wait_time > 0)
-				wait_time--;
-			sum_line += line.queuecount();
-		}
-		results[i] = abs(1 - ((double)line_wait / served));
-	}
-	double min = results[0];
-	int min_index = 0;
-	for (int i = 1; i < array_size; i++)
-	{
-		if (min > results[i])
-		{
-			min = results[i];
-			min_index = i;
-		}
-	}
-	delete[] results;
-	cout << "Need "<<min_index<< " people per hour!\n";
+	//std::srand(std::time(0));
+	//int qs = 10, hours = 100;
+	//long cyclelimit = 60 * hours;
+	//double perhour = 18;
+	//Queue line(qs);
+	//cout << "Enter a range of people per hour: ";
+	//int min_ph, max_ph;
+	//while (cin >> min_ph >> max_ph)
+	//{
+	//	if (min_ph < max_ph && min_ph>0) break;
+	//	else cout << "Enter correct range of people per hour: ";
+	//}
+	//int array_size = max_ph - min_ph + 1;
+	//double* results = new double[array_size];
+	//for (int ph = min_ph, i = 0; ph <= max_ph; ph++, i++)
+	//{
+	//	double min_per_cust;
+	//	min_per_cust = 60 / ph;
+	//	Item temp;
+	//	long turnaways = 0;
+	//	long customers = 0;
+	//	long served = 0;
+	//	long sum_line = 0;
+	//	int wait_time = 0;
+	//	long line_wait = 0;
+	//	for (int cycle = 0; cycle < cyclelimit; cycle++)
+	//	{
+	//		if (newcustomer(min_per_cust))
+	//		{
+	//			if (line.isfull())
+	//				turnaways++;
+	//			else {
+	//				customers++;
+	//				temp.set(cycle);
+	//				line.enqueue(temp);
+	//			}
+	//		}
+	//		if (wait_time <= 0 && !line.isempty())
+	//		{
+	//			line.dequeue(temp);
+	//			wait_time = temp.ptime();
+	//			line_wait += cycle - temp.when();
+	//			served++;
+	//		}
+	//		if (wait_time > 0)
+	//			wait_time--;
+	//		sum_line += line.queuecount();
+	//	}
+	//	results[i] = abs(1 - ((double)line_wait / served));
+	//}
+	//double min = results[0];
+	//int min_index = 0;
+	//for (int i = 1; i < array_size; i++)
+	//{
+	//	if (min > results[i])
+	//	{
+	//		min = results[i];
+	//		min_index = i;
+	//	}
+	//}
+	//delete[] results;
+	//cout << "Need "<<min_index<< " people per hour!\n";
+#pragma endregion
 
-
+#pragma region chapter13
+Cd c1("Beatles", "Capitol", 14, 35.5);
 #pragma endregion
 }
 
