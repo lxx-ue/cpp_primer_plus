@@ -1,6 +1,7 @@
 #pragma once
 
 class Cd {
+private:
 	char performers[50];
 	char label[20];
 	int selections;
@@ -16,6 +17,7 @@ public:
 
 class  Classic
 {
+private:
 	char song[50];
 public:
 	Classic(const char* s1, const char* s2, const char* s3, int n, double x);

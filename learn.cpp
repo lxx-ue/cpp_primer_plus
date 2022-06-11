@@ -1403,7 +1403,7 @@ int main()
 #pragma endregion
 
 #pragma region chapter13
-Cd c1("Beatles", "Capitol", 14, 35.5);
+
 #pragma endregion
 }
 
