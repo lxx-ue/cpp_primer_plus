@@ -2,8 +2,8 @@
 
 class Cd {
 private:
-	char performers[50];
-	char label[20];
+	char * performers;
+	char * label;
 	int selections;
 	double playtime;
 public:
@@ -18,11 +18,12 @@ public:
 class  Classic : public Cd
 {
 private:
-	char song[50];
+	char * song;
 public:
 	Classic(const char* s1, const char* s2, const char* s3, int n, double x);
 	Classic(const Classic& c);
 	Classic();
 	~ Classic();
 	virtual void Report() const;
+	Classic& operator=(const Classic& c);
 };
