@@ -51,6 +51,9 @@
     <ClCompile Include="chapter12\ch12_5.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="chapter13\ch13_1.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="chapter9\ch9_1.h">

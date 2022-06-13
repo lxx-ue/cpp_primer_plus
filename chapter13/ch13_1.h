@@ -11,11 +11,11 @@ public:
 	Cd(const Cd& d);
 	Cd();
 	~Cd();
-	void Report() const;
+	virtual void Report() const;
 	Cd& operator=(const Cd& d);
 };
 
-class  Classic
+class  Classic : public Cd
 {
 private:
 	char song[50];
@@ -24,4 +24,5 @@ public:
 	Classic(const Classic& c);
 	Classic();
 	~ Classic();
+	virtual void Report() const;
 };

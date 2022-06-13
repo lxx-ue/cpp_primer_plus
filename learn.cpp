@@ -438,6 +438,11 @@ void display(const Stonewt& st, int n);
 bool newcustomer(double x);
 #pragma endregion
 
+#pragma region prototype_ch13
+// #1
+void Bravo(const Cd& disk);
+#pragma endregion
+
 int main()
 {
 	setlocale(0, "");
@@ -1403,7 +1408,24 @@ int main()
 #pragma endregion
 
 #pragma region chapter13
-
+	// #1
+	Cd c1("Beatles", "Capitol", 14, 35.5);
+	Classic c2 = Classic("Piano", "Alfred Brendel", "Philips", 2, 57.17);
+	Cd* pcd = &c1;
+	cout << "Using object directly:\n";
+	c1.Report();
+	c2.Report();
+	cout << "Using type cd * pointer to objects: \n";
+	pcd->Report();
+	pcd = &c2;
+	pcd->Report();
+	cout << "Calling a function with a Cd reference argument:\n";
+	Bravo(c1);
+	Bravo(c2);
+	cout << "Testing assigment: ";
+	Classic copy;
+	copy = c2;
+	copy.Report();
 #pragma endregion
 }
 
@@ -1793,5 +1815,13 @@ void display(const Stonewt& st, int n)
 bool newcustomer(double x)
 {
 	return (std::rand() * x / RAND_MAX < 1);
+}
+#pragma endregion
+
+#pragma region func_ch13
+// #1
+void Bravo(const Cd& disk)
+{
+	disk.Report();
 }
 #pragma endregion
