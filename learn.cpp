@@ -26,6 +26,7 @@
 //#include "chapter12/ch12_4.h"
 #include "chapter12/ch12_5.h"
 #include "chapter13/ch13_1.h"
+#include "chapter13/ch13_3.h"
 
 using namespace std;
 
@@ -1409,23 +1410,46 @@ int main()
 
 #pragma region chapter13
 	// #1
-	Cd c1("Beatles", "Capitol", 14, 35.5);
-	Classic c2 = Classic("Piano", "Alfred Brendel", "Philips", 2, 57.17);
-	Cd* pcd = &c1;
-	cout << "Using object directly:\n";
-	c1.Report();
-	c2.Report();
-	cout << "Using type cd * pointer to objects: \n";
-	pcd->Report();
-	pcd = &c2;
-	pcd->Report();
-	cout << "Calling a function with a Cd reference argument:\n";
-	Bravo(c1);
-	Bravo(c2);
-	cout << "Testing assigment: ";
-	Classic copy;
-	copy = c2;
-	copy.Report();
+	//Cd c1("Beatles", "Capitol", 14, 35.5);
+	//Classic c2 = Classic("Piano", "Alfred Brendel", "Philips", 2, 57.17);
+	//Cd* pcd = &c1;
+	//cout << "Using object directly:\n";
+	//c1.Report();
+	//c2.Report();
+	//cout << "Using type cd * pointer to objects: \n";
+	//pcd->Report();
+	//pcd = &c2;
+	//pcd->Report();
+	//cout << "Calling a function with a Cd reference argument:\n";
+	//Bravo(c1);
+	//Bravo(c2);
+	//cout << "Testing assigment: ";
+	//Classic copy;
+	//copy = c2;
+	//copy.Report();
+
+	// #3
+	BaseDMA shirt("portabelly", 8);
+	LacksDMA balloon("red", "Blimpo", 4);
+	HasDMA map("Mercator", "Buffali Keys", 5);
+	DMA* ref[4]{ &shirt, &balloon, &map };
+	cout << "Choose a class: 1 - baseDMA, 2 - lacksDMA, 3 hasDMA\n";
+	int n;
+	cin >> n;
+	switch (n)
+	{
+	case 1:	ref[3] = new BaseDMA();
+		break;
+	case 2:	ref[3] = new LacksDMA();
+		break;
+	case 3:	ref[3] = new HasDMA();
+		break;
+	}
+	for (int i = 0; i < 4; i++)
+	{
+		ref[i]->View();
+	}
+	delete ref[3];
 #pragma endregion
 }
 

@@ -3,7 +3,14 @@
 #define dma
 #include <iostream>
 
-class BaseDMA
+class DMA
+{
+public:
+	virtual void View() const = 0;
+	virtual ~DMA() {}
+};
+
+class BaseDMA : public DMA
 {
 	char* label;
 	int rating;
@@ -13,6 +20,7 @@ public:
 	virtual ~BaseDMA();
 	BaseDMA& operator=(const BaseDMA& rs);
 	friend std::ostream& operator<<(std::ostream& os, const BaseDMA& rs);
+	void View() const override;
 };
 
 class LacksDMA : public BaseDMA
@@ -23,6 +31,7 @@ public:
 	LacksDMA(const char* c = "blank", const char* l = "null", int r = 0);
 	LacksDMA(const char* c, const BaseDMA& rs);
 	friend std::ostream& operator<<(std::ostream& os, const LacksDMA& rs);
+	void View() const override;
 };
 
 class HasDMA : public BaseDMA
@@ -35,5 +44,6 @@ public:
 	~HasDMA();
 	HasDMA& operator=(const HasDMA& rs);
 	friend std::ostream& operator<<(std::ostream& os, const HasDMA& rs);
+	void View() const override;
 };
 #endif // !dma

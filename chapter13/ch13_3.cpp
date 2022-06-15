@@ -1,7 +1,9 @@
+#define _CRT_SECURE_NO_WARNINGS
+
 #include "ch13_3.h"
 #include <cstring>
 
-BaseDMA::BaseDMA(const char* l = "null", int r = 0)
+BaseDMA::BaseDMA(const char* l, int r)
 {
 	label = new char[std::strlen(l) + 1];
 	std::strcpy(label, l);
@@ -37,6 +39,11 @@ std::ostream& operator<<(std::ostream& os, const BaseDMA& rs)
 	return os;
 }
 
+void BaseDMA::View() const
+{
+	std::cout << "Thats base" << std::endl;
+}
+
 
 LacksDMA::LacksDMA(const char* c, const char* l, int r)
 	: BaseDMA(l, r)
@@ -57,6 +64,11 @@ std::ostream& operator<<(std::ostream& os, const LacksDMA& rs)
 	os << (const BaseDMA&)rs;
 	os << "Color: " << rs.color << std::endl;
 	return os;
+}
+
+void LacksDMA::View() const
+{
+	std::cout << "Thats lacks" << std::endl;
 }
 
 
@@ -101,4 +113,9 @@ std::ostream& operator<<(std::ostream& os, const HasDMA& rs)
 	os << (const BaseDMA&)rs;
 	os << "Style: " << rs.style << std::endl;
 	return os;
+}
+
+void HasDMA::View() const
+{
+	std::cout << "Thats has" << std::endl;
 }
