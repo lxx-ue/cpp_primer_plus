@@ -27,6 +27,7 @@
 #include "chapter12/ch12_5.h"
 #include "chapter13/ch13_1.h"
 #include "chapter13/ch13_3.h"
+#include "chapter13/ch13_4.h"
 
 using namespace std;
 
@@ -1429,27 +1430,42 @@ int main()
 	//copy.Report();
 
 	// #3
-	BaseDMA shirt("portabelly", 8);
-	LacksDMA balloon("red", "Blimpo", 4);
-	HasDMA map("Mercator", "Buffali Keys", 5);
-	DMA* ref[4]{ &shirt, &balloon, &map };
-	cout << "Choose a class: 1 - baseDMA, 2 - lacksDMA, 3 hasDMA\n";
-	int n;
-	cin >> n;
-	switch (n)
-	{
-	case 1:	ref[3] = new BaseDMA();
-		break;
-	case 2:	ref[3] = new LacksDMA();
-		break;
-	case 3:	ref[3] = new HasDMA();
-		break;
-	}
-	for (int i = 0; i < 4; i++)
-	{
-		ref[i]->View();
-	}
-	delete ref[3];
+	//BaseDMA shirt("portabelly", 8);
+	//LacksDMA balloon("red", "Blimpo", 4);
+	//HasDMA map("Mercator", "Buffali Keys", 5);
+	//DMA* ref[4]{ &shirt, &balloon, &map };
+	//cout << "Choose a class: 1 - baseDMA, 2 - lacksDMA, 3 hasDMA\n";
+	//int n;
+	//cin >> n;
+	//switch (n)
+	//{
+	//case 1:	ref[3] = new BaseDMA();
+	//	break;
+	//case 2:	ref[3] = new LacksDMA();
+	//	break;
+	//case 3:	ref[3] = new HasDMA();
+	//	break;
+	//}
+	//for (int i = 0; i < 4; i++)
+	//{
+	//	ref[i]->View();
+	//}
+	//delete ref[3];
+
+	// #4
+	Port wine("santa", "stefano");
+	cout << wine << endl;
+	Port wine2(wine), wine3;
+	wine2 += 3;
+	wine2.Show();
+	wine3 = wine2;
+	wine3 -= 2;
+	wine3 += 100;
+	cout << wine3 << endl;
+	VintagePort vw("a", 2,"b",199);
+	cout << vw << endl;
+	VintagePort vw2;
+	cout << vw2;
 #pragma endregion
 }
 
