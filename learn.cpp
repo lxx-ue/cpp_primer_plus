@@ -28,6 +28,7 @@
 #include "chapter13/ch13_1.h"
 #include "chapter13/ch13_3.h"
 #include "chapter13/ch13_4.h"
+#include "chapter14/virtual_base_inherit.h"
 
 using namespace std;
 
@@ -1453,19 +1454,59 @@ int main()
 	//delete ref[3];
 
 	// #4
-	Port wine("santa", "stefano");
-	cout << wine << endl;
-	Port wine2(wine), wine3;
-	wine2 += 3;
-	wine2.Show();
-	wine3 = wine2;
-	wine3 -= 2;
-	wine3 += 100;
-	cout << wine3 << endl;
-	VintagePort vw("a", 2,"b",199);
-	cout << vw << endl;
-	VintagePort vw2;
-	cout << vw2;
+	//Port wine("santa", "stefano");
+	//cout << wine << endl;
+	//Port wine2(wine), wine3;
+	//wine2 += 3;
+	//wine2.Show();
+	//wine3 = wine2;
+	//wine3 -= 2;
+	//wine3 += 100;
+	//cout << wine3 << endl;
+	//VintagePort vw("a", 2,"b",199);
+	//cout << vw << endl;
+	//VintagePort vw2;
+	//cout << vw2;
+#pragma endregion
+
+#pragma region chapter14
+	Worker* lolas[5];
+	int ct;
+	for (ct = 0; ct < 5; ct++)
+	{
+		char choice;
+		cout << "Enter the employee category:\n"
+			<< "w: waiter s: singer "
+			<< "t: singing waiter q: quit\n";
+		cin >> choice;
+		while (strchr("wstq", choice) == NULL)
+		{
+			cout << "Please enter a w, s, t or q: ";
+			cin >> choice;
+		}
+		if (choice == 'q') break;
+		switch (choice)
+		{
+		case 'w': lolas[ct] = new Waiter;
+			break;
+		case 's': lolas[ct] = new Singer;
+			break;
+		case 't': lolas[ct] = new SingerWaiter;
+			break;
+		}
+		cin.get();
+		lolas[ct]->Set();
+	}
+	cout << "\nHere is your staff:\n";
+	int i;
+	for (i = 0; i < ct; i++)
+	{
+		cout << endl;
+		lolas[i]->Show();
+	}
+	for (i = 0; i < ct; i++)
+		delete lolas[i];
+	cout << "Bye!";
 #pragma endregion
 }
 

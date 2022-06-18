@@ -40,10 +40,6 @@ public:
 class Singer : virtual public Worker // !!!!
 {
 protected:
-	enum {
-		other, alto, contralto, soprano,
-		bass, baritone, tenor
-	};
 	enum { Vtypes = 7 };;
 	void Data() const;
 	void Get();
@@ -51,10 +47,10 @@ private:
 	static char* pv[Vtypes];
 	int voice;
 public:
-	Singer() : Worker(), voice(other) {}
-	Singer(const string& s, long n, int v = other)
+	Singer() : Worker(), voice(0) {}
+	Singer(const string& s, long n, int v = 0)
 		: Worker(s, n), voice(v) {}
-	Singer(const Worker& wk, int v = other)
+	Singer(const Worker& wk, int v = 0)
 		: Worker(wk), voice(v) {}
 	void Set();
 	void Show() const;
@@ -68,16 +64,15 @@ protected:
 public:
 	SingerWaiter() {}
 	SingerWaiter(const string& s, long n, int p = 0,
-		int v = other)
+		int v = 0)
 		: Worker(s, n), Waiter(s, n, p), Singer(s, n, v) {}
-	SingerWaiter(const Worker& wk, int p = 0, int v = other)
+	SingerWaiter(const Worker& wk, int p = 0, int v = 0)
 		: Worker(wk), Waiter(wk, p), Singer(wk, v) {}
-	SingerWaiter(const Waiter wt, int v = other)
+	SingerWaiter(const Waiter wt, int v = 0)
 		: Worker(wt), Waiter(wt), Singer(wt, v) {}
 	SingerWaiter(const Singer& wt, int p = 0)
 		: Worker(wt), Waiter(wt, p), Singer(wt) {}
 	void Set();
 	void Show() const;
 };
-
 #endif // !WORKERMI
