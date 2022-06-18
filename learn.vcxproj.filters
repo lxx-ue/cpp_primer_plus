@@ -113,5 +113,8 @@
     <ClInclude Include="chapter14\stack_template.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="chapter14\dynamic_stack_template.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

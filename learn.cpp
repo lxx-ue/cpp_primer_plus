@@ -30,6 +30,7 @@
 #include "chapter13/ch13_4.h"
 #include "chapter14/virtual_base_inherit.h"
 #include "chapter14/stack_template.h"
+#include "chapter14/dynamic_stack_template.h"
 
 using namespace std;
 
@@ -1474,83 +1475,117 @@ int main()
 
 	////// virtual_base_inherit ///////
 
-	/*Worker* lolas[5];
-	int ct;
-	for (ct = 0; ct < 5; ct++)
-	{
-		char choice;
-		cout << "Enter the employee category:\n"
-			<< "w: waiter s: singer "
-			<< "t: singing waiter q: quit\n";
-		cin >> choice;
-		while (strchr("wstq", choice) == NULL)
-		{
-			cout << "Please enter a w, s, t or q: ";
-			cin >> choice;
-		}
-		if (choice == 'q') break;
-		switch (choice)
-		{
-		case 'w': lolas[ct] = new Waiter;
-			break;
-		case 's': lolas[ct] = new Singer;
-			break;
-		case 't': lolas[ct] = new SingerWaiter;
-			break;
-		}
-		cin.get();
-		lolas[ct]->Set();
-	}
-	cout << "\nHere is your staff:\n";
-	int i;
-	for (i = 0; i < ct; i++)
-	{
-		cout << endl;
-		lolas[i]->Show();
-	}
-	for (i = 0; i < ct; i++)
-		delete lolas[i];
-	cout << "Bye!";*/
+	//Worker* lolas[5];
+	//int ct;
+	//for (ct = 0; ct < 5; ct++)
+	//{
+	//	char choice;
+	//	cout << "Enter the employee category:\n"
+	//		<< "w: waiter s: singer "
+	//		<< "t: singing waiter q: quit\n";
+	//	cin >> choice;
+	//	while (strchr("wstq", choice) == NULL)
+	//	{
+	//		cout << "Please enter a w, s, t or q: ";
+	//		cin >> choice;
+	//	}
+	//	if (choice == 'q') break;
+	//	switch (choice)
+	//	{
+	//	case 'w': lolas[ct] = new Waiter;
+	//		break;
+	//	case 's': lolas[ct] = new Singer;
+	//		break;
+	//	case 't': lolas[ct] = new SingerWaiter;
+	//		break;
+	//	}
+	//	cin.get();
+	//	lolas[ct]->Set();
+	//}
+	//cout << "\nHere is your staff:\n";
+	//int i;
+	//for (i = 0; i < ct; i++)
+	//{
+	//	cout << endl;
+	//	lolas[i]->Show();
+	//}
+	//for (i = 0; i < ct; i++)
+	//	delete lolas[i];
+	//cout << "Bye!";
 
 	////// stack_template ///////
-TemplateStack<string> st;
-char ch;
-string po;
-cout << "Please enter A to add a purchase order, \n"
-<< "P to process a PO, or Q to quit.\n";
-while (cin >> ch && toupper(ch) != 'Q')
-{
-	while (cin.get() != '\n')
-		continue;
-	if (!isalpha(ch))
-	{
-		cout << '\a';
-		continue;
-	}
-	switch (toupper(ch))
-	{
-	case 'A': 
-		cout << "Enter a PO number to add: ";
-		cin >> po;
-		if (st.isfull())
-			cout << "stack already full\n";
-		else
-			st.push(po);
-		break;
 
-	case 'P': 
+	//TemplateStack<string> st;
+	//char ch;
+	//string po;
+	//cout << "Please enter A to add a purchase order, \n"
+	//	<< "P to process a PO, or Q to quit.\n";
+	//while (cin >> ch && toupper(ch) != 'Q')
+	//{
+	//	while (cin.get() != '\n')
+	//		continue;
+	//	if (!isalpha(ch))
+	//	{
+	//		cout << '\a';
+	//		continue;
+	//	}
+	//	switch (toupper(ch))
+	//	{
+	//	case 'A':
+	//		cout << "Enter a PO number to add: ";
+	//		cin >> po;
+	//		if (st.isfull())
+	//			cout << "stack already full\n";
+	//		else
+	//			st.push(po);
+	//		break;
+
+	//	case 'P':
+	//		if (st.isempty())
+	//			cout << "stack alreafy empty\n";
+	//		else
+	//		{
+	//			st.pop(po);
+	//			cout << "PO #" << po << " popped\n";
+	//		}
+	//		break;
+	//	}
+	//	cout << "Please enter A to add a purchase order, \n"
+	//		<< "P to process a PO, or Q to quit.\n";
+	//}
+
+	////// dynamic_stack_template ///////
+	
+	srand(time(0));
+	cout << "Please enter stack size: ";
+	int stacksize;
+	cin >> stacksize;
+	DynamicTemplateStack<const char*> st(stacksize);
+	const int num = 10;
+	const char* in[num] = {
+		" 1: Hank Gilgamesh", " 2: Kiki Ishtar",
+		" 3: Betty Rocker", " 4: Ian Flagranti",
+		" 5: Wolfgang Kibble", " 6: Portia Koop",
+		" 7: Joy Almondo", " 8: Xaverie Paprika",
+		" 9: Juan Moore", " 10: Misha Mache"
+	};
+	const char* out[num];
+	int processed = 0;
+	int nextin = 0;
+	while (processed < num)
+	{
 		if (st.isempty())
-			cout << "stack alreafy empty\n";
-		else 
-		{
-			st.pop(po);
-			cout << "PO #" << po << " popped\n";
-		}
-		break;
+			st.push(in[nextin++]);
+		else if (st.isfull())
+			st.pop(out[processed++]);
+		else if (rand() % 2 && nextin < num)
+			st.push(in[nextin++]);
+		else
+			st.pop(out[processed++]);
 	}
-	cout << "Please enter A to add a purchase order, \n"
-		<< "P to process a PO, or Q to quit.\n";
-}
+	for (int i = 0; i < num; i++)
+		cout << out[i] << endl;
+	cout << "Bye!";
 #pragma endregion
 }
 
