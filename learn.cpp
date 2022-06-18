@@ -29,6 +29,7 @@
 #include "chapter13/ch13_3.h"
 #include "chapter13/ch13_4.h"
 #include "chapter14/virtual_base_inherit.h"
+#include "chapter14/stack_template.h"
 
 using namespace std;
 
@@ -1470,7 +1471,10 @@ int main()
 #pragma endregion
 
 #pragma region chapter14
-	Worker* lolas[5];
+
+	////// virtual_base_inherit ///////
+
+	/*Worker* lolas[5];
 	int ct;
 	for (ct = 0; ct < 5; ct++)
 	{
@@ -1506,7 +1510,47 @@ int main()
 	}
 	for (i = 0; i < ct; i++)
 		delete lolas[i];
-	cout << "Bye!";
+	cout << "Bye!";*/
+
+	////// stack_template ///////
+TemplateStack<string> st;
+char ch;
+string po;
+cout << "Please enter A to add a purchase order, \n"
+<< "P to process a PO, or Q to quit.\n";
+while (cin >> ch && toupper(ch) != 'Q')
+{
+	while (cin.get() != '\n')
+		continue;
+	if (!isalpha(ch))
+	{
+		cout << '\a';
+		continue;
+	}
+	switch (toupper(ch))
+	{
+	case 'A': 
+		cout << "Enter a PO number to add: ";
+		cin >> po;
+		if (st.isfull())
+			cout << "stack already full\n";
+		else
+			st.push(po);
+		break;
+
+	case 'P': 
+		if (st.isempty())
+			cout << "stack alreafy empty\n";
+		else 
+		{
+			st.pop(po);
+			cout << "PO #" << po << " popped\n";
+		}
+		break;
+	}
+	cout << "Please enter A to add a purchase order, \n"
+		<< "P to process a PO, or Q to quit.\n";
+}
 #pragma endregion
 }
 
