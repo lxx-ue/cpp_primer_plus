@@ -168,6 +168,7 @@
     <ClInclude Include="chapter13\ch13_3.h" />
     <ClInclude Include="chapter13\ch13_4.h" />
     <ClInclude Include="chapter14\dynamic_stack_template.h" />
+    <ClInclude Include="chapter14\member_template.h" />
     <ClInclude Include="chapter14\stack_template.h" />
     <ClInclude Include="chapter14\virtual_base_inherit.h" />
     <ClInclude Include="chapter9\ch9_1.h" />

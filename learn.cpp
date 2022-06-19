@@ -31,6 +31,7 @@
 #include "chapter14/virtual_base_inherit.h"
 #include "chapter14/stack_template.h"
 #include "chapter14/dynamic_stack_template.h"
+#include "chapter14/member_template.h"
 
 using namespace std;
 
@@ -1556,36 +1557,48 @@ int main()
 
 	////// dynamic_stack_template ///////
 	
-	srand(time(0));
-	cout << "Please enter stack size: ";
-	int stacksize;
-	cin >> stacksize;
-	DynamicTemplateStack<const char*> st(stacksize);
-	const int num = 10;
-	const char* in[num] = {
-		" 1: Hank Gilgamesh", " 2: Kiki Ishtar",
-		" 3: Betty Rocker", " 4: Ian Flagranti",
-		" 5: Wolfgang Kibble", " 6: Portia Koop",
-		" 7: Joy Almondo", " 8: Xaverie Paprika",
-		" 9: Juan Moore", " 10: Misha Mache"
-	};
-	const char* out[num];
-	int processed = 0;
-	int nextin = 0;
-	while (processed < num)
-	{
-		if (st.isempty())
-			st.push(in[nextin++]);
-		else if (st.isfull())
-			st.pop(out[processed++]);
-		else if (rand() % 2 && nextin < num)
-			st.push(in[nextin++]);
-		else
-			st.pop(out[processed++]);
-	}
-	for (int i = 0; i < num; i++)
-		cout << out[i] << endl;
-	cout << "Bye!";
+	//srand(time(0));
+	//cout << "Please enter stack size: ";
+	//int stacksize;
+	//cin >> stacksize;
+	//DynamicTemplateStack<const char*> st(stacksize);
+	//const int num = 10;
+	//const char* in[num] = {
+	//	" 1: Hank Gilgamesh", " 2: Kiki Ishtar",
+	//	" 3: Betty Rocker", " 4: Ian Flagranti",
+	//	" 5: Wolfgang Kibble", " 6: Portia Koop",
+	//	" 7: Joy Almondo", " 8: Xaverie Paprika",
+	//	" 9: Juan Moore", " 10: Misha Mache"
+	//};
+	//const char* out[num];
+	//int processed = 0;
+	//int nextin = 0;
+	//while (processed < num)
+	//{
+	//	if (st.isempty())
+	//		st.push(in[nextin++]);
+	//	else if (st.isfull())
+	//		st.pop(out[processed++]);
+	//	else if (rand() % 2 && nextin < num)
+	//		st.push(in[nextin++]);
+	//	else
+	//		st.pop(out[processed++]);
+	//}
+	//for (int i = 0; i < num; i++)
+	//	cout << out[i] << endl;
+	//cout << "Bye!";
+
+	////// member_template ///////
+
+	beta<double> guy(3.5, 3);
+	cout << "T was set to double\n";
+	guy.Show();
+	cout << "V was set to T, which is double, then V was set to int\n";
+	cout << guy.blab(10, 2.3) << endl;
+	cout << "U w as set to int\n";
+	cout << guy.blab(10.0, 2.3) << endl;
+	cout << "U w as set to double\n";
+
 #pragma endregion
 }
 
