@@ -32,6 +32,7 @@
 #include "chapter14/stack_template.h"
 #include "chapter14/dynamic_stack_template.h"
 #include "chapter14/member_template.h"
+#include "chapter14/ch14_1.h"
 
 using namespace std;
 
@@ -1556,7 +1557,7 @@ int main()
 	//}
 
 	////// dynamic_stack_template ///////
-	
+
 	//srand(time(0));
 	//cout << "Please enter stack size: ";
 	//int stacksize;
@@ -1590,15 +1591,33 @@ int main()
 
 	////// member_template ///////
 
-	beta<double> guy(3.5, 3);
-	cout << "T was set to double\n";
-	guy.Show();
-	cout << "V was set to T, which is double, then V was set to int\n";
-	cout << guy.blab(10, 2.3) << endl;
-	cout << "U w as set to int\n";
-	cout << guy.blab(10.0, 2.3) << endl;
-	cout << "U w as set to double\n";
+	//beta<double> guy(3.5, 3);
+	//cout << "T was set to double\n";
+	//guy.Show();
+	//cout << "V was set to T, which is double, then V was set to int\n";
+	//cout << guy.blab(10, 2.3) << endl;
+	//cout << "U w as set to int\n";
+	//cout << guy.blab(10.0, 2.3) << endl;
+	//cout << "U w as set to double\n";
 
+	// #1
+	cout << "Enter name of wine: ";
+	char lab[50];
+	cin.getline(lab, 50);
+	cout << "Enter number of years: ";
+	int yrs;
+	cin >> yrs;
+	Wine holding(lab, yrs);
+	holding.GetBottles();
+	holding.Show();
+	const int YRS = 3;
+	int y[YRS] = { 1993, 1995, 1998 };
+	int b[YRS] = { 48,60,72 };
+	Wine more("Grape Red", YRS, y, b);
+	more.Show();
+	cout << "Total bottles for " << more.Label()
+		<< ": " << more.sum() << endl;
+	cout << "Bye\n";
 #pragma endregion
 }
 

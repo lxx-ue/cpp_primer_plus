@@ -63,6 +63,9 @@
     <ClCompile Include="chapter14\virtual_base_inherit.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="chapter14\ch14_1.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="chapter9\ch9_1.h">
@@ -117,6 +120,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="chapter14\member_template.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="chapter14\ch14_1.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
