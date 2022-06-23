@@ -34,6 +34,7 @@
 #include "chapter14/member_template.h"
 #include "chapter14/ch14_1.h"
 #include "chapter14/ch14_2.h"
+#include "chapter14/ch14_3.h"
 
 using namespace std;
 
@@ -1601,24 +1602,63 @@ int main()
 	//cout << guy.blab(10.0, 2.3) << endl;
 	//cout << "U w as set to double\n";
 
-	// #1
-	cout << "Enter name of wine: ";
-	char lab[50];
-	cin.getline(lab, 50);
-	cout << "Enter number of years: ";
-	int yrs;
-	cin >> yrs;
-	Wine2 holding(lab, yrs);
-	holding.GetBottles();
-	holding.Show();
-	const int YRS = 3;
-	int y[YRS] = { 1993, 1995, 1998 };
-	int b[YRS] = { 48,60,72 };
-	Wine2 more("Grape Red", YRS, y, b);
-	more.Show();
-	cout << "Total bottles for " << more.Label()
-		<< ": " << more.sum() << endl;
-	cout << "Bye\n";
+	// #1 2
+	//cout << "Enter name of wine: ";
+	//char lab[50];
+	//cin.getline(lab, 50);
+	//cout << "Enter number of years: ";
+	//int yrs;
+	//cin >> yrs;
+	//Wine2 holding(lab, yrs);
+	//holding.GetBottles();
+	//holding.Show();
+	//const int YRS = 3;
+	//int y[YRS] = { 1993, 1995, 1998 };
+	//int b[YRS] = { 48,60,72 };
+	//Wine2 more("Grape Red", YRS, y, b);
+	//more.Show();
+	//cout << "Total bottles for " << more.Label()
+	//	<< ": " << more.sum() << endl;
+	//cout << "Bye\n";
+
+	// #3
+	QueueTp<Worker*> line(3);
+	int ct;
+	Worker* newworker;
+	while (!line.isfull())
+	{
+		char choice;
+		std::cout << "Enter the employee category:\n"
+			<< "w: waiter s: singer "
+			<< "t: singing waiter q: quit\n";
+		cin >> choice;
+		while (strchr("wstq", choice) == NULL)
+		{
+			std::cout << "Please enter a w, s, t or q: ";
+			cin >> choice;
+		}
+		if (choice == 'q') break;
+		switch (choice)
+		{
+		case 'w': newworker = new Waiter;
+			break;
+		case 's': newworker = new Singer;
+			break;
+		case 't': newworker = new SingerWaiter;
+			break;
+		}
+		line.enqueue(newworker);
+		cin.get();
+		newworker->Set();
+	}
+
+	std::cout << "\nQueue is full!\n\n";
+	while (!line.isempty())
+	{
+		line.dequeue(newworker);
+		cout << newworker->getName() << " deleted\n";
+	}
+
 #pragma endregion
 }
 

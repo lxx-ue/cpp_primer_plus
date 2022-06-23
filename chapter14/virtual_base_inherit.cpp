@@ -1,5 +1,5 @@
 #include "virtual_base_inherit.h"
-#include <iostream>
+
 using namespace std;
 
 Worker::~Worker()
@@ -21,7 +21,6 @@ void Worker::Get()
 	while (cin.get() != '\n')
 		continue;
 }
-
 
 void Waiter::Set()
 {
@@ -49,6 +48,7 @@ void Waiter::Get()
 	while (cin.get() != '\n')
 		continue;
 }
+
 
 enum Voices {
 	other, alto, contralto, soprano,
@@ -80,7 +80,7 @@ void Singer::Get()
 	int i;
 	for (i = 0; i < Vtypes; i++)
 	{
-		cout << i << ": "<<Voices(i);
+		cout << i << ": "<<Voices(i)<<" | ";
 		if (i % 4 == 3)
 			cout << endl;
 	}
@@ -90,7 +90,6 @@ void Singer::Get()
 	while (cin.get() != '\n')
 		continue;
 }
-
 
 void SingerWaiter::Data() const
 {

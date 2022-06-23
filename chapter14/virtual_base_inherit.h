@@ -2,6 +2,7 @@
 #ifndef WORKERMI
 #define WORKERMI
 #include <string>
+#include <iostream>
 
 using std::string;
 
@@ -19,6 +20,7 @@ public:
 	virtual ~Worker() = 0;
 	virtual void Set() = 0;
 	virtual void Show() const = 0;
+	const string& getName() const { return fullname; }
 };
 
 class Waiter : virtual public Worker // !!!!
