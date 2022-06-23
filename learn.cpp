@@ -33,6 +33,7 @@
 #include "chapter14/dynamic_stack_template.h"
 #include "chapter14/member_template.h"
 #include "chapter14/ch14_1.h"
+#include "chapter14/ch14_2.h"
 
 using namespace std;
 
@@ -1607,13 +1608,13 @@ int main()
 	cout << "Enter number of years: ";
 	int yrs;
 	cin >> yrs;
-	Wine holding(lab, yrs);
+	Wine2 holding(lab, yrs);
 	holding.GetBottles();
 	holding.Show();
 	const int YRS = 3;
 	int y[YRS] = { 1993, 1995, 1998 };
 	int b[YRS] = { 48,60,72 };
-	Wine more("Grape Red", YRS, y, b);
+	Wine2 more("Grape Red", YRS, y, b);
 	more.Show();
 	cout << "Total bottles for " << more.Label()
 		<< ": " << more.sum() << endl;
