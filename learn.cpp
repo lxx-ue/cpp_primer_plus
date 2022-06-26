@@ -35,6 +35,7 @@
 #include "chapter14/ch14_1.h"
 #include "chapter14/ch14_2.h"
 #include "chapter14/ch14_3.h"
+#include "chapter14/ch14_4.h"
 
 using namespace std;
 
@@ -1622,42 +1623,81 @@ int main()
 	//cout << "Bye\n";
 
 	// #3
-	QueueTp<Worker*> line(3);
-	int ct;
-	Worker* newworker;
-	while (!line.isfull())
-	{
-		char choice;
-		std::cout << "Enter the employee category:\n"
-			<< "w: waiter s: singer "
-			<< "t: singing waiter q: quit\n";
-		cin >> choice;
-		while (strchr("wstq", choice) == NULL)
-		{
-			std::cout << "Please enter a w, s, t or q: ";
-			cin >> choice;
-		}
-		if (choice == 'q') break;
-		switch (choice)
-		{
-		case 'w': newworker = new Waiter;
-			break;
-		case 's': newworker = new Singer;
-			break;
-		case 't': newworker = new SingerWaiter;
-			break;
-		}
-		line.enqueue(newworker);
-		cin.get();
-		newworker->Set();
-	}
+	//QueueTp<Worker*> line(3);
+	//int ct;
+	//Worker* newworker;
+	//while (!line.isfull())
+	//{
+	//	char choice;
+	//	std::cout << "Enter the employee category:\n"
+	//		<< "w: waiter s: singer "
+	//		<< "t: singing waiter q: quit\n";
+	//	cin >> choice;
+	//	while (strchr("wstq", choice) == NULL)
+	//	{
+	//		std::cout << "Please enter a w, s, t or q: ";
+	//		cin >> choice;
+	//	}
+	//	if (choice == 'q') break;
+	//	switch (choice)
+	//	{
+	//	case 'w': newworker = new Waiter;
+	//		break;
+	//	case 's': newworker = new Singer;
+	//		break;
+	//	case 't': newworker = new SingerWaiter;
+	//		break;
+	//	}
+	//	line.enqueue(newworker);
+	//	cin.get();
+	//	newworker->Set();
+	//}
+	//std::cout << "\nQueue is full!\n\n";
+	//while (!line.isempty())
+	//{
+	//	line.dequeue(newworker);
+	//	cout << newworker->getName() << " deleted\n";
+	//}
 
-	std::cout << "\nQueue is full!\n\n";
-	while (!line.isempty())
-	{
-		line.dequeue(newworker);
-		cout << newworker->getName() << " deleted\n";
-	}
+	// #4
+	//Person14* lolas[5];
+	//int ct;
+	//for (ct = 0; ct < 5; ct++)
+	//{
+	//	char choice;
+	//	cout << "Enter the employee category:\n"
+	//		<< "p: person g: gunslinger "
+	//		<< "t: pokerPlayer b: bad dude q: quit\n";
+	//	cin >> choice;
+	//	while (strchr("pgtbq", choice) == NULL)
+	//	{
+	//		cout << "Please enter a p, g, t, b or q: ";
+	//		cin >> choice;
+	//	}
+	//	if (choice == 'q') break;
+	//	switch (choice)
+	//	{
+	//	case 'p': lolas[ct] = new Person14("Arthur", "Morgan");
+	//		break;
+	//	case 'g': lolas[ct] = new Gunslinger("Kiki", "Ishtar", 5, 2);
+	//		break;
+	//	case 't': lolas[ct] = new PokerPlayer("Hank", "Gilgamesh");
+	//		break;
+	//	case 'b': lolas[ct] = new BadDude("Juan", "Moore", 1, 1);
+	//		break;
+	//	}
+	//	cin.get();
+	//}
+	//cout << "\nHere is your staff:\n";
+	//int i;
+	//for (i = 0; i < ct; i++)
+	//{
+	//	cout << endl;
+	//	lolas[i]->Show();
+	//}
+	//for (i = 0; i < ct; i++)
+	//	delete lolas[i];
+	//cout << "Bye!";
 
 #pragma endregion
 }
