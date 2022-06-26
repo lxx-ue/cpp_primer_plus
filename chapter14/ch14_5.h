@@ -21,7 +21,7 @@ class employee : public abstr_emp
 {
 public:
 	employee();
-	employee(const string& dn, const string& ln, const string& j);
+	employee(const string& fn, const string& ln, const string& j);
 	virtual void ShowAll() const;
 	virtual void SetAll();
 };
@@ -34,7 +34,7 @@ protected:
 	int& InChargeOf() { return inchargeof; }
 public:
 	manager();
-	manager(const string& dn, const string& ln, const string& j, int ico = 0);
+	manager(const string& fn, const string& ln, const string& j, int ico = 0);
 	manager(const abstr_emp& e, int ico);
 	manager(const manager& m);
 	virtual void ShowAll() const;
@@ -49,7 +49,7 @@ protected:
 	string& ReportsTo() { return reportsto; }
 public:
 	fink();
-	fink(const string& dn, const string& ln, const string& j, const string& rpo);
+	fink(const string& fn, const string& ln, const string& j, const string& rpo);
 	fink(const abstr_emp& e, const string& rpo);
 	fink(const fink& e);
 	virtual void ShowAll() const;
@@ -60,7 +60,7 @@ class highfink : public manager, public fink
 {
 public:
 	highfink();
-	highfink(const string& dn, const string& ln, const string& j, const string& rpo, int ico);
+	highfink(const string& fn, const string& ln, const string& j, const string& rpo, int ico);
 	highfink(const abstr_emp& e, const string& rpo, int ico);
 	highfink(const fink& f, int ico);
 	highfink(const manager& m, const string& rpo);
