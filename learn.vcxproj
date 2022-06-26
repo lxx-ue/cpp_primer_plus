@@ -173,6 +173,7 @@
     <ClInclude Include="chapter14\ch14_2.h" />
     <ClInclude Include="chapter14\ch14_3.h" />
     <ClInclude Include="chapter14\ch14_4.h" />
+    <ClInclude Include="chapter14\ch14_5.h" />
     <ClInclude Include="chapter14\dynamic_stack_template.h" />
     <ClInclude Include="chapter14\member_template.h" />
     <ClInclude Include="chapter14\stack_template.h" />

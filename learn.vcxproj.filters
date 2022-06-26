@@ -137,5 +137,8 @@
     <ClInclude Include="chapter14\ch14_4.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="chapter14\ch14_5.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
