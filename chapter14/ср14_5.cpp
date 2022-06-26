@@ -7,17 +7,6 @@ using std::cout;
 using std::endl;
 using std::cin;
 
-abstr_emp::abstr_emp()
-{
-	fname = lname = job = "none";
-}
-
-abstr_emp::abstr_emp(const string& fn, const string& ln, const string& j)
-{
-	fname = fn;
-	lname = ln;
-	job = j;
-}
 
 void abstr_emp::ShowAll() const
 {
@@ -40,12 +29,6 @@ std::ostream& operator<<(std::ostream& os, const abstr_emp& e)
 	return os;
 }
 
-
-employee::employee() : abstr_emp() {}
-
-employee::employee(const string& fn, const string& ln, const string& j)
-	: abstr_emp(fn, ln, j) {}
-
 void employee::ShowAll() const
 {
 	abstr_emp::ShowAll();
@@ -56,17 +39,6 @@ void employee::SetAll()
 	abstr_emp::SetAll();
 }
 
-
-manager::manager() : abstr_emp(), inchargeof(0) {}
-
-manager::manager(const string& fn, const string& ln, const string& j, int ico = 0)
-	: abstr_emp(fn, ln, j), inchargeof(0) {}
-
-manager::manager(const abstr_emp& e, int ico)
-	: abstr_emp(e), inchargeof(0) {}
-
-manager::manager(const manager& m)
-	: abstr_emp(m), inchargeof(0) {}
 
 void manager::ShowAll() const
 {
@@ -82,16 +54,6 @@ void manager::SetAll()
 }
 
 
-fink::fink() : abstr_emp(), reportsto("none") {}
-
-fink::fink(const string& fn, const string& ln, const string& j, const string& rpo)
-	: abstr_emp(fn, ln, j), reportsto(rpo) {}
-
-fink::fink(const abstr_emp& e, const string& rpo)
-	: abstr_emp(e), reportsto(rpo) {}
-
-fink::fink(const fink& e) : abstr_emp(e), reportsto("none") {}
-
 void fink::ShowAll() const
 {
 	abstr_emp::ShowAll();
@@ -105,22 +67,6 @@ void fink::SetAll()
 	cin >> reportsto;
 }
 
-highfink::highfink() {}
-
-highfink::highfink(const string& fn, const string& ln, const string& j, const string& rpo, int ico)
-	: abstr_emp(fn, ln, j), manager(fn, ln, j, ico), fink(fn, ln, j, rpo) {}
-
-highfink::highfink(const abstr_emp& e, const string& rpo, int ico)
-	: abstr_emp(e), manager(e, ico), fink(e, rpo) {}
-
-highfink::highfink(const fink& f, int ico)
-	: abstr_emp(f), manager(f, ico), fink(f) {}
-
-highfink::highfink(const manager& m, const string& rpo)
-	: abstr_emp(m), manager(m), fink(m, rpo) {}
-
-highfink::highfink(const highfink& h) 
-	: abstr_emp(h), manager(h, 0), fink(h, "none") {}
 
 void highfink::ShowAll() const
 {
