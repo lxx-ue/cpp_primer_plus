@@ -455,6 +455,12 @@ bool newcustomer(double x);
 void Bravo(const Cd& disk);
 #pragma endregion
 
+#pragma region prototype_ch15
+double hmean(double a, double b);
+double hmean(double a, double b, double* ans);
+#pragma endregion
+
+
 int main()
 {
 	setlocale(0, "");
@@ -1728,20 +1734,41 @@ int main()
 
 #pragma region chapter15
 	// listing 15.6
-	queueTP<string> cs(5);
-	string temp;
-	while (!cs.isfull())
+	//queueTP<string> cs(5);
+	//string temp;
+	//while (!cs.isfull())
+	//{
+	//	cout << "Please enter your name. You will be served in the order of arrival.\nname: ";
+	//	getline(cin, temp);
+	//	cs.enqueue(temp);
+	//}
+	//cout << "The queue is full. Processing beggins!\n";
+	//while (!cs.isempty())
+	//{
+	//	cs.dequeue(temp);
+	//	cout << "Now processing " << temp << "...\n";
+	//}
+
+	// exceptions
+	//double x, y, z;
+	//cout << "Enter two numbers: ";
+	//while (cin >> x >> y)
+	//{
+	//	z = hmean(x, y);
+	//	cout << "Harmonic mean of " << x << " and " << y << " is " << z << endl;
+	//	cout << "Enter next set of numbers <q to quit>: ";
+	//}
+
+	double x, y, z;
+	cout << "Enter two numbers: ";
+	while (cin >> x >> y)
 	{
-		cout << "Please enter your name. You will be served in the order of arrival.\nname: ";
-		getline(cin, temp);
-		cs.enqueue(temp);
+		if (hmean(x, y, &z)) cout << "Harmonic mean of " << x << " and " << y << " is " << z << endl;
+		else cout << "One value should not be the negative of the other - try again.\n";
+		cout << "Enter next set of numbers <q to quit>: ";
 	}
-	cout << "The queue is full. Processing beggins!\n";
-	while (!cs.isempty())
-	{
-		cs.dequeue(temp);
-		cout << "Now processing " << temp << "...\n";
-	}
+
+
 #pragma endregion
 }
 
@@ -2139,5 +2166,31 @@ bool newcustomer(double x)
 void Bravo(const Cd& disk)
 {
 	disk.Report();
+}
+#pragma endregion
+
+#pragma region func_ch15
+double hmean(double a, double b)
+{
+	if (a == -b)
+	{
+		cout << "untenable arguments to hmean()\n";
+		abort();
+	}
+	return 2.0 * a * b / (a + b);
+}
+
+double hmean(double a, double b, double* ans)
+{
+	if (a == -b)
+	{
+		*ans = DBL_MAX;
+		return false;
+	}
+	else
+	{
+		*ans = 2.0 * a * b / (a + b);
+		return true;
+	}
 }
 #pragma endregion
