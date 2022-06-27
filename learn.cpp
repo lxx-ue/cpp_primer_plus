@@ -37,6 +37,7 @@
 #include "chapter14/ch14_3.h"
 #include "chapter14/ch14_4.h"
 #include "chapter14/ch14_5.h"
+#include "chapter15/listing15_5.h"
 
 using namespace std;
 
@@ -1726,7 +1727,21 @@ int main()
 #pragma endregion
 
 #pragma region chapter15
-
+	// listing 15.6
+	queueTP<string> cs(5);
+	string temp;
+	while (!cs.isfull())
+	{
+		cout << "Please enter your name. You will be served in the order of arrival.\nname: ";
+		getline(cin, temp);
+		cs.enqueue(temp);
+	}
+	cout << "The queue is full. Processing beggins!\n";
+	while (!cs.isempty())
+	{
+		cs.dequeue(temp);
+		cout << "Now processing " << temp << "...\n";
+	}
 #pragma endregion
 }
 

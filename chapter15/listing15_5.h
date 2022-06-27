@@ -52,7 +52,7 @@ template <class Item>
 bool queueTP<Item>::enqueue(const Item& item)
 {
 	if (isfull()) return false;
-	Node* add = neq Node(item);
+	Node* add = new Node(item);
 	items++;
 	if (front == 0) front = add;
 	else rear->next = add;
@@ -65,7 +65,7 @@ bool queueTP<Item>::dequeue(Item& item)
 {
 	if (front == 0) return false;
 	item = front->item;
-	item--;
+	items--;
 	Node* temp = front;
 	front = front->next;
 	delete temp;
