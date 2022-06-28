@@ -153,6 +153,7 @@
     <ClCompile Include="chapter14\ch14_1.cpp" />
     <ClCompile Include="chapter14\virtual_base_inherit.cpp" />
     <ClCompile Include="chapter14\ср14_5.cpp" />
+    <ClCompile Include="chapter15\sales.cpp" />
     <ClCompile Include="chapter9\ch9_1.cpp" />
     <ClCompile Include="chapter9\ch9_4.cpp" />
     <ClCompile Include="learn.cpp" />
@@ -181,6 +182,7 @@
     <ClInclude Include="chapter14\virtual_base_inherit.h" />
     <ClInclude Include="chapter15\exc_mean.h" />
     <ClInclude Include="chapter15\listing15_5.h" />
+    <ClInclude Include="chapter15\sales.h" />
     <ClInclude Include="chapter9\ch9_1.h" />
     <ClInclude Include="chapter9\ch9_4.h" />
     <ClInclude Include="chapter12\ch12_1.h" />

@@ -72,6 +72,9 @@
     <ClCompile Include="chapter14\ср14_5.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="chapter15\sales.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="chapter9\ch9_1.h">
@@ -147,6 +150,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="chapter15\exc_mean.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="chapter15\sales.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
