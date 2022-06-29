@@ -155,5 +155,8 @@
     <ClInclude Include="chapter15\sales.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="chapter15\rtti.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

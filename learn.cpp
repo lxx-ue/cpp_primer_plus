@@ -40,6 +40,7 @@
 #include "chapter15/listing15_5.h"
 #include "chapter15/exc_mean.h"
 #include "chapter15/sales.h"
+#include "chapter15/rtti.h"
 
 using namespace std;
 
@@ -460,6 +461,7 @@ void Bravo(const Cd& disk);
 #pragma region prototype_ch15
 double hmean(double a, double b);
 double gmean(double a, double b);
+Grand* GetOne();
 #pragma endregion
 
 
@@ -1781,7 +1783,7 @@ int main()
 	//}
 
 	// inherit exceptions
-	double vals1[12] =
+	/*double vals1[12] =
 	{
 		1220, 1100, 1122, 2212, 1232, 2334,
 		2884, 2393, 3302, 2922, 3002, 3544
@@ -1841,7 +1843,22 @@ int main()
 		cout << bad.what();
 		cout << "bad index: " << bad.bi_val() << endl;
 	}
-	cout << "Done\n";
+	cout << "Done\n";*/
+
+	// RTTI
+	srand(time(0));
+	Grand* pg;
+	Superb* ps;
+	for (int i = 0; i < 5; i++)
+	{
+		pg = GetOne();
+		cout << "Now processing type " << typeid(*pg).name() << ".\n";
+		pg->Speak();
+		if (ps = dynamic_cast<Superb*>(pg))
+			ps->Say();
+		if (typeid(Magnificent) == typeid(*pg))
+			cout << "Yes, you're really magnificent.\n";
+	}
 
 #pragma endregion
 }
@@ -2255,5 +2272,22 @@ double gmean(double a, double b)
 	if (a < 0 || b < 0)
 		throw bad_gmean(a, b);
 	return sqrt(a * b);
+}
+Grand* GetOne()
+{
+	Grand* p;
+	switch (rand() % 3)
+	{
+	case 0:
+		p = new Grand(rand() % 100);
+		break;
+	case 1:
+		p = new Superb(rand() % 100);
+		break;
+	case 2:
+		p = new Magnificent(rand() % 100, 'A' + rand() % 26);
+		break;
+	}
+	return p;
 }
 #pragma endregion
