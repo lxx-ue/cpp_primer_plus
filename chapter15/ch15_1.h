@@ -2,10 +2,32 @@
 #ifndef TV_H_
 #define TV_H_
 
+class Tv; // телевизор
+class Remote // пульт
+{
+public:
+	enum { Off, On };
+	enum { Minval, Maxval = 20 };
+	enum { Antenna, Cable };
+	enum { TV, DVD };
+public:
+	Remote(int m = TV) : mode(m) {}
+	bool volup(Tv& t);
+	bool voldown(Tv& t);
+	void onoff(Tv& t);
+	void chanup(Tv& t);
+	void chandown(Tv& t);
+	void set_chan(Tv& t, int c);
+	void set_mode(Tv& t);
+	void set_input(Tv& t);
+private:
+	int mode;
+};
+
 class Tv // телевизор
 {
 public:
-	friend class Remote;
+	friend void Remote::set_chan(Tv& t, int c);
 	enum { Off, On };
 	enum { Minval, Maxval = 20 };
 	enum { Antenna, Cable };
@@ -30,20 +52,13 @@ private:
 	int input; // тв или двд
 };
 
-class Remote // пульт
-{
-public:
-	Remote(int m = Tv::TV) : mode(m) {}
-	bool volup(Tv& t) { return t.volup(); }
-	bool voldown(Tv& t) { return t.voldown(); }
-	void onoff(Tv& t) { t.onoff(); }
-	void chanup(Tv& t) { t.chanup(); }
-	void chandown(Tv& t) { t.chandown(); }
-	void set_chan(Tv& t, int c) { t.channel = c; }
-	void set_mode(Tv& t) { t.set_mode(); }
-	void set_input(Tv& t) { t.set_input(); }
-private:
-	int mode;
-};
+inline bool Remote::volup(Tv& t) { return t.volup(); }
+inline bool Remote::voldown(Tv& t) { return t.voldown(); }
+inline void Remote::onoff(Tv& t) { t.onoff(); }
+inline void Remote::chanup(Tv& t) { t.chanup(); }
+inline void Remote::chandown(Tv& t) { t.chandown(); }
+inline void Remote::set_chan(Tv& t, int c) { t.channel = c; }
+inline void Remote::set_mode(Tv& t) { t.set_mode(); }
+inline void Remote::set_input(Tv& t) { t.set_input(); }
 
 #endif // !TV_H_

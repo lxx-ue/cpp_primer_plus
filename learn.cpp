@@ -41,6 +41,7 @@
 #include "chapter15/exc_mean.h"
 #include "chapter15/sales.h"
 #include "chapter15/rtti.h"
+#include "chapter15/ch15_1.h"
 
 using namespace std;
 
@@ -1846,20 +1847,39 @@ int main()
 	cout << "Done\n";*/
 
 	// RTTI
-	srand(time(0));
-	Grand* pg;
-	Superb* ps;
-	for (int i = 0; i < 5; i++)
-	{
-		pg = GetOne();
-		cout << "Now processing type " << typeid(*pg).name() << ".\n";
-		pg->Speak();
-		if (ps = dynamic_cast<Superb*>(pg))
-			ps->Say();
-		if (typeid(Magnificent) == typeid(*pg))
-			cout << "Yes, you're really magnificent.\n";
-	}
+	//srand(time(0));
+	//Grand* pg;
+	//Superb* ps;
+	//for (int i = 0; i < 5; i++)
+	//{
+	//	pg = GetOne();
+	//	cout << "Now processing type " << typeid(*pg).name() << ".\n";
+	//	pg->Speak();
+	//	if (ps = dynamic_cast<Superb*>(pg))
+	//		ps->Say();
+	//	if (typeid(Magnificent) == typeid(*pg))
+	//		cout << "Yes, you're really magnificent.\n";
+	//}
 
+	// #1
+	Tv s42;
+	cout << "Initial settings for 42\" TV:\n";
+	s42.settings();
+	s42.onoff();
+	s42.chanup();
+	cout << "\nAdjusted settings for 42\" TV:\n";
+	s42.settings();
+	Remote grey;
+	grey.set_chan(s42, 10);
+	grey.volup(s42);
+	grey.volup(s42);
+	cout << "\n42\" setting safter using remote\n";
+	s42.settings();
+	Tv s58(Tv::On);
+	s58.set_mode();
+	grey.set_chan(s58, 28);
+	cout << "\n58\" settings:\n";
+	s58.settings();
 #pragma endregion
 }
 
