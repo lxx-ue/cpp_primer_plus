@@ -153,6 +153,7 @@
     <ClCompile Include="chapter14\ch14_1.cpp" />
     <ClCompile Include="chapter14\virtual_base_inherit.cpp" />
     <ClCompile Include="chapter14\ср14_5.cpp" />
+    <ClCompile Include="chapter15\ch15_1.cpp" />
     <ClCompile Include="chapter15\sales.cpp" />
     <ClCompile Include="chapter9\ch9_1.cpp" />
     <ClCompile Include="chapter9\ch9_4.cpp" />
