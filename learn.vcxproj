@@ -180,6 +180,7 @@
     <ClInclude Include="chapter14\member_template.h" />
     <ClInclude Include="chapter14\stack_template.h" />
     <ClInclude Include="chapter14\virtual_base_inherit.h" />
+    <ClInclude Include="chapter15\ch15_1.h" />
     <ClInclude Include="chapter15\exc_mean.h" />
     <ClInclude Include="chapter15\listing15_5.h" />
     <ClInclude Include="chapter15\rtti.h" />
