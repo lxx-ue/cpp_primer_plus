@@ -50,3 +50,17 @@ void Tv::settings() const
 		cout << "Input = " << (input == TV ? "TV" : "DVD") << endl;
 	}
 }
+
+void Remote::view_mode()
+{
+	if (remotemode)
+		std::cout << "traditional mode\n";
+	else 
+		std::cout << "alternate mode\n";
+}
+
+void Tv::change_remotemode(Remote& r)
+{
+	if (state == On)
+		r.remotemode = !r.remotemode;
+}

@@ -1880,6 +1880,11 @@ int main()
 	grey.set_chan(s58, 28);
 	cout << "\n58\" settings:\n";
 	s58.settings();
+	grey.view_mode();
+	s58.change_remotemode(grey);
+	grey.view_mode();
+	s42.change_remotemode(grey);
+	grey.view_mode();
 #pragma endregion
 }
 
