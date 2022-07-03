@@ -42,6 +42,7 @@
 #include "chapter15/sales.h"
 #include "chapter15/rtti.h"
 #include "chapter15/ch15_1.h"
+#include "chapter15/ch15_2.h"
 
 using namespace std;
 
@@ -1862,29 +1863,58 @@ int main()
 	//}
 
 	// #1
-	Tv s42;
-	cout << "Initial settings for 42\" TV:\n";
-	s42.settings();
-	s42.onoff();
-	s42.chanup();
-	cout << "\nAdjusted settings for 42\" TV:\n";
-	s42.settings();
-	Remote grey;
-	grey.set_chan(s42, 10);
-	grey.volup(s42);
-	grey.volup(s42);
-	cout << "\n42\" setting safter using remote\n";
-	s42.settings();
-	Tv s58(Tv::On);
-	s58.set_mode();
-	grey.set_chan(s58, 28);
-	cout << "\n58\" settings:\n";
-	s58.settings();
-	grey.view_mode();
-	s58.change_remotemode(grey);
-	grey.view_mode();
-	s42.change_remotemode(grey);
-	grey.view_mode();
+	//Tv s42;
+	//cout << "Initial settings for 42\" TV:\n";
+	//s42.settings();
+	//s42.onoff();
+	//s42.chanup();
+	//cout << "\nAdjusted settings for 42\" TV:\n";
+	//s42.settings();
+	//Remote grey;
+	//grey.set_chan(s42, 10);
+	//grey.volup(s42);
+	//grey.volup(s42);
+	//cout << "\n42\" setting safter using remote\n";
+	//s42.settings();
+	//Tv s58(Tv::On);
+	//s58.set_mode();
+	//grey.set_chan(s58, 28);
+	//cout << "\n58\" settings:\n";
+	//s58.settings();
+	//grey.view_mode();
+	//s58.change_remotemode(grey);
+	//grey.view_mode();
+	//s42.change_remotemode(grey);
+	//grey.view_mode();
+
+	// #2
+	double x, y, z;
+	cout << "Enter two numbers: ";
+	while (cin >> x >> y)
+	{
+		try
+		{
+			z = hmean(x, y);
+			cout << "Harmonic mean of " << x << " and " << y
+				<< " is " << z << endl;
+			cout << "Geometric mean of " << x << " and " << y
+				<< " is " << gmean(x,y) << endl;
+			cout << "Enter next set of numbers <q to quit>: ";
+		}
+		catch (bad_hmean2& bg)
+		{
+			cout << bg.what();
+			cout << "Try again.\n";
+			continue;
+		}
+		catch (bad_gmean2& hg)
+		{
+			cout << hg.what();
+			cout << "Values used: " << hg.v1 << ", " << hg.v2
+				<< "\nSorry, you dont get to play anymore.\n";
+			break;
+		}
+	}
 #pragma endregion
 }
 
@@ -2289,13 +2319,13 @@ void Bravo(const Cd& disk)
 double hmean(double a, double b)
 {
 	if (a == -b)
-		throw bad_hmean(a, b);
+		throw bad_hmean2(a, b);
 	return 2.0 * a * b / (a + b);
 }
 double gmean(double a, double b)
 {
 	if (a < 0 || b < 0)
-		throw bad_gmean(a, b);
+		throw bad_gmean2(a, b);
 	return sqrt(a * b);
 }
 Grand* GetOne()

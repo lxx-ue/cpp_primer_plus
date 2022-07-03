@@ -1,8 +1,8 @@
 #include "sales.h"
 using std::string;
 
-Sales::bad_index::bad_index(int x, const string& s)
-	:std::logic_error(s), bi(x)
+Sales::bad_index::bad_index(int ix, const string& s)
+	:std::logic_error(s), bi(ix)
 {
 
 }
