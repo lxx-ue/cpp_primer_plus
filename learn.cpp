@@ -1887,7 +1887,7 @@ int main()
 	//s42.change_remotemode(grey);
 	//grey.view_mode();
 
-	// #2
+	// #2-3
 	double x, y, z;
 	cout << "Enter two numbers: ";
 	while (cin >> x >> y)
@@ -1901,17 +1901,9 @@ int main()
 				<< " is " << gmean(x,y) << endl;
 			cout << "Enter next set of numbers <q to quit>: ";
 		}
-		catch (bad_hmean2& bg)
-		{
-			cout << bg.what();
-			cout << "Try again.\n";
-			continue;
-		}
-		catch (bad_gmean2& hg)
+		catch (base_exc& hg)
 		{
 			cout << hg.what();
-			cout << "Values used: " << hg.v1 << ", " << hg.v2
-				<< "\nSorry, you dont get to play anymore.\n";
 			break;
 		}
 	}

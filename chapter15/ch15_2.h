@@ -2,14 +2,22 @@
 #include <iostream>
 #include <stdexcept>
 
-class bad_hmean2 : public std::logic_error
+class base_exc : public std::logic_error
 {
+protected:
 	double v1;
 	double v2;
 public:
+	explicit base_exc(double a = 0, double b = 0, const std::string& s = "Index error in base_exc object\n")
+		:v1(a), v2(b), std::logic_error(s) {}
+};
+
+class bad_hmean2 : public base_exc
+{
+public:
 	//bad_hmean(double a = 0, double b = 0) : v1(a), v2(b) {}
 	explicit bad_hmean2(double a = 0, double b = 0, const std::string& s = "Index error in bad_hmean object\n")
-		:v1(a), v2(b), std::logic_error(s) {}
+		:base_exc(a, b, s) {}
 	virtual const char* what() const noexcept
 	{
 		std::cout << "hmean(" << v1 << ", " << v2 << "): ivalid arguments: a=-b\n";
@@ -17,11 +25,9 @@ public:
 	}
 };
 
-class bad_gmean2 : public std::logic_error
+class bad_gmean2 : public base_exc
 {
 public:
-	double v1;
-	double v2;
 	explicit bad_gmean2(double a = 0, double b = 0, const std::string& s = "Index error in bad_gmean object\ngmean() arguments shold be >=0\n")
-		:v1(a), v2(b), std::logic_error(s) {}
+		:base_exc(a, b, s) {}
 };
