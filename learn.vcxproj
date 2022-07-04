@@ -155,6 +155,7 @@
     <ClCompile Include="chapter14\ср14_5.cpp" />
     <ClCompile Include="chapter15\ch15_1.cpp" />
     <ClCompile Include="chapter15\sales.cpp" />
+    <ClCompile Include="chapter16\game_16_3.cpp" />
     <ClCompile Include="chapter9\ch9_1.cpp" />
     <ClCompile Include="chapter9\ch9_4.cpp" />
     <ClCompile Include="learn.cpp" />

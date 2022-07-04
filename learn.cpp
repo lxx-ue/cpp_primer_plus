@@ -466,6 +466,14 @@ double gmean(double a, double b);
 Grand* GetOne();
 #pragma endregion
 
+#pragma region prototype_ch16
+const int NUM = 26;
+const string wordlist[NUM] = { "apiary", "beetle", "cereal",
+	"danger", "ensign", "florid", "garage", "healt", "insult",
+	"jackal", "keeper", "loaner", "manage", "nonce", "onset",
+	"plaid", "quilt", "remote", "stolid", "train", "useful",
+	"valid", "whence", "xenon", "yearn", "zippy" };
+#pragma endregion
 
 int main()
 {
@@ -1909,65 +1917,132 @@ int main()
 	//}
 
 	// #4
-	double vals1[12] =
+	//double vals1[12] =
+	//{
+	//	1220, 1100, 1122, 2212, 1232, 2334,
+	//	2884, 2393, 3302, 2922, 3002, 3544
+	//};
+	//double vals2[12] =
+	//{
+	//	12, 11, 22, 21, 32, 34,
+	//	28, 29, 33, 29, 32, 35
+	//};
+	//Sales sales1(2011, vals1, 12);
+	//LabeledSales sales2("Blogstar", 2012, vals2, 12);
+	//cout << "First try block: \n";
+	//try {
+	//	int i;
+	//	cout << "Year = " << sales1.Year() << endl;
+	//	for (i = 0; i < 12; ++i)
+	//	{
+	//		cout << sales1[i] << " ";
+	//		if (i % 6 == 5)
+	//			cout << endl;
+	//	}
+	//	cout << "Year = " << sales2.Year() << endl;
+	//	cout << "Label = " << sales2.Label() << endl;
+	//	for (i = 0; i <= 12; ++i)
+	//	{
+	//		cout << sales2[i] << " ";
+	//		if (i % 6 == 5)
+	//			cout << endl;
+	//	}
+	//	cout << "End of try block1.\n";
+	//}
+	//catch (Sales::bad_index& bad)
+	//{
+	//	cout << bad.what();
+	//	if (typeid(LabeledSales::nbad_index&) == typeid(bad))
+	//	{
+	//		LabeledSales::nbad_index& nbi = dynamic_cast<LabeledSales::nbad_index&>(bad);
+	//		cout << "Company: " << nbi.label_val() << endl;
+	//	}
+	//	cout << "bad_index: " << bad.bi_val() << endl;
+	//}
+	//cout << "\nNext try block:\n";
+	//try {
+	//	sales2[2] = 37.5;
+	//	sales1[20] = 23345;
+	//	cout << "End of try block2.\n";
+	//}
+	//catch (Sales::bad_index& bad)
+	//{
+	//	cout << bad.what();
+	//	if (typeid(LabeledSales::nbad_index&) == typeid(bad))
+	//	{
+	//		LabeledSales::nbad_index& nbi = dynamic_cast<LabeledSales::nbad_index&>(bad);
+	//		cout << "Company: " << nbi.label_val() << endl;
+	//	}
+	//	cout << "bad index: " << bad.bi_val() << endl;
+	//}
+	//cout << "Done\n";
+#pragma endregion
+
+#pragma region chapter16
+
+std::srand(std::time(0));
+char play;
+cout << "Will you play a word game? <y/n> ";
+cin >> play;
+play = tolower(play);
+while (play == 'y')
+{
+	string target = wordlist[std::rand() % NUM];
+	int length = target.length();
+	string attempt(length, '-');
+	string badchars;
+	int guesses = 6;
+	cout << "Guess my secret word. It has " << length
+		<< " letters, and you guess\none letter at time."
+		<< " You get " << guesses
+		<< " wrong guesses.\n";
+	cout << "Your word: " << attempt << endl;
+	while (guesses > 0 && attempt != target)
 	{
-		1220, 1100, 1122, 2212, 1232, 2334,
-		2884, 2393, 3302, 2922, 3002, 3544
-	};
-	double vals2[12] =
-	{
-		12, 11, 22, 21, 32, 34,
-		28, 29, 33, 29, 32, 35
-	};
-	Sales sales1(2011, vals1, 12);
-	LabeledSales sales2("Blogstar", 2012, vals2, 12);
-	cout << "First try block: \n";
-	try {
-		int i;
-		cout << "Year = " << sales1.Year() << endl;
-		for (i = 0; i < 12; ++i)
+		char letter;
+		cout << "Guess a letter: ";
+		cin >> letter;
+		if (badchars.find(letter) != string::npos
+			|| attempt.find(letter) != string::npos)
 		{
-			cout << sales1[i] << " ";
-			if (i % 6 == 5)
-				cout << endl;
+			cout << "You already guessed that. Try again.\n";
+			continue;
 		}
-		cout << "Year = " << sales2.Year() << endl;
-		cout << "Label = " << sales2.Label() << endl;
-		for (i = 0; i <= 12; ++i)
+		int loc = target.find(letter);
+		if (loc == string::npos)
 		{
-			cout << sales2[i] << " ";
-			if (i % 6 == 5)
-				cout << endl;
+			cout << "Oh, bad guess!\n";
+			guesses--;
+			badchars += letter;
 		}
-		cout << "End of try block1.\n";
-	}
-	catch (Sales::bad_index& bad)
-	{
-		cout << bad.what();
-		if (typeid(LabeledSales::nbad_index&) == typeid(bad))
+		else
 		{
-			LabeledSales::nbad_index& nbi = dynamic_cast<LabeledSales::nbad_index&>(bad);
-			cout << "Company: " << nbi.label_val() << endl;
+			cout << "Good guess!\n";
+			attempt[loc] = letter;
+			//проверить не появляется ли буква еще раз
+			loc = target.find(letter, loc + 1);
+			while (loc != string::npos) {
+				attempt[loc] = letter;
+				loc = target.find(letter, loc + 1);
+			}
 		}
-		cout << "bad_index: " << bad.bi_val() << endl;
-	}
-	cout << "\nNext try block:\n";
-	try {
-		sales2[2] = 37.5;
-		sales1[20] = 23345;
-		cout << "End of try block2.\n";
-	}
-	catch (Sales::bad_index& bad)
-	{
-		cout << bad.what();
-		if (typeid(LabeledSales::nbad_index&) == typeid(bad))
+		cout << "You word: " << attempt << endl;
+		if (attempt != target)
 		{
-			LabeledSales::nbad_index& nbi = dynamic_cast<LabeledSales::nbad_index&>(bad);
-			cout << "Company: " << nbi.label_val() << endl;
+			if (badchars.length() > 0)
+				cout << "Bad choices: " << badchars << endl;
+			cout << guesses << " bad guesses left\n";
 		}
-		cout << "bad index: " << bad.bi_val() << endl;
 	}
-	cout << "Done\n";
+	if (guesses > 0)
+		cout << "That's right!\n";
+	else
+		cout << "Sorry, the word is " << target << ".\n";
+	cout << "Will you play another? <y/n> ";
+	cin >> play;
+	play = tolower(play);
+}
+
 #pragma endregion
 }
 
