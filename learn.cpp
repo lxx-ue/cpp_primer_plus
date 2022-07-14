@@ -13,6 +13,11 @@
 #include <cstdlib>
 #include <ctime>
 #include <cmath>
+#include <vector>
+#include <set>
+#include <map>
+#include <iterator>
+#include <algorithm>
 
 #include "chapter9/ch9_1.h"
 #include "chapter9/ch9_4.h"
@@ -477,6 +482,10 @@ const string wordlist[NUM] = { "apiary", "beetle", "cereal",
 // #1
 bool check_palindrome(const string&);
 void clean_string(string&);
+
+char toLower(char ch) { return tolower(ch); }
+string& ToLower(string& st);
+void al_display(const string& s);
 #pragma endregion
 
 int main()
@@ -2048,12 +2057,35 @@ int main()
 	//}
 
 	// #1-2 
-	string str;
-	getline(cin, str);
-	clean_string(str);
-	cout << "Cleaned string: " << str << endl;
-	if (check_palindrome(str)) cout << "it is a palindrome!";
-	else cout << "it is not a palindrome";
+	//string str;
+	//getline(cin, str);
+	//clean_string(str);
+	//cout << "Cleaned string: " << str << endl;
+	//if (check_palindrome(str)) cout << "it is a palindrome!";
+	//else cout << "it is not a palindrome";
+
+	// algorithm
+	vector<string> words;
+	cout << "Enter words (enter quit to quit):\n";
+	string input;
+	while (cin >> input && input != "quit")
+		words.push_back(input);
+	cout << "You entered the following words:\n";
+	for_each(words.begin(), words.end(), al_display);
+	cout << endl;
+	set<string> wordset;
+	transform(words.begin(), words.end(),
+		insert_iterator<set<string> >(wordset, wordset.begin()), ToLower);
+	cout << "\nAlphabetic list of words:\n";
+	for_each(wordset.begin(), wordset.end(), al_display);
+	cout << endl;
+	map<string, int> wordmap;
+	set<string>::iterator si;
+	for (si = wordset.begin(); si != wordset.end(); si++)
+		wordmap[*si] = count(words.begin(), words.end(), *si);
+	cout << "\nWord frequency:\n";
+	for (si = wordset.begin(); si != wordset.end(); si++)
+		cout << *si << ": " << wordmap[*si] << endl;
 #pragma endregion
 }
 
@@ -2502,5 +2534,15 @@ bool check_palindrome(const string& str)
 		if (str[i] != str[str.size() - i - 1])
 			return false;
 	return true;
+}
+
+string& ToLower(string& st)
+{
+	transform(st.begin(), st.end(), st.begin(), toLower);
+	return st;
+}
+void al_display(const string& s)
+{
+	cout << s << " ";
 }
 #pragma endregion
