@@ -1992,7 +1992,38 @@ int main()
 #pragma endregion
 
 #pragma region chapter16
-	// word game
+	// #1-2 
+	//string str;
+	//getline(cin, str);
+	//clean_string(str);
+	//cout << "Cleaned string: " << str << endl;
+	//if (check_palindrome(str)) cout << "it is a palindrome!";
+	//else cout << "it is not a palindrome";
+
+	// algorithm
+	//vector<string> words;
+	//cout << "Enter words (enter quit to quit):\n";
+	//string input;
+	//while (cin >> input && input != "quit")
+	//	words.push_back(input);
+	//cout << "You entered the following words:\n";
+	//for_each(words.begin(), words.end(), al_display);
+	//cout << endl;
+	//set<string> wordset;
+	//transform(words.begin(), words.end(),
+	//	insert_iterator<set<string> >(wordset, wordset.begin()), ToLower);
+	//cout << "\nAlphabetic list of words:\n";
+	//for_each(wordset.begin(), wordset.end(), al_display);
+	//cout << endl;
+	//map<string, int> wordmap;
+	//set<string>::iterator si;
+	//for (si = wordset.begin(); si != wordset.end(); si++)
+	//	wordmap[*si] = count(words.begin(), words.end(), *si);
+	//cout << "\nWord frequency:\n";
+	//for (si = wordset.begin(); si != wordset.end(); si++)
+	//	cout << *si << ": " << wordmap[*si] << endl;
+
+	// #3
 	//std::srand(std::time(0));
 	//char play;
 	//cout << "Will you play a word game? <y/n> ";
@@ -2056,36 +2087,23 @@ int main()
 	//	play = tolower(play);
 	//}
 
-	// #1-2 
-	//string str;
-	//getline(cin, str);
-	//clean_string(str);
-	//cout << "Cleaned string: " << str << endl;
-	//if (check_palindrome(str)) cout << "it is a palindrome!";
-	//else cout << "it is not a palindrome";
-
-	// algorithm
+	string path("/chapter16/random_walk.txt");
+	ifstream fin;
+	fin.open(path);
 	vector<string> words;
-	cout << "Enter words (enter quit to quit):\n";
-	string input;
-	while (cin >> input && input != "quit")
-		words.push_back(input);
-	cout << "You entered the following words:\n";
-	for_each(words.begin(), words.end(), al_display);
-	cout << endl;
-	set<string> wordset;
-	transform(words.begin(), words.end(),
-		insert_iterator<set<string> >(wordset, wordset.begin()), ToLower);
-	cout << "\nAlphabetic list of words:\n";
-	for_each(wordset.begin(), wordset.end(), al_display);
-	cout << endl;
-	map<string, int> wordmap;
-	set<string>::iterator si;
-	for (si = wordset.begin(); si != wordset.end(); si++)
-		wordmap[*si] = count(words.begin(), words.end(), *si);
-	cout << "\nWord frequency:\n";
-	for (si = wordset.begin(); si != wordset.end(); si++)
-		cout << *si << ": " << wordmap[*si] << endl;
+	string str;
+	if (fin.is_open())
+	{
+		bool isnum = false;
+		while (!fin.eof())
+		{
+			fin >> str;
+			words.push_back(str);
+		}
+	}
+	else cout << "shs";
+	fin.close();
+	for (auto s : words) cout << s;
 #pragma endregion
 }
 

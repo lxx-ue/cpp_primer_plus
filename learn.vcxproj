@@ -155,7 +155,6 @@
     <ClCompile Include="chapter14\ср14_5.cpp" />
     <ClCompile Include="chapter15\ch15_1.cpp" />
     <ClCompile Include="chapter15\sales.cpp" />
-    <ClCompile Include="chapter16\game_16_3.cpp" />
     <ClCompile Include="chapter9\ch9_1.cpp" />
     <ClCompile Include="chapter9\ch9_4.cpp" />
     <ClCompile Include="learn.cpp" />
@@ -192,6 +191,9 @@
     <ClInclude Include="chapter9\ch9_4.h" />
     <ClInclude Include="chapter12\ch12_1.h" />
     <ClInclude Include="chapter12\ch12_2.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="chapter16\vwords.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
