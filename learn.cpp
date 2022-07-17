@@ -2087,23 +2087,23 @@ int main()
 	//	play = tolower(play);
 	//}
 
-	string path("/chapter16/random_walk.txt");
-	ifstream fin;
-	fin.open(path);
-	vector<string> words;
-	string str;
-	if (fin.is_open())
-	{
-		bool isnum = false;
-		while (!fin.eof())
-		{
-			fin >> str;
-			words.push_back(str);
-		}
-	}
-	else cout << "shs";
-	fin.close();
-	for (auto s : words) cout << s;
+	//string path("/chapter16/random_walk.txt");
+	//ifstream fin;
+	//fin.open(path);
+	//vector<string> words;
+	//string str;
+	//if (fin.is_open())
+	//{
+	//	bool isnum = false;
+	//	while (!fin.eof())
+	//	{
+	//		fin >> str;
+	//		words.push_back(str);
+	//	}
+	//}
+	//else cout << "shs";
+	//fin.close();
+	//for (auto s : words) cout << s;
 #pragma endregion
 }
 
