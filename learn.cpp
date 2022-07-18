@@ -486,6 +486,8 @@ void clean_string(string&);
 char toLower(char ch) { return tolower(ch); }
 string& ToLower(string& st);
 void al_display(const string& s);
+
+int reduce(long ar[], int n);
 #pragma endregion
 
 int main()
@@ -2024,82 +2026,85 @@ int main()
 	//	cout << *si << ": " << wordmap[*si] << endl;
 
 	// #3
-	ifstream fin;
-	fin.open("chapter16/vwords.txt");
-	vector<string> words;
-	string str;
-	if (fin.is_open())
-	{
-		while (!fin.eof())
-		{
-			fin >> str;
-			words.push_back(str);
-		}
-	}
-	fin.close();
+	//ifstream fin;
+	//fin.open("chapter16/vwords.txt");
+	//vector<string> words;
+	//string str;
+	//if (fin.is_open())
+	//{
+	//	while (!fin.eof())
+	//	{
+	//		fin >> str;
+	//		words.push_back(str);
+	//	}
+	//}
+	//fin.close();
+	//std::srand(std::time(0));
+	//char play;
+	//cout << "Will you play a word game? <y/n> ";
+	//cin >> play;
+	//play = tolower(play);
+	//while (play == 'y')
+	//{
+	//	string target = words[std::rand() % words.size()];
+	//	int length = target.length();
+	//	string attempt(length, '-');
+	//	string badchars;
+	//	int guesses = 6;
+	//	cout << "Guess my secret word. It has " << length
+	//		<< " letters, and you guess\none letter at time."
+	//		<< " You get " << guesses
+	//		<< " wrong guesses.\n";
+	//	cout << "Your word: " << attempt << endl;
+	//	while (guesses > 0 && attempt != target)
+	//	{
+	//		char letter;
+	//		cout << "Guess a letter: ";
+	//		cin >> letter;
+	//		if (badchars.find(letter) != string::npos
+	//			|| attempt.find(letter) != string::npos)
+	//		{
+	//			cout << "You already guessed that. Try again.\n";
+	//			continue;
+	//		}
+	//		int loc = target.find(letter);
+	//		if (loc == string::npos)
+	//		{
+	//			cout << "Oh, bad guess!\n";
+	//			guesses--;
+	//			badchars += letter;
+	//		}
+	//		else
+	//		{
+	//			cout << "Good guess!\n";
+	//			attempt[loc] = letter;
+	//			//проверить не появляется ли буква еще раз
+	//			loc = target.find(letter, loc + 1);
+	//			while (loc != string::npos) {
+	//				attempt[loc] = letter;
+	//				loc = target.find(letter, loc + 1);
+	//			}
+	//		}
+	//		cout << "You word: " << attempt << endl;
+	//		if (attempt != target)
+	//		{
+	//			if (badchars.length() > 0)
+	//				cout << "Bad choices: " << badchars << endl;
+	//			cout << guesses << " bad guesses left\n";
+	//		}
+	//	}
+	//	if (guesses > 0)
+	//		cout << "That's right!\n";
+	//	else
+	//		cout << "Sorry, the word is " << target << ".\n";
+	//	cout << "Will you play another? <y/n> ";
+	//	cin >> play;
+	//	play = tolower(play);
+	//}
 
-	std::srand(std::time(0));
-	char play;
-	cout << "Will you play a word game? <y/n> ";
-	cin >> play;
-	play = tolower(play);
-	while (play == 'y')
-	{
-		string target = words[std::rand() % words.size()];
-		int length = target.length();
-		string attempt(length, '-');
-		string badchars;
-		int guesses = 6;
-		cout << "Guess my secret word. It has " << length
-			<< " letters, and you guess\none letter at time."
-			<< " You get " << guesses
-			<< " wrong guesses.\n";
-		cout << "Your word: " << attempt << endl;
-		while (guesses > 0 && attempt != target)
-		{
-			char letter;
-			cout << "Guess a letter: ";
-			cin >> letter;
-			if (badchars.find(letter) != string::npos
-				|| attempt.find(letter) != string::npos)
-			{
-				cout << "You already guessed that. Try again.\n";
-				continue;
-			}
-			int loc = target.find(letter);
-			if (loc == string::npos)
-			{
-				cout << "Oh, bad guess!\n";
-				guesses--;
-				badchars += letter;
-			}
-			else
-			{
-				cout << "Good guess!\n";
-				attempt[loc] = letter;
-				//проверить не появляется ли буква еще раз
-				loc = target.find(letter, loc + 1);
-				while (loc != string::npos) {
-					attempt[loc] = letter;
-					loc = target.find(letter, loc + 1);
-				}
-			}
-			cout << "You word: " << attempt << endl;
-			if (attempt != target)
-			{
-				if (badchars.length() > 0)
-					cout << "Bad choices: " << badchars << endl;
-				cout << guesses << " bad guesses left\n";
-			}
-		}
-		if (guesses > 0)
-			cout << "That's right!\n";
-		else
-			cout << "Sorry, the word is " << target << ".\n";
-		cout << "Will you play another? <y/n> ";
-		cin >> play;
-		play = tolower(play);
-	}
+	//  #4
+	long arr[8] = { 3,5,1,6,3,5,6,5 };
+	cout<<reduce(arr, 8);
 #pragma endregion
 }
 
@@ -2558,5 +2563,28 @@ string& ToLower(string& st)
 void al_display(const string& s)
 {
 	cout << s << " ";
+}
+
+int reduce(long ar[], int n)
+{
+	//for (int i = 0; i < n - 1; i++)
+	//	for (int j = 0; j < n - 1 - i; j++)
+	//		if (ar[j] > ar[j + 1]) 
+	//		{
+	//			int temp = ar[j];
+	//			ar[j] = ar[j+1];
+	//			ar[j + 1] = temp;
+	//		}
+	//int c = 1;
+	//for (int i = 1; i < n; i++)
+	//{
+	//	if (ar[i] != ar[i - 1]) c++;
+	//}
+
+	// STL 
+	vector<long> v (ar, ar + n);
+	sort(v.begin(), v.end());
+	v.erase(unique(v.begin(), v.end()), v.end());
+	return v.size();
 }
 #pragma endregion
