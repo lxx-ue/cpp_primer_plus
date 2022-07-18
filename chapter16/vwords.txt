@@ -1,5 +1,26 @@
-"apiary", "beetle", "cereal",
-	"danger", "ensign", "florid", "garage", "healt", "insult",
-	"jackal", "keeper", "loaner", "manage", "nonce", "onset",
-	"plaid", "quilt", "remote", "stolid", "train", "useful",
-	"valid", "whence", "xenon", "yearn", "zippy"
+apiary 
+beetle 
+cereal
+danger 
+ensign 
+florid 
+garage 
+healt 
+insult
+jackal 
+keeper 
+loaner 
+manage 
+nonce 
+onset
+plaid 
+quilt 
+remote 
+stolid 
+train 
+useful
+valid 
+whence 
+xenon 
+yearn 
+zippy
