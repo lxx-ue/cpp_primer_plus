@@ -488,6 +488,16 @@ string& ToLower(string& st);
 void al_display(const string& s);
 
 int reduce(long ar[], int n);
+
+template <class T>
+int t_reduce(T ar[], int n)
+{
+	vector<T> v(ar, ar + n);
+	sort(v.begin(), v.end());
+	v.erase(unique(v.begin(), v.end()), v.end());
+	return v.size();
+}
+
 #pragma endregion
 
 int main()
@@ -2103,8 +2113,14 @@ int main()
 	//}
 
 	//  #4
-	long arr[8] = { 3,5,1,6,3,5,6,5 };
-	cout<<reduce(arr, 8);
+	//long arr[8] = { 3,5,1,6,3,5,6,5 };
+	//cout<<reduce(arr, 8);
+
+	// #5
+	long l_arr[8] = { 3,5,1,6,3,5,6,5 };
+	cout << t_reduce(l_arr, 8) << endl;
+	string s_arr[8] = { "one", "two", "three", "one", "two", "four", "seven", "seven" };
+	cout << t_reduce(s_arr, 8) << endl;
 #pragma endregion
 }
 
@@ -2587,4 +2603,5 @@ int reduce(long ar[], int n)
 	v.erase(unique(v.begin(), v.end()), v.end());
 	return v.size();
 }
+
 #pragma endregion
