@@ -18,6 +18,7 @@
 #include <map>
 #include <iterator>
 #include <algorithm>
+#include <queue>
 
 #include "chapter9/ch9_1.h"
 #include "chapter9/ch9_4.h"
@@ -2117,10 +2118,74 @@ int main()
 	//cout<<reduce(arr, 8);
 
 	// #5
-	long l_arr[8] = { 3,5,1,6,3,5,6,5 };
-	cout << t_reduce(l_arr, 8) << endl;
-	string s_arr[8] = { "one", "two", "three", "one", "two", "four", "seven", "seven" };
-	cout << t_reduce(s_arr, 8) << endl;
+	//long l_arr[8] = { 3,5,1,6,3,5,6,5 };
+	//cout << t_reduce(l_arr, 8) << endl;
+	//string s_arr[8] = { "one", "two", "three", "one", "two", "four", "seven", "seven" };
+	//cout << t_reduce(s_arr, 8) << endl;
+
+	// #6
+	//srand(time(0));
+	//int qs = 10, hours = 100;
+	//long cyclelimit = 60 * hours;
+	//double perhour = 18;
+	//queue<Customer> line;
+	//cout << "Enter a range of people per hour: ";
+	//int min_ph, max_ph;
+	//while (cin >> min_ph >> max_ph)
+	//{
+	//	if (min_ph < max_ph && min_ph>0) break;
+	//	else cout << "Enter correct range of people per hour: ";
+	//}
+	//int array_size = max_ph - min_ph + 1;
+	//double* results = new double[array_size];
+	//for (int ph = min_ph, i = 0; ph <= max_ph; ph++, i++)
+	//{
+	//	double min_per_cust;
+	//	min_per_cust = 60 / ph;
+	//	Item temp;
+	//	long turnaways = 0;
+	//	long customers = 0;
+	//	long served = 0;
+	//	long sum_line = 0;
+	//	int wait_time = 0;
+	//	long line_wait = 0;
+	//	for (int cycle = 0; cycle < cyclelimit; cycle++)
+	//	{
+	//		if (newcustomer(min_per_cust))
+	//		{
+	//			if (line.size() == qs)
+	//				turnaways++;
+	//			else {
+	//				customers++;
+	//				temp.set(cycle);
+	//				line.push(temp);
+	//			}
+	//		}
+	//		if (wait_time <= 0 && !line.empty())
+	//		{
+	//			line.pop();
+	//			wait_time = temp.ptime();
+	//			line_wait += cycle - temp.when();
+	//			served++;
+	//		}
+	//		if (wait_time > 0)
+	//			wait_time--;
+	//		sum_line += line.size();
+	//	}
+	//	results[i] = abs(1 - ((double)line_wait / served));
+	//}
+	//double min = results[0];
+	//int min_index = 0;
+	//for (int i = 1; i < array_size; i++)
+	//{
+	//	if (min > results[i])
+	//	{
+	//		min = results[i];
+	//		min_index = i;
+	//	}
+	//}
+	//delete[] results;
+	//cout << "Need "<<min_index<< " people per hour!\n";
 #pragma endregion
 }
 
