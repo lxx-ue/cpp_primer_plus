@@ -487,9 +487,9 @@ void clean_string(string&);
 char toLower(char ch) { return tolower(ch); }
 string& ToLower(string& st);
 void al_display(const string& s);
-
+// #4
 int reduce(long ar[], int n);
-
+// #5-6
 template <class T>
 int t_reduce(T ar[], int n)
 {
@@ -498,7 +498,8 @@ int t_reduce(T ar[], int n)
 	v.erase(unique(v.begin(), v.end()), v.end());
 	return v.size();
 }
-
+// #7
+vector<int> Lotto(int range, int count);
 #pragma endregion
 
 int main()
@@ -2186,6 +2187,11 @@ int main()
 	//}
 	//delete[] results;
 	//cout << "Need "<<min_index<< " people per hour!\n";
+
+	// #7
+	//vector<int> loto = Lotto(51, 6);
+	//for (auto num : loto)
+	//	cout << num << " ";
 #pragma endregion
 }
 
@@ -2645,7 +2651,7 @@ void al_display(const string& s)
 {
 	cout << s << " ";
 }
-
+// #4-5
 int reduce(long ar[], int n)
 {
 	//for (int i = 0; i < n - 1; i++)
@@ -2662,11 +2668,24 @@ int reduce(long ar[], int n)
 	//	if (ar[i] != ar[i - 1]) c++;
 	//}
 
-	// STL 
+	// STL #5
 	vector<long> v (ar, ar + n);
 	sort(v.begin(), v.end());
 	v.erase(unique(v.begin(), v.end()), v.end());
 	return v.size();
 }
-
+// #7
+vector<int> Lotto(int range, int count)
+{
+	vector<int> result, all_range;	
+	if (count >= range) return result;
+	for (int i = 0; i <= range; i++)
+		all_range.push_back(i);
+	random_shuffle(all_range.begin(), all_range.end());
+	//copy(all_range.begin(), all_range.end(), result.begin());
+	for (int i = 0; i < count; i++)
+		result.push_back(all_range.at(i));
+	sort(result.begin(), result.end());
+	return result;
+}
 #pragma endregion
