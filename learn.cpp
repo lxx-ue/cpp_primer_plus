@@ -500,6 +500,10 @@ int t_reduce(T ar[], int n)
 }
 // #7
 vector<int> Lotto(int range, int count);
+
+// #8
+void add_list(vector<string> & friend_list, int c);
+void show_list(const vector<string>& friend_list);
 #pragma endregion
 
 int main()
@@ -2192,6 +2196,58 @@ int main()
 	//vector<int> loto = Lotto(51, 6);
 	//for (auto num : loto)
 	//	cout << num << " ";
+
+	// #8
+	char ch;
+	string po;
+	vector<string> matt, patt, together;
+	int c;
+	cout << "Select an action:\n"
+		<< "M: add Matt's friends\t"
+		<< "P: add Patt's friends\n"
+		<< "U: unite the lists\t"
+		<< "Q: quit\n";
+	while (cin >> ch && toupper(ch) != 'Q')
+	{
+		while (cin.get() != '\n')
+			continue;
+		if (!isalpha(ch))
+		{
+			cout << '\a';
+			continue;
+		}
+		switch (toupper(ch))
+		{
+		case 'M':
+			cout << "How many friends Matt wants to invite: ";
+			cin >> c;
+			add_list(matt, c);
+			cout << "Here is the list of Matt's invitees:\n";
+			show_list(matt);
+			break;
+		case 'P':
+			cout << "How many friends Patt wants to invite: ";
+			cin >> c;
+			add_list(patt, c);
+			cout << "Here is the list of Patt's invitees:\n";
+			show_list(patt);
+			break;
+		case 'U':
+			together.insert(together.end(), matt.begin(), matt.end());
+			together.insert(together.end(), patt.begin(), patt.end());
+			sort(together.begin(), together.end());
+			together.erase(unique(together.begin(), together.end()), together.end());
+			cout << "This is their list:\n";
+			show_list(together);
+			break;
+		}
+		cout << "Select an action:\n"
+			<< "M: add Matt's friends\t"
+			<< "P: add Patt's friends\n"
+			<< "U: unite the lists\t"
+			<< "Q: quit\n";
+	}
+
 #pragma endregion
 }
 
@@ -2687,5 +2743,21 @@ vector<int> Lotto(int range, int count)
 		result.push_back(all_range.at(i));
 	sort(result.begin(), result.end());
 	return result;
+}
+// #8
+void add_list(vector<string> & friend_list, int c)
+{
+	for (int i = 0; i < c; i++)
+	{
+		cout << "Enter friend's name: ";
+		string name;
+		cin >> name;
+		friend_list.push_back(name);
+	}
+}
+void show_list(const vector<string> & friend_list)
+{
+	for (auto fr : friend_list)
+		cout << fr << endl;
 }
 #pragma endregion
