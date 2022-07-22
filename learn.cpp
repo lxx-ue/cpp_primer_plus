@@ -503,8 +503,18 @@ int t_reduce(T ar[], int n)
 vector<int> Lotto(int range, int count);
 
 // #8
-void add_list(vector<string> & friend_list, int c);
+void add_list(vector<string>& friend_list, int c);
 void show_list(const vector<string>& friend_list);
+
+// #10
+struct Review {
+	string title;
+	int rating;
+};
+bool operator<(const Review& r1, const Review& r2);
+bool worseThan(const Review& r1, const Review& r2);
+bool FillRewview(Review& rr);
+void ShowReview(const Review& rr);
 #pragma endregion
 
 int main()
@@ -2250,38 +2260,53 @@ int main()
 	//}
 
 	// #9
-	int elems = 10000;
+	/*int elems = 10000;
 	srand(time(0));
 	clock_t start, end;
-
 	vector<int> vi0;
 	for(int i=0; i< elems; i++)
 		vi0.push_back(rand());
-
-
 	vector<int> vi(vi0);
 	list<int> li(vi.begin(), vi.end());
-
 	start = clock();
 	sort(vi.begin(), vi.end());
 	end = clock();
 	cout <<"Sort vector of "<<elems<<" numbers takes ~"<< (double)(end - start) / CLOCKS_PER_SEC << "sec\n";
-	
 	start = clock();
 	li.sort();
 	end = clock();
 	cout << "Sort list of " << elems << " numbers takes ~" << (double)(end - start) / CLOCKS_PER_SEC << "sec\n"; (vi0.begin(), vi.end(), back_inserter(li));
-
 	copy(vi0.begin(), vi0.end(), li.begin());
-
 	start = clock();
 	copy(li.begin(), li.end(), vi.begin());
 	sort(vi.begin(), vi.end());
 	copy(vi.begin(), vi.end(), li.begin());
 	end = clock();
+	cout << "Sort list of " << elems << " numbers via vector takes ~" << (double)(end - start) / CLOCKS_PER_SEC << "sec\n"; (vi0.begin(), vi.end(), back_inserter(li));*/
 
-	cout << "Sort list of " << elems << " numbers via vector takes ~" << (double)(end - start) / CLOCKS_PER_SEC << "sec\n"; (vi0.begin(), vi.end(), back_inserter(li));
-
+	// 16.9
+	vector<Review> books;
+	Review temp;
+	while (FillRewview(temp))
+		books.push_back(temp);
+	if (books.size() > 0)
+	{
+		cout << "Thank you. You entered the following "
+			<< books.size() << " ratings:\n"
+			<< "Rating\tBook\n";
+		for_each(books.begin(), books.end(), ShowReview);
+		sort(books.begin(), books.end());
+		cout << "Sorted Ьу title: \nRating\tBook\n";
+		for_each(books.begin(), books.end(), ShowReview);
+		sort(books.begin(), books.end(), worseThan);
+		cout << "Sorted by rating: \nRating\tBook\n";
+		for_each(books.begin(), books.end(), ShowReview);
+		random_shuffle(books.begin(), books.end());
+		cout << "After shuffling: \nRating\tBook\n";
+		for_each(books.begin(), books.end(), ShowReview);
+	}
+	else
+		cout << "No entries.";
 #pragma endregion
 }
 
@@ -2759,7 +2784,7 @@ int reduce(long ar[], int n)
 	//}
 
 	// STL #5
-	vector<long> v (ar, ar + n);
+	vector<long> v(ar, ar + n);
 	sort(v.begin(), v.end());
 	v.erase(unique(v.begin(), v.end()), v.end());
 	return v.size();
@@ -2767,7 +2792,7 @@ int reduce(long ar[], int n)
 // #7
 vector<int> Lotto(int range, int count)
 {
-	vector<int> result, all_range;	
+	vector<int> result, all_range;
 	if (count >= range) return result;
 	for (int i = 0; i <= range; i++)
 		all_range.push_back(i);
@@ -2779,7 +2804,7 @@ vector<int> Lotto(int range, int count)
 	return result;
 }
 // #8
-void add_list(vector<string> & friend_list, int c)
+void add_list(vector<string>& friend_list, int c)
 {
 	for (int i = 0; i < c; i++)
 	{
@@ -2789,9 +2814,41 @@ void add_list(vector<string> & friend_list, int c)
 		friend_list.push_back(name);
 	}
 }
-void show_list(const vector<string> & friend_list)
+void show_list(const vector<string>& friend_list)
 {
 	for (auto fr : friend_list)
 		cout << fr << endl;
+}
+// #10
+bool operator<(const Review& r1, const Review& r2)
+{
+	if (r1.title < r2.title)
+		return true;
+	else if (r1.title == r2.title && r1.rating < r2.rating)
+		return true;
+	else
+		return false;
+}
+bool worseThan(const Review& r1, const Review& r2)
+{
+	return (r1.rating < r2.rating) ? true : false;
+}
+bool FillRewview(Review& rr)
+{
+	cout << "Enter book title(quit to quit): ";
+	getline(cin, rr.title);
+	if (rr.title == "quit")
+		return false;
+	cout << "Enter book rating: ";
+	cin >> rr.rating;
+	if (!cin)
+		return false;
+	while (cin.get() != '\n')
+		continue;
+	return true;
+}
+void ShowReview(const Review& rr)
+{
+	cout << rr.rating << "\t" << rr.title << endl;
 }
 #pragma endregion
