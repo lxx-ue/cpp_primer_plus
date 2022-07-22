@@ -19,6 +19,7 @@
 #include <iterator>
 #include <algorithm>
 #include <queue>
+#include <list>
 
 #include "chapter9/ch9_1.h"
 #include "chapter9/ch9_4.h"
@@ -2198,55 +2199,88 @@ int main()
 	//	cout << num << " ";
 
 	// #8
-	char ch;
-	string po;
-	vector<string> matt, patt, together;
-	int c;
-	cout << "Select an action:\n"
-		<< "M: add Matt's friends\t"
-		<< "P: add Patt's friends\n"
-		<< "U: unite the lists\t"
-		<< "Q: quit\n";
-	while (cin >> ch && toupper(ch) != 'Q')
-	{
-		while (cin.get() != '\n')
-			continue;
-		if (!isalpha(ch))
-		{
-			cout << '\a';
-			continue;
-		}
-		switch (toupper(ch))
-		{
-		case 'M':
-			cout << "How many friends Matt wants to invite: ";
-			cin >> c;
-			add_list(matt, c);
-			cout << "Here is the list of Matt's invitees:\n";
-			show_list(matt);
-			break;
-		case 'P':
-			cout << "How many friends Patt wants to invite: ";
-			cin >> c;
-			add_list(patt, c);
-			cout << "Here is the list of Patt's invitees:\n";
-			show_list(patt);
-			break;
-		case 'U':
-			together.insert(together.end(), matt.begin(), matt.end());
-			together.insert(together.end(), patt.begin(), patt.end());
-			sort(together.begin(), together.end());
-			together.erase(unique(together.begin(), together.end()), together.end());
-			cout << "This is their list:\n";
-			show_list(together);
-			break;
-		}
-		cout << "Select an action:\n"
-			<< "M: add Matt's friends\t"
-			<< "P: add Patt's friends\n"
-			<< "U: unite the lists\t"
-			<< "Q: quit\n";
-	}
+	//char ch;
+	//string po;
+	//vector<string> matt, patt, together;
+	//int c;
+	//cout << "Select an action:\n"
+	//	<< "M: add Matt's friends\t"
+	//	<< "P: add Patt's friends\n"
+	//	<< "U: unite the lists\t"
+	//	<< "Q: quit\n";
+	//while (cin >> ch && toupper(ch) != 'Q')
+	//{
+	//	while (cin.get() != '\n')
+	//		continue;
+	//	if (!isalpha(ch))
+	//	{
+	//		cout << '\a';
+	//		continue;
+	//	}
+	//	switch (toupper(ch))
+	//	{
+	//	case 'M':
+	//		cout << "How many friends Matt wants to invite: ";
+	//		cin >> c;
+	//		add_list(matt, c);
+	//		cout << "Here is the list of Matt's invitees:\n";
+	//		show_list(matt);
+	//		break;
+	//	case 'P':
+	//		cout << "How many friends Patt wants to invite: ";
+	//		cin >> c;
+	//		add_list(patt, c);
+	//		cout << "Here is the list of Patt's invitees:\n";
+	//		show_list(patt);
+	//		break;
+	//	case 'U':
+	//		together.insert(together.end(), matt.begin(), matt.end());
+	//		together.insert(together.end(), patt.begin(), patt.end());
+	//		sort(together.begin(), together.end());
+	//		together.erase(unique(together.begin(), together.end()), together.end());
+	//		cout << "This is their list:\n";
+	//		show_list(together);
+	//		break;
+	//	}
+	//	cout << "Select an action:\n"
+	//		<< "M: add Matt's friends\t"
+	//		<< "P: add Patt's friends\n"
+	//		<< "U: unite the lists\t"
+	//		<< "Q: quit\n";
+	//}
+
+	// #9
+	int elems = 10000;
+	srand(time(0));
+	clock_t start, end;
+
+	vector<int> vi0;
+	for(int i=0; i< elems; i++)
+		vi0.push_back(rand());
+
+
+	vector<int> vi(vi0);
+	list<int> li(vi.begin(), vi.end());
+
+	start = clock();
+	sort(vi.begin(), vi.end());
+	end = clock();
+	cout <<"Sort vector of "<<elems<<" numbers takes ~"<< (double)(end - start) / CLOCKS_PER_SEC << "sec\n";
+	
+	start = clock();
+	li.sort();
+	end = clock();
+	cout << "Sort list of " << elems << " numbers takes ~" << (double)(end - start) / CLOCKS_PER_SEC << "sec\n"; (vi0.begin(), vi.end(), back_inserter(li));
+
+	copy(vi0.begin(), vi0.end(), li.begin());
+
+	start = clock();
+	copy(li.begin(), li.end(), vi.begin());
+	sort(vi.begin(), vi.end());
+	copy(vi.begin(), vi.end(), li.begin());
+	end = clock();
+
+	cout << "Sort list of " << elems << " numbers via vector takes ~" << (double)(end - start) / CLOCKS_PER_SEC << "sec\n"; (vi0.begin(), vi.end(), back_inserter(li));
 
 #pragma endregion
 }
