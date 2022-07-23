@@ -20,6 +20,7 @@
 #include <algorithm>
 #include <queue>
 #include <list>
+#include <memory>
 
 #include "chapter9/ch9_1.h"
 #include "chapter9/ch9_4.h"
@@ -510,11 +511,15 @@ void show_list(const vector<string>& friend_list);
 struct Review {
 	string title;
 	int rating;
+	double price;
 };
-bool operator<(const Review& r1, const Review& r2);
-bool worseThan(const Review& r1, const Review& r2);
-bool FillRewview(Review& rr);
-void ShowReview(const Review& rr);
+bool operator<(const shared_ptr<Review>& r1, const shared_ptr<Review>& r2);
+bool sortTitle(const shared_ptr<Review>& r1, const shared_ptr<Review>& r2);
+bool sortRating(const shared_ptr<Review>& r1, const shared_ptr<Review>& r2);
+bool sortPrice(const shared_ptr<Review>& r1, const shared_ptr<Review>& r2);
+bool FillReview(Review& rr);
+void ShowReview(const shared_ptr<Review>& rr);
+void show_menu();
 #pragma endregion
 
 int main()
@@ -2285,28 +2290,74 @@ int main()
 	cout << "Sort list of " << elems << " numbers via vector takes ~" << (double)(end - start) / CLOCKS_PER_SEC << "sec\n"; (vi0.begin(), vi.end(), back_inserter(li));*/
 
 	// 16.9
-	vector<Review> books;
+	//vector<Review> books;
+	//
+	//while (FillRewview(temp))
+	//	books.push_back(temp);
+	//if (books.size() > 0)
+	//{
+	//	cout << "Thank you. You entered the following "
+	//		<< books.size() << " ratings:\n"
+	//		<< "Rating\tBook\n";
+	//	for_each(books.begin(), books.end(), ShowReview);
+	//	sort(books.begin(), books.end());
+	//	cout << "Sorted Ьу title: \nRating\tBook\n";
+	//	for_each(books.begin(), books.end(), ShowReview);
+	//	sort(books.begin(), books.end(), worseThan);
+	//	cout << "Sorted by rating: \nRating\tBook\n";
+	//	for_each(books.begin(), books.end(), ShowReview);
+	//	random_shuffle(books.begin(), books.end());
+	//	cout << "After shuffling: \nRating\tBook\n";
+	//	for_each(books.begin(), books.end(), ShowReview);
+	//}
+	//else
+	//	cout << "No entries.";
+
+	// #10
+	std::vector<std::shared_ptr<Review> > books;
 	Review temp;
-	while (FillRewview(temp))
-		books.push_back(temp);
-	if (books.size() > 0)
+
+	while (FillReview(temp))
 	{
-		cout << "Thank you. You entered the following "
-			<< books.size() << " ratings:\n"
-			<< "Rating\tBook\n";
-		for_each(books.begin(), books.end(), ShowReview);
-		sort(books.begin(), books.end());
-		cout << "Sorted Ьу title: \nRating\tBook\n";
-		for_each(books.begin(), books.end(), ShowReview);
-		sort(books.begin(), books.end(), worseThan);
-		cout << "Sorted by rating: \nRating\tBook\n";
-		for_each(books.begin(), books.end(), ShowReview);
-		random_shuffle(books.begin(), books.end());
-		cout << "After shuffling: \nRating\tBook\n";
-		for_each(books.begin(), books.end(), ShowReview);
+		std::shared_ptr<Review> t(new Review);
+		t->title = temp.title;
+		t->rating = temp.rating;
+		t->price = temp.price;
+		books.push_back(t);
 	}
-	else
-		cout << "No entries.";
+	show_menu();
+
+	char choice;
+	while (std::cin >> choice && choice != 'q')
+	{
+		switch (choice)
+		{
+		case 'a':
+			cout << "Sort by title:\nRating\tTitle\tPrice\n";
+			sort(books.begin(), books.end(), sortTitle);
+			for_each(books.begin(), books.end(), ShowReview);
+			show_menu();
+			break;
+		case 'b':
+			cout << "Title reserve output:\nRating\tTitle\tPrice\n";
+			for_each(books.rbegin(), books.rend(), ShowReview);
+			show_menu();
+			break;
+		case 'c':
+			cout << "Sort by rating:\nRating\tTitle\tPrice\n";
+			sort(books.begin(), books.end(), sortRating);
+			for_each(books.begin(), books.end(), ShowReview);
+			show_menu();
+			break;
+		case 'd':
+			cout << "Sort by price:\nRating\tTitle\tPrice\n";
+			sort(books.begin(), books.end(), sortPrice);
+			for_each(books.begin(), books.end(), ShowReview);
+			show_menu();
+			break;
+		}
+	}
+	cout << "Done!";
 #pragma endregion
 }
 
@@ -2820,20 +2871,28 @@ void show_list(const vector<string>& friend_list)
 		cout << fr << endl;
 }
 // #10
-bool operator<(const Review& r1, const Review& r2)
+bool operator<(const shared_ptr<Review>& r1, const shared_ptr<Review>& r2)
 {
-	if (r1.title < r2.title)
+	if (r1->title < r2->title)
 		return true;
-	else if (r1.title == r2.title && r1.rating < r2.rating)
+	else if (r1->title == r2->title && r1->rating < r2->rating)
 		return true;
 	else
 		return false;
 }
-bool worseThan(const Review& r1, const Review& r2)
+bool sortRating(const shared_ptr<Review>& r1, const shared_ptr<Review>& r2)
 {
-	return (r1.rating < r2.rating) ? true : false;
+	return (r1->rating < r2->rating) ? true : false;
 }
-bool FillRewview(Review& rr)
+bool sortTitle(const shared_ptr<Review>& r1, const shared_ptr<Review>& r2)
+{
+	return (r1->title < r2->title) ? true : false;
+}
+bool sortPrice(const shared_ptr<Review>& r1, const shared_ptr<Review>& r2)
+{
+	return (r1->price < r2->price) ? true : false;
+}
+bool FillReview(Review &rr)
 {
 	cout << "Enter book title(quit to quit): ";
 	getline(cin, rr.title);
@@ -2843,12 +2902,23 @@ bool FillRewview(Review& rr)
 	cin >> rr.rating;
 	if (!cin)
 		return false;
+	cout << "Enter book price: ";
+	cin >> rr.price;
+	if (!cin)
+		return false;
 	while (cin.get() != '\n')
 		continue;
 	return true;
 }
-void ShowReview(const Review& rr)
+void ShowReview(const shared_ptr<Review>& rr)
 {
-	cout << rr.rating << "\t" << rr.title << endl;
+	cout << rr->rating << "\t" << rr->title << "\t" << rr->price << endl;
+}
+void show_menu()
+{
+	cout << "Please select the sort:\n"
+		<< "a.sort by title\tb.sort by title reserve\n"
+		<< "c.sort by rating\td.sort by price\t"
+		<< "q.quit" << endl;
 }
 #pragma endregion
