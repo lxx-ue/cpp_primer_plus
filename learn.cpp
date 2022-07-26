@@ -2314,50 +2314,66 @@ int main()
 	//	cout << "No entries.";
 
 	// #10
-	std::vector<std::shared_ptr<Review> > books;
-	Review temp;
+	//std::vector<std::shared_ptr<Review> > books;
+	//Review temp;
 
-	while (FillReview(temp))
-	{
-		std::shared_ptr<Review> t(new Review);
-		t->title = temp.title;
-		t->rating = temp.rating;
-		t->price = temp.price;
-		books.push_back(t);
-	}
-	show_menu();
+	//while (FillReview(temp))
+	//{
+	//	std::shared_ptr<Review> t(new Review);
+	//	t->title = temp.title;
+	//	t->rating = temp.rating;
+	//	t->price = temp.price;
+	//	books.push_back(t);
+	//}
+	//show_menu();
 
-	char choice;
-	while (std::cin >> choice && choice != 'q')
+	//char choice;
+	//while (std::cin >> choice && choice != 'q')
+	//{
+	//	switch (choice)
+	//	{
+	//	case 'a':
+	//		cout << "Sort by title:\nRating\tTitle\tPrice\n";
+	//		sort(books.begin(), books.end(), sortTitle);
+	//		for_each(books.begin(), books.end(), ShowReview);
+	//		show_menu();
+	//		break;
+	//	case 'b':
+	//		cout << "Title reserve output:\nRating\tTitle\tPrice\n";
+	//		for_each(books.rbegin(), books.rend(), ShowReview);
+	//		show_menu();
+	//		break;
+	//	case 'c':
+	//		cout << "Sort by rating:\nRating\tTitle\tPrice\n";
+	//		sort(books.begin(), books.end(), sortRating);
+	//		for_each(books.begin(), books.end(), ShowReview);
+	//		show_menu();
+	//		break;
+	//	case 'd':
+	//		cout << "Sort by price:\nRating\tTitle\tPrice\n";
+	//		sort(books.begin(), books.end(), sortPrice);
+	//		for_each(books.begin(), books.end(), ShowReview);
+	//		show_menu();
+	//		break;
+	//	}
+	//}
+	//cout << "Done!";
+#pragma endregion
+
+#pragma region chapter17
+	// #1
+	int characterCount = 0;
+	char ch, forbiddenCh = '$';
+	cin.get(ch);
+	while (ch != forbiddenCh)
 	{
-		switch (choice)
-		{
-		case 'a':
-			cout << "Sort by title:\nRating\tTitle\tPrice\n";
-			sort(books.begin(), books.end(), sortTitle);
-			for_each(books.begin(), books.end(), ShowReview);
-			show_menu();
-			break;
-		case 'b':
-			cout << "Title reserve output:\nRating\tTitle\tPrice\n";
-			for_each(books.rbegin(), books.rend(), ShowReview);
-			show_menu();
-			break;
-		case 'c':
-			cout << "Sort by rating:\nRating\tTitle\tPrice\n";
-			sort(books.begin(), books.end(), sortRating);
-			for_each(books.begin(), books.end(), ShowReview);
-			show_menu();
-			break;
-		case 'd':
-			cout << "Sort by price:\nRating\tTitle\tPrice\n";
-			sort(books.begin(), books.end(), sortPrice);
-			for_each(books.begin(), books.end(), ShowReview);
-			show_menu();
-			break;
-		}
+		cout << ch;
+		characterCount++;
+		cin.get(ch);
 	}
-	cout << "Done!";
+	cout << endl << characterCount << " characters up to "<< forbiddenCh;
+	cout << endl << "the " << ch << " character is left in the stream";
+
 #pragma endregion
 }
 
