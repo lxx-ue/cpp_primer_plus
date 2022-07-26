@@ -522,7 +522,7 @@ void ShowReview(const shared_ptr<Review>& rr);
 void show_menu();
 #pragma endregion
 
-int main()
+int main(int argc, char* argv[])
 {
 	setlocale(0, "");
 
@@ -2362,18 +2362,30 @@ int main()
 
 #pragma region chapter17
 	// #1
-	int characterCount = 0;
-	char ch, forbiddenCh = '$';
-	cin.get(ch);
-	while (ch != forbiddenCh)
-	{
-		cout << ch;
-		characterCount++;
-		cin.get(ch);
-	}
-	cout << endl << characterCount << " characters up to "<< forbiddenCh;
-	cout << endl << "the " << ch << " character is left in the stream";
+	//int characterCount = 0;
+	//char ch, forbiddenCh = '$';
+	//cin.get(ch);
+	//while (ch != forbiddenCh)
+	//{
+	//	cout << ch;
+	//	characterCount++;
+	//	cin.get(ch);
+	//}
+	//cout << endl << characterCount << " characters up to "<< forbiddenCh;
+	//cout << endl << "the " << ch << " character is left in the stream";
 
+	// #2
+	if (argc == 1)
+	{
+		cerr << "Usage: " << argv[0] << " filename(s)\n";
+		exit(EXIT_FAILURE);
+	}
+	cout << "Enter text to file: ";
+	string txt;
+	cin >> txt;
+	ofstream fout(argv[1]);
+	fout << txt;
+	cout << "Done.";
 #pragma endregion
 }
 
@@ -2908,7 +2920,7 @@ bool sortPrice(const shared_ptr<Review>& r1, const shared_ptr<Review>& r2)
 {
 	return (r1->price < r2->price) ? true : false;
 }
-bool FillReview(Review &rr)
+bool FillReview(Review& rr)
 {
 	cout << "Enter book title(quit to quit): ";
 	getline(cin, rr.title);
