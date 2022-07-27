@@ -2375,17 +2375,36 @@ int main(int argc, char* argv[])
 	//cout << endl << "the " << ch << " character is left in the stream";
 
 	// #2
-	if (argc == 1)
+	//if (argc == 1)
+	//{
+	//	cerr << "Usage: " << argv[0] << " filename(s)\n";
+	//	exit(EXIT_FAILURE);
+	//}
+	//cout << "Enter text to file: ";
+	//string txt;
+	//cin >> txt;
+	//ofstream fout(argv[1]);
+	//fout << txt;
+	//cout << "Done.";
+
+	// #3
+	if (argc < 3)
 	{
-		cerr << "Usage: " << argv[0] << " filename(s)\n";
+		cerr << "Usage: " << argv[0] << " filename(s)\nToo few arguments";
 		exit(EXIT_FAILURE);
 	}
-	cout << "Enter text to file: ";
-	string txt;
-	cin >> txt;
-	ofstream fout(argv[1]);
-	fout << txt;
-	cout << "Done.";
+	ifstream fin(argv[1]);
+	ofstream fout(argv[2]);
+	char ch;
+	if (!fin.is_open())
+	{
+		cerr << "Can't open "<< argv[1]<<" file";
+		fin.clear();
+		exit(EXIT_FAILURE);
+	}
+	while (fin.get(ch))
+		fout << ch;
+	cout << "File copied";
 #pragma endregion
 }
 
