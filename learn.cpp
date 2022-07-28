@@ -522,6 +522,11 @@ void ShowReview(const shared_ptr<Review>& rr);
 void show_menu();
 #pragma endregion
 
+#pragma region prototype_ch17
+void get_from_file(vector<string>& v, ifstream& f);
+void sort_n_show(vector<string>& v, string name);
+#pragma endregion
+
 int main(int argc, char* argv[])
 {
 	setlocale(0, "");
@@ -2407,27 +2412,52 @@ int main(int argc, char* argv[])
 	//cout << "File copied";
 
 	// #4
-	ifstream fin("Debug/a.txt");
-	ifstream fin2("Debug/b.txt");
-	ofstream fout("Debug/c.txt");
-	string line;
-	if (fin.is_open() && fin2.is_open())
-	{
-		while (!fin.eof() || !fin2.eof())
-		{
-			string s1, s2;
-			getline(fin, s1);
-			getline(fin2, s2);
-			line = s1 + ' ' + s2;
-			fout << line << "\n";
-		}
-	}
-	else
+	//ifstream fin("Debug/a.txt");
+	//ifstream fin2("Debug/b.txt");
+	//ofstream fout("Debug/c.txt");
+	//string line;
+	//if (fin.is_open() && fin2.is_open())
+	//{
+	//	while (!fin.eof() || !fin2.eof())
+	//	{
+	//		string s1, s2;
+	//		getline(fin, s1);
+	//		getline(fin2, s2);
+	//		line = s1 + ' ' + s2;
+	//		fout << line << "\n";
+	//	}
+	//}
+	//else
+	//{
+	//	cerr << "Can't open file";
+	//	exit(EXIT_FAILURE);
+	//}
+	//cout << "Done";
+
+	// #5
+	ifstream fin("chapter17/matt.txt");
+	ifstream fin2("chapter17/patt.txt");
+	if (!fin.is_open())
 	{
 		cerr << "Can't open file";
 		exit(EXIT_FAILURE);
 	}
-	cout << "Done";
+	vector<string> matt, patt, mapat;
+	get_from_file(matt, fin);
+	get_from_file(patt, fin2);
+	sort_n_show(matt, "Matt");
+	cout << endl;
+	sort_n_show(patt, "Patt");
+	mapat.insert(mapat.end(), matt.begin(), matt.end());
+	mapat.insert(mapat.end(), patt.begin(), patt.end());
+	sort(mapat.begin(), mapat.end());
+	mapat.erase(unique(mapat.begin(), mapat.end()), mapat.end());
+	cout << endl;
+	sort_n_show(mapat, "Their");
+	ofstream fout("chapter17/mattnpatt.txt");
+	for (auto s : mapat)
+		fout << s << endl;
+
 #pragma endregion
 }
 
@@ -2990,5 +3020,25 @@ void show_menu()
 		<< "a.sort by title\tb.sort by title reserve\n"
 		<< "c.sort by rating\td.sort by price\t"
 		<< "q.quit" << endl;
+}
+#pragma endregion
+
+#pragma region func_ch17
+void get_from_file(vector<string>& v, ifstream& f)
+{
+	while (!f.eof())
+	{
+		string s1;
+		getline(f, s1);
+		v.push_back(s1);
+	}
+}
+
+void sort_n_show(vector<string>& v, string name)
+{
+	cout << name<<"'s friends:\n";
+	sort(v.begin(), v.end());
+	for (auto kent : v)
+		cout << kent << endl;
 }
 #pragma endregion
