@@ -2388,23 +2388,46 @@ int main(int argc, char* argv[])
 	//cout << "Done.";
 
 	// #3
-	if (argc < 3)
+	//if (argc < 3)
+	//{
+	//	cerr << "Usage: " << argv[0] << " filename(s)\nToo few arguments";
+	//	exit(EXIT_FAILURE);
+	//}
+	//ifstream fin(argv[1]);
+	//ofstream fout(argv[2]);
+	//char ch;
+	//if (!fin.is_open())
+	//{
+	//	cerr << "Can't open "<< argv[1]<<" file";
+	//	fin.clear();
+	//	exit(EXIT_FAILURE);
+	//}
+	//while (fin.get(ch))
+	//	fout << ch;
+	//cout << "File copied";
+
+	// #4
+	ifstream fin("Debug/a.txt");
+	ifstream fin2("Debug/b.txt");
+	ofstream fout("Debug/c.txt");
+	string line;
+	if (fin.is_open() && fin2.is_open())
 	{
-		cerr << "Usage: " << argv[0] << " filename(s)\nToo few arguments";
+		while (!fin.eof() || !fin2.eof())
+		{
+			string s1, s2;
+			getline(fin, s1);
+			getline(fin2, s2);
+			line = s1 + ' ' + s2;
+			fout << line << "\n";
+		}
+	}
+	else
+	{
+		cerr << "Can't open file";
 		exit(EXIT_FAILURE);
 	}
-	ifstream fin(argv[1]);
-	ofstream fout(argv[2]);
-	char ch;
-	if (!fin.is_open())
-	{
-		cerr << "Can't open "<< argv[1]<<" file";
-		fin.clear();
-		exit(EXIT_FAILURE);
-	}
-	while (fin.get(ch))
-		fout << ch;
-	cout << "File copied";
+	cout << "Done";
 #pragma endregion
 }
 
