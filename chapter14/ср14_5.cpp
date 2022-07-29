@@ -1,11 +1,13 @@
 #include "ch14_5.h"
 #include <iostream>
 #include <string>
+#include <fstream>
 
 using std::string;
 using std::cout;
 using std::endl;
 using std::cin;
+using std::ofstream;
 
 
 void abstr_emp::ShowAll() const
@@ -23,6 +25,10 @@ void abstr_emp::SetAll()
 	cin >> job;
 }
 
+void abstr_emp::WriteAll(ofstream& fout)
+{
+}
+
 std::ostream& operator<<(std::ostream& os, const abstr_emp& e)
 {
 	os << "First name: " << e.fname << "\nLast name: " << e.lname << "\nJob: " << e.job;
@@ -38,7 +44,10 @@ void employee::SetAll()
 {
 	abstr_emp::SetAll();
 }
-
+void employee::WriteAll(ofstream& fout)
+{
+	fout << 0 << " " << fname << " " << lname << " " << job << endl;
+}
 
 void manager::ShowAll() const
 {
@@ -52,7 +61,10 @@ void manager::SetAll()
 	cout << "Enter inchargeof: ";
 	cin >> inchargeof;
 }
-
+void manager::WriteAll(ofstream& fout)
+{
+	fout << 1 << " " << fname << " " << lname << " " << job << " " << inchargeof << endl;
+}
 
 void fink::ShowAll() const
 {
@@ -66,7 +78,10 @@ void fink::SetAll()
 	cout << "Enter reportsto: ";
 	cin >> reportsto;
 }
-
+void fink::WriteAll(ofstream& fout)
+{
+	fout << 2 << " " << fname << " " << lname << " " << job << " " << reportsto << endl;
+}
 
 void highfink::ShowAll() const
 {
@@ -82,4 +97,8 @@ void highfink::SetAll()
 	cin >> manager::InChargeOf();
 	cout << "Enter reportsto: ";
 	cin >> fink::ReportsTo();
+}
+void highfink::WriteAll(ofstream& fout)
+{
+	fout << 3 << " " << fname << " " << lname << " " << job << " " << inchargeof << reportsto << endl;
 }

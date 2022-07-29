@@ -2435,28 +2435,105 @@ int main(int argc, char* argv[])
 	//cout << "Done";
 
 	// #5
-	ifstream fin("chapter17/matt.txt");
-	ifstream fin2("chapter17/patt.txt");
-	if (!fin.is_open())
+	//ifstream fin("chapter17/matt.txt");
+	//ifstream fin2("chapter17/patt.txt");
+	//if (!fin.is_open())
+	//{
+	//	cerr << "Can't open file";
+	//	exit(EXIT_FAILURE);
+	//}
+	//vector<string> matt, patt, mapat;
+	//get_from_file(matt, fin);
+	//get_from_file(patt, fin2);
+	//sort_n_show(matt, "Matt");
+	//cout << endl;
+	//sort_n_show(patt, "Patt");
+	//mapat.insert(mapat.end(), matt.begin(), matt.end());
+	//mapat.insert(mapat.end(), patt.begin(), patt.end());
+	//sort(mapat.begin(), mapat.end());
+	//mapat.erase(unique(mapat.begin(), mapat.end()), mapat.end());
+	//cout << endl;
+	//sort_n_show(mapat, "Their");
+	//ofstream fout("chapter17/mattnpatt.txt");
+	//for (auto s : mapat)
+	//	fout << s << endl;
+
+	// #6
+	//employee em("Trip", "Harris", "Thumper");
+	//cout << em << endl;
+	//em.ShowAll();
+	//cout << endl;
+	//manager ma("Amorphia", "Spindragon", "Nuancer", 5);
+	//cout << ma << endl;
+	//ma.ShowAll();
+	//cout << endl;
+	//fink fi("Matt", "Oggs", "Oiler", "Juno Barr");
+	//cout << fi << endl;
+	//fi.ShowAll();
+	//cout << endl;
+	//highfink hf(ma, "Curly Kew");
+	//hf.ShowAll();
+	//cout << "Press key for next phase:\n";
+	//cin.get();
+	//highfink hf2;
+	//hf2.SetAll();
+	//char choice;
+	//cout << "Choice a employee(q to quit):\n"
+	//	<< "a) employee\tb) manager\n"
+	//	<< "c) fink\td) highfink\n";
+	//abstr_emp* d;
+	//while(cin>>choice && choice!='q')
+	//	switch (tolower(choice))
+	//	{
+	//	case 'a': d = new employee(); break;
+	//	case 'b': d = new manager(); break;
+	//	case 'c': d = new fink(); break;
+	//	case 'd': d = new highfink(); break;
+	//	default:
+	//		break;
+	//	}
+	//d->SetAll();
+	//cout << "Using an abstr_emp * pointer:\n";
+	//abstr_emp* tri[5] = { &em, &fi, &hf, &hf2, d };
+	//for (int i = 0; i < 5; i++)
+	//	tri[i]->ShowAll();
+
+	ofstream fout("chapter17/17_6.txt");
+	const int workers = 2;
+	abstr_emp* pc[workers];
+	int left_workers = workers;
+	int i;
+	for (i = 0; i < left_workers; i++)
 	{
-		cerr << "Can't open file";
-		exit(EXIT_FAILURE);
+		char choice;
+		cout << "Choice a employee(q to quit):\n"
+			<< "a) employee\tb) manager\n"
+			<< "c) fink\td) highfink\n";
+		cin >> choice;
+		while (strchr("abcdq", choice) == NULL)
+		{
+			cout << "Please enter a a, b, c, d or q: ";
+			cin >> choice;
+		}
+		if (choice == 'q') break;
+		switch (tolower(choice))
+		{
+		case 'a': pc[i] = new employee(); break;
+		case 'b': pc[i] = new manager(); break;
+		case 'c': pc[i] = new fink(); break;
+		case 'd': pc[i] = new highfink(); break;
+		}
+		pc[i]->SetAll();
+		pc[i]->WriteAll(fout);
+		cin.get();
 	}
-	vector<string> matt, patt, mapat;
-	get_from_file(matt, fin);
-	get_from_file(patt, fin2);
-	sort_n_show(matt, "Matt");
-	cout << endl;
-	sort_n_show(patt, "Patt");
-	mapat.insert(mapat.end(), matt.begin(), matt.end());
-	mapat.insert(mapat.end(), patt.begin(), patt.end());
-	sort(mapat.begin(), mapat.end());
-	mapat.erase(unique(mapat.begin(), mapat.end()), mapat.end());
-	cout << endl;
-	sort_n_show(mapat, "Their");
-	ofstream fout("chapter17/mattnpatt.txt");
-	for (auto s : mapat)
-		fout << s << endl;
+	cout << "\nHere is your staff:\n";
+	for (int j = 0; j < i; j++)
+	{
+		pc[j]->ShowAll();
+		//delete pc[j];
+	}
+	cout << "Bye!";
 
 #pragma endregion
 }
@@ -3036,7 +3113,7 @@ void get_from_file(vector<string>& v, ifstream& f)
 
 void sort_n_show(vector<string>& v, string name)
 {
-	cout << name<<"'s friends:\n";
+	cout << name << "'s friends:\n";
 	sort(v.begin(), v.end());
 	for (auto kent : v)
 		cout << kent << endl;

@@ -1,10 +1,13 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <fstream>
 using std::string;
+using std::ofstream;
 
 class abstr_emp
 {
+protected:
 	string fname;
 	string lname;
 	string job;
@@ -14,6 +17,7 @@ public:
 		: fname(fn), lname(ln), job(j) {}
 	virtual void ShowAll() const;
 	virtual void SetAll();
+	virtual void WriteAll(ofstream& fout);
 	friend std::ostream& operator<<(std::ostream& os, const abstr_emp& e);
 };
 
@@ -25,10 +29,12 @@ public:
 		: abstr_emp(fn, ln, j) {}
 	virtual void ShowAll() const;
 	virtual void SetAll();
+	virtual void WriteAll(ofstream& fout);
 };
 
 class manager : virtual public abstr_emp
 {
+protected:
 	int inchargeof;
 protected:
 	int InChargeOf() const { return inchargeof; }
@@ -41,10 +47,12 @@ public:
 		: abstr_emp(e), inchargeof(ico) {}
 	virtual void ShowAll() const;
 	virtual void SetAll();
+	virtual void WriteAll(ofstream& fout);
 };
 
 class fink : virtual public abstr_emp
 {
+protected:
 	string reportsto;
 protected:
 	const string ReportsTo() const { return reportsto; }
@@ -57,6 +65,7 @@ public:
 		: abstr_emp(e), reportsto(rpo) {}
 	virtual void ShowAll() const;
 	virtual void SetAll();
+	virtual void WriteAll(ofstream& fout);
 };
 
 class highfink : public manager, public fink
@@ -73,4 +82,5 @@ public:
 		: abstr_emp(m), manager(m), fink(m, rpo) {}
 	virtual void ShowAll() const;
 	virtual void SetAll();
+	virtual void WriteAll(ofstream& fout);
 };
