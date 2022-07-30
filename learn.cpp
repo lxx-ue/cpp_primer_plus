@@ -21,6 +21,7 @@
 #include <queue>
 #include <list>
 #include <memory>
+#include <sstream>
 
 #include "chapter9/ch9_1.h"
 #include "chapter9/ch9_4.h"
@@ -2437,7 +2438,7 @@ int main(int argc, char* argv[])
 	// #5
 	//ifstream fin("chapter17/matt.txt");
 	//ifstream fin2("chapter17/patt.txt");
-	//if (!fin.is_open())
+	//if (!fin.is_open() || !fin2.is_open() )
 	//{
 	//	cerr << "Can't open file";
 	//	exit(EXIT_FAILURE);
@@ -2459,81 +2460,63 @@ int main(int argc, char* argv[])
 	//	fout << s << endl;
 
 	// #6
-	//employee em("Trip", "Harris", "Thumper");
-	//cout << em << endl;
-	//em.ShowAll();
-	//cout << endl;
-	//manager ma("Amorphia", "Spindragon", "Nuancer", 5);
-	//cout << ma << endl;
-	//ma.ShowAll();
-	//cout << endl;
-	//fink fi("Matt", "Oggs", "Oiler", "Juno Barr");
-	//cout << fi << endl;
-	//fi.ShowAll();
-	//cout << endl;
-	//highfink hf(ma, "Curly Kew");
-	//hf.ShowAll();
-	//cout << "Press key for next phase:\n";
-	//cin.get();
-	//highfink hf2;
-	//hf2.SetAll();
-	//char choice;
-	//cout << "Choice a employee(q to quit):\n"
-	//	<< "a) employee\tb) manager\n"
-	//	<< "c) fink\td) highfink\n";
-	//abstr_emp* d;
-	//while(cin>>choice && choice!='q')
+	//const int workers = 2;
+	//abstr_emp* pc[workers];
+	//int i = 0;
+	//ifstream fin("chapter17/17_6.txt");
+	//vector<string> lines;
+	//get_from_file(lines, fin);
+	//for (auto line : lines)
+	//{
+	//	if (line.empty()) break;
+	//	vector<string> words;
+	//	stringstream ssstream;
+	//	ssstream << line;
+	//	string word;
+	//	while (ssstream >> word) words.push_back(word);
+	//	switch (words[0][0])
+	//	{
+	//		case 'a': pc[i] = new employee(words[1], words[2], words[3]); break;
+	//		case 'b': pc[i] = new manager(words[1], words[2], words[3], std::stoi(words[4])); break;
+	//		case 'c': pc[i] = new fink(words[1], words[2], words[3], words[4]); break;
+	//		case 'd': pc[i] = new highfink(words[1], words[2], words[3], words[4], std::stoi(words[5])); break;
+	//	}
+	//	i++;
+	//}
+	//fin.close();
+	//ofstream fout("chapter17/17_6.txt");
+	//for (; i < workers; i++)
+	//{
+	//	char choice;
+	//	cout << "Choice a employee(q to quit):\n"
+	//		<< "a) employee\tb) manager\n"
+	//		<< "c) fink\td) highfink\n";
+	//	cin >> choice;
+	//	while (strchr("abcdq", choice) == NULL)
+	//	{
+	//		cout << "Please enter a a, b, c, d or q: ";
+	//		cin >> choice;
+	//	}
+	//	if (choice == 'q') break;
 	//	switch (tolower(choice))
 	//	{
-	//	case 'a': d = new employee(); break;
-	//	case 'b': d = new manager(); break;
-	//	case 'c': d = new fink(); break;
-	//	case 'd': d = new highfink(); break;
-	//	default:
-	//		break;
+	//	case 'a': pc[i] = new employee(); break;
+	//	case 'b': pc[i] = new manager(); break;
+	//	case 'c': pc[i] = new fink(); break;
+	//	case 'd': pc[i] = new highfink(); break;
 	//	}
-	//d->SetAll();
-	//cout << "Using an abstr_emp * pointer:\n";
-	//abstr_emp* tri[5] = { &em, &fi, &hf, &hf2, d };
-	//for (int i = 0; i < 5; i++)
-	//	tri[i]->ShowAll();
-
-	ofstream fout("chapter17/17_6.txt");
-	const int workers = 2;
-	abstr_emp* pc[workers];
-	int left_workers = workers;
-	int i;
-	for (i = 0; i < left_workers; i++)
-	{
-		char choice;
-		cout << "Choice a employee(q to quit):\n"
-			<< "a) employee\tb) manager\n"
-			<< "c) fink\td) highfink\n";
-		cin >> choice;
-		while (strchr("abcdq", choice) == NULL)
-		{
-			cout << "Please enter a a, b, c, d or q: ";
-			cin >> choice;
-		}
-		if (choice == 'q') break;
-		switch (tolower(choice))
-		{
-		case 'a': pc[i] = new employee(); break;
-		case 'b': pc[i] = new manager(); break;
-		case 'c': pc[i] = new fink(); break;
-		case 'd': pc[i] = new highfink(); break;
-		}
-		pc[i]->SetAll();
-		pc[i]->WriteAll(fout);
-		cin.get();
-	}
-	cout << "\nHere is your staff:\n";
-	for (int j = 0; j < i; j++)
-	{
-		pc[j]->ShowAll();
-		//delete pc[j];
-	}
-	cout << "Bye!";
+	//	pc[i]->SetAll();
+	//	//pc[i]->WriteAll(fout);
+	//	cin.get();
+	//}
+	//cout << "\nHere is your staff:\n";
+	//for (int j = 0; j < workers; j++)
+	//{
+	//	pc[j]->ShowAll();
+	//	pc[j]->WriteAll(fout);
+	//	//delete pc[j];
+	//}
+	//cout << "Bye!";
 
 #pragma endregion
 }

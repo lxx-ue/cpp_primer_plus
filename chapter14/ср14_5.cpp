@@ -46,7 +46,7 @@ void employee::SetAll()
 }
 void employee::WriteAll(ofstream& fout)
 {
-	fout << 0 << " " << fname << " " << lname << " " << job << endl;
+	fout << 'a' << " " << fname << " " << lname << " " << job << endl;
 }
 
 void manager::ShowAll() const
@@ -63,7 +63,7 @@ void manager::SetAll()
 }
 void manager::WriteAll(ofstream& fout)
 {
-	fout << 1 << " " << fname << " " << lname << " " << job << " " << inchargeof << endl;
+	fout << 'b' << " " << fname << " " << lname << " " << job << " " << inchargeof << endl;
 }
 
 void fink::ShowAll() const
@@ -80,7 +80,7 @@ void fink::SetAll()
 }
 void fink::WriteAll(ofstream& fout)
 {
-	fout << 2 << " " << fname << " " << lname << " " << job << " " << reportsto << endl;
+	fout << 'c' << " " << fname << " " << lname << " " << job << " " << reportsto << endl;
 }
 
 void highfink::ShowAll() const
@@ -100,5 +100,5 @@ void highfink::SetAll()
 }
 void highfink::WriteAll(ofstream& fout)
 {
-	fout << 3 << " " << fname << " " << lname << " " << job << " " << inchargeof << reportsto << endl;
+	fout << 'd' << " " << fname << " " << lname << " " << job << " " << inchargeof << reportsto << endl;
 }
