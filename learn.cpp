@@ -526,6 +526,25 @@ void show_menu();
 #pragma region prototype_ch17
 void get_from_file(vector<string>& v, ifstream& f);
 void sort_n_show(vector<string>& v, string name);
+
+void ShowStr(const string&);
+class Store
+{
+	ofstream* fil;
+public:
+	Store(ofstream &f)
+	{
+		fil = &f;
+	}
+	Store& operator() (const string& s)
+	{
+		int len = s.length();
+		fil->write((char*)&len, sizeof(std::size_t));
+		fil->write(s.data(), len);
+		return *this;
+	}
+};
+void GetStrs(ifstream&, vector<string>);
 #pragma endregion
 
 int main(int argc, char* argv[])
@@ -2518,6 +2537,29 @@ int main(int argc, char* argv[])
 	//}
 	//cout << "Bye!";
 
+	// #7
+	vector<string> vostr;
+	string temp;
+	cout << "Enter strings(empty line to quit):\n";
+	while (getline(cin, temp) && temp[0] != '\0')
+		vostr.push_back(temp);
+	cout << "Here is your input.\n";
+	for_each(vostr.begin(), vostr.end(), ShowStr);
+
+	ofstream fout("chapter17/17_7.txt", ios_base::out | ios_base::binary);
+	for_each(vostr.begin(), vostr.end(), Store(fout));
+	fout.close();
+
+	vector<string> vistr;
+	ifstream fin("chapter17/17_7.txt", ios_base::in | ios_base::binary);
+	if (!fin.is_open())
+	{
+		cerr << "Could not open file for input.\n";
+		exit(EXIT_FAILURE);
+	}
+	GetStrs(fin, vistr);
+	cout << "\nHere are the strings read from file:\n";
+	for_each(vistr.begin(), vistr.end(), ShowStr);
 #pragma endregion
 }
 
@@ -3100,5 +3142,28 @@ void sort_n_show(vector<string>& v, string name)
 	sort(v.begin(), v.end());
 	for (auto kent : v)
 		cout << kent << endl;
+}
+
+void ShowStr(const string& s)
+{
+	cout << s << endl;
+}
+
+void GetStrs(ifstream& f, vector<string> vs)
+{
+	size_t len = 0;
+	string str;
+	char ch;
+	while (f.peek() && !f.eof())
+	{
+		f.read((char*)&len, sizeof(size_t));
+		for (size_t i = 0; i < len; i++)
+		{
+			f.read(&ch, sizeof(char));
+			str.push_back(ch);
+		}
+		vs.push_back(str);
+		str.clear();
+	}
 }
 #pragma endregion
