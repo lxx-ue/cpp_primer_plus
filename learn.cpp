@@ -571,6 +571,74 @@ T average_list(initializer_list<T> li)
 {
 	return accumulate(li.begin(), li.end(), 0);
 }
+
+// 2
+class Cpmv
+{
+public:
+	struct Info
+	{
+		string qcode;
+		string zcode;
+	};
+private:
+	Info* pi;
+public:
+	Cpmv(string s1 = "none", string s2 = "none")
+	{
+		pi = new Info();
+		pi->qcode = s1;
+		pi->zcode = s2;
+		cout << "Create cpmv with info: " << s1 << ' ' << s2 << endl;
+	}
+	Cpmv(const Cpmv& cp)
+	{
+		pi = new Info();
+		pi->qcode = cp.pi->qcode;
+		pi->zcode = cp.pi->zcode;
+		cout << "Copy cpmv with info: " << pi->qcode << ' ' << pi->zcode << endl;
+	}
+	Cpmv(Cpmv&& mv)
+	{
+		pi = mv.pi;
+		mv.pi = nullptr;
+		cout << "Move cpmv with info: " << pi->qcode << ' ' << pi->zcode << endl;
+	}
+
+	Cpmv& operator=(const Cpmv& cp)
+	{
+		if (&cp == this) return *this;
+		delete pi;
+		pi = new Info();
+		pi->qcode = cp.pi->qcode;
+		pi->zcode = cp.pi->zcode;
+		cout << "Copy cpmv with info: " << pi->qcode << ' ' << pi->zcode << endl;
+		return *this;
+	}
+	Cpmv& operator=(Cpmv&& mv)
+	{
+		if (&mv == this) return *this;
+		delete pi;
+		pi = mv.pi;
+		mv.pi = nullptr;
+		cout << "Move cpmv with info: " << pi->qcode << ' ' << pi->zcode << endl;
+		return *this;
+	}
+	Cpmv operator+(const Cpmv& obj)  const
+	{
+		Cpmv tmp;
+		tmp.pi->qcode = pi->qcode + obj.pi->qcode;
+		tmp.pi->zcode = pi->zcode + obj.pi->zcode;
+		return tmp;
+	}
+	~Cpmv()
+	{
+		if (pi)
+			cout << "deleted: " << pi->qcode << ' ' << pi->zcode << endl;
+		delete pi;
+	}
+	void Display() const { cout << pi->qcode << ' ' << pi->zcode << endl; }
+};
 #pragma endregion
 
 int main(int argc, char* argv[])
@@ -2597,11 +2665,21 @@ int main(int argc, char* argv[])
 	//show_list(х* х, '!', 7, mr);
 
 	// #1
-	auto q = average_list({ 15.4, 10.7, 9.0 });
-	cout << q << endl;
-	cout << average_list({ 20, 30, 19, 17, 45, 38 }) << endl;
-	auto ad = average_list<double>({ 'A', 70, 65.33 });
-	cout << ad << endl;
+	//auto q = average_list({ 15.4, 10.7, 9.0 });
+	//cout << q << endl;
+	//cout << average_list({ 20, 30, 19, 17, 45, 38 }) << endl;
+	//auto ad = average_list<double>({ 'A', 70, 65.33 });
+	//cout << ad << endl;
+
+	// #2
+	Cpmv apple("green", "small");
+	Cpmv melon("yellow", "big");
+	Cpmv pear(move(apple));
+	Cpmv watermelon(melon);
+	watermelon = move(pear);
+	Cpmv lime(watermelon);
+	lime = watermelon + melon;
+
 
 #pragma endregion
 }
