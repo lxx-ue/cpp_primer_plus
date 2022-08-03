@@ -22,6 +22,8 @@
 #include <list>
 #include <memory>
 #include <sstream>
+#include <numeric>
+#include <utility>
 
 #include "chapter9/ch9_1.h"
 #include "chapter9/ch9_4.h"
@@ -561,6 +563,13 @@ void show_list(const Т& value, const Args & ... args)
 {
 	cout << value << ", ";
 	show_list(args ...);
+}
+
+// 1
+template<typename T>
+T average_list(initializer_list<T> li)
+{
+	return accumulate(li.begin(), li.end(), 0);
 }
 #pragma endregion
 
@@ -2581,11 +2590,18 @@ int main(int argc, char* argv[])
 
 #pragma region chapter18
 	// using recursion in template functions with variable number of arguments
-	int n = 14;
-	double х = 2.71828;
-	string mr = "Mr. String objects!";
-	show_list(n, х);
-	show_list(х* х, '!', 7, mr);
+	//int n = 14;
+	//double х = 2.71828;
+	//string mr = "Mr. String objects!";
+	//show_list(n, х);
+	//show_list(х* х, '!', 7, mr);
+
+	// #1
+	auto q = average_list({ 15.4, 10.7, 9.0 });
+	cout << q << endl;
+	cout << average_list({ 20, 30, 19, 17, 45, 38 }) << endl;
+	auto ad = average_list<double>({ 'A', 70, 65.33 });
+	cout << ad << endl;
 
 #pragma endregion
 }
