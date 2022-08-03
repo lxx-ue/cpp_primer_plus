@@ -547,6 +547,23 @@ public:
 void GetStrs(ifstream&, vector<string>);
 #pragma endregion
 
+#pragma region prototype_ch18
+void show_list() {} // 0 params
+
+template<typename Т> // 1 param
+void show_list(const Т& value)
+{
+	cout << value << '\n';
+}
+
+template<typename Т, typename ... Args> // >1 params
+void show_list(const Т& value, const Args & ... args)
+{
+	cout << value << ", ";
+	show_list(args ...);
+}
+#pragma endregion
+
 int main(int argc, char* argv[])
 {
 	setlocale(0, "");
@@ -2538,28 +2555,38 @@ int main(int argc, char* argv[])
 	//cout << "Bye!";
 
 	// #7
-	vector<string> vostr;
-	string temp;
-	cout << "Enter strings(empty line to quit):\n";
-	while (getline(cin, temp) && temp[0] != '\0')
-		vostr.push_back(temp);
-	cout << "Here is your input.\n";
-	for_each(vostr.begin(), vostr.end(), ShowStr);
+	//vector<string> vostr;
+	//string temp;
+	//cout << "Enter strings(empty line to quit):\n";
+	//while (getline(cin, temp) && temp[0] != '\0')
+	//	vostr.push_back(temp);
+	//cout << "Here is your input.\n";
+	//for_each(vostr.begin(), vostr.end(), ShowStr);
 
-	ofstream fout("chapter17/17_7.txt", ios_base::out | ios_base::binary);
-	for_each(vostr.begin(), vostr.end(), Store(fout));
-	fout.close();
+	//ofstream fout("chapter17/17_7.txt", ios_base::out | ios_base::binary);
+	//for_each(vostr.begin(), vostr.end(), Store(fout));
+	//fout.close();
 
-	vector<string> vistr;
-	ifstream fin("chapter17/17_7.txt", ios_base::in | ios_base::binary);
-	if (!fin.is_open())
-	{
-		cerr << "Could not open file for input.\n";
-		exit(EXIT_FAILURE);
-	}
-	GetStrs(fin, vistr);
-	cout << "\nHere are the strings read from file:\n";
-	for_each(vistr.begin(), vistr.end(), ShowStr);
+	//vector<string> vistr;
+	//ifstream fin("chapter17/17_7.txt", ios_base::in | ios_base::binary);
+	//if (!fin.is_open())
+	//{
+	//	cerr << "Could not open file for input.\n";
+	//	exit(EXIT_FAILURE);
+	//}
+	//GetStrs(fin, vistr);
+	//cout << "\nHere are the strings read from file:\n";
+	//for_each(vistr.begin(), vistr.end(), ShowStr);
+#pragma endregion
+
+#pragma region chapter18
+	// using recursion in template functions with variable number of arguments
+	int n = 14;
+	double х = 2.71828;
+	string mr = "Mr. String objects!";
+	show_list(n, х);
+	show_list(х* х, '!', 7, mr);
+
 #pragma endregion
 }
 
@@ -3166,4 +3193,8 @@ void GetStrs(ifstream& f, vector<string> vs)
 		str.clear();
 	}
 }
+#pragma endregion
+
+#pragma region func_ch18
+
 #pragma endregion
