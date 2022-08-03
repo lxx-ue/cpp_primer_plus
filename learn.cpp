@@ -639,6 +639,14 @@ public:
 	}
 	void Display() const { cout << pi->qcode << ' ' << pi->zcode << endl; }
 };
+
+// 3
+double sum_values() { return 0; }
+template <typename T, typename... Argc>
+long double sum_values(const T& value, const Argc& ... args)
+{
+	return value + sum_values(args...);
+}
 #pragma endregion
 
 int main(int argc, char* argv[])
@@ -2672,14 +2680,16 @@ int main(int argc, char* argv[])
 	//cout << ad << endl;
 
 	// #2
-	Cpmv apple("green", "small");
-	Cpmv melon("yellow", "big");
-	Cpmv pear(move(apple));
-	Cpmv watermelon(melon);
-	watermelon = move(pear);
-	Cpmv lime(watermelon);
-	lime = watermelon + melon;
+	//Cpmv apple("green", "small");
+	//Cpmv melon("yellow", "big");
+	//Cpmv pear(move(apple));
+	//Cpmv watermelon(melon);
+	//watermelon = move(pear);
+	//Cpmv lime(watermelon);
+	//lime = watermelon + melon;
 
+	// #3
+	cout << sum_values(2, 4, 5, 2.3);
 
 #pragma endregion
 }
@@ -3287,8 +3297,4 @@ void GetStrs(ifstream& f, vector<string> vs)
 		str.clear();
 	}
 }
-#pragma endregion
-
-#pragma region func_ch18
-
 #pragma endregion
